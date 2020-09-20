@@ -55,11 +55,11 @@ struct EmojiWordView: View {
     
     func checkAnswer(rightSwipe: Bool) {
         //check for correct answer
-        if ((cards?[0].object_name == cards?[0].real_name) && rightSwipe) || (cards?[0].object_name != cards?[0].real_name) && !rightSwipe {
+        if ((currentCard?.object_name == currentCard?.real_name) && rightSwipe) || (currentCard?.object_name != currentCard?.real_name) && !rightSwipe {
             self.coins += 5
         } else {
             withAnimation {
-                needShowCorrectAnswer = cards?[0].real_name
+                needShowCorrectAnswer = currentCard?.real_name
             }
         }
         
@@ -68,11 +68,10 @@ struct EmojiWordView: View {
     }
     
     func nextCard() {
-        cards?.remove(at: 0)
         guard let cards = cards else { return }
         guard cards.count > 0 else { return }
+        self.cards?.remove(at: 0)
         
-        currentCard = nil
         currentCard = cards[0]
         
     }
