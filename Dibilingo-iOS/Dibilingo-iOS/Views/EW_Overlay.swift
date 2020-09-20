@@ -18,6 +18,8 @@ struct EW_Overlay: View {
         return false
     }
     
+    
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -28,19 +30,21 @@ struct EW_Overlay: View {
                     HStack {
                         Image(systemName: "checkmark.circle")
                             .foregroundColor(.green)
-                            //.font(.system(size: 40) )
-                            //.font(Font.custom("boomboom", size: 32))
+                            .font(.system(size: 40, weight: .heavy))
+                        
                         Text("Correct!")
-                            .font(.title)
+                            .offset(x: 0, y: 3)
+                            .font(Font.custom("boomboom", size: 38))
                     }
                 } else {
                     VStack {
                         HStack {
                             Image(systemName: "xmark.circle")
                                 .foregroundColor(.red)
+                                .font(.system(size: 40, weight: .heavy))
                                 
                             Text("Wrong!")
-                                .offset(x: 0, y: 5)
+                                .offset(x: 0, y: 3)
                                 .font(Font.custom("boomboom", size: 38))
                                 
                             
@@ -51,7 +55,6 @@ struct EW_Overlay: View {
                             Text(card.real_name).foregroundColor(.red)
                             Text("!")
                         }
-                        //.font(Font.custom("boomboom", size: 32))
                     }
                 }
                 
