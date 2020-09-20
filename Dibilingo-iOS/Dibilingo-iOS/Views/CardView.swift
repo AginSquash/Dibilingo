@@ -10,7 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     let card: Card
-    var removal: (()->Void)? = nil
+    var removal: ((Bool)->Void)? = nil
     
     @State private var offset = CGSize.zero
     @State private var opacity: Double = 1.0
@@ -56,7 +56,7 @@ struct CardView: View {
                             opacity = 0
                         }
                         
-                        self.removal?()
+                        self.removal?(self.offset.width > 150 ? true : false)
                         self.offset = CGSize.zero
                        // moveUP = true
                         

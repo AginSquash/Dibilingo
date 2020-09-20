@@ -19,7 +19,8 @@ struct EW_Overlay: View {
     }
     */
     
-    let needCorrectAnswer: String
+    @Binding var needCorrectAnswer: String?
+    @State var answerCopy: String = ""
     
     var body: some View {
         ZStack {
@@ -36,28 +37,33 @@ struct EW_Overlay: View {
                     Text("Wrong!")
                         .offset(x: 0, y: 3)
                         .font(Font.custom("boomboom", size: 38))
-                                
+                        .foregroundColor(.black)
                             
                 }.padding(.bottom, 5)
                         
                 HStack {
-                    Text("it is a")
-                    Text(needCorrectAnswer).foregroundColor(.red)
-                    Text("!")
+                    Text("it is a").foregroundColor(.black)
+                    Text(answerCopy).foregroundColor(.red)
+                    Text("!").foregroundColor(.black)
                 }
             }
-                
-                
-            
         }
+        .onAppear(perform: {
+            answerCopy = needCorrectAnswer ?? "ERROE"
+        })
         .font(Font.custom("boomboom", size: 32))
         .frame(width: 400, height: 150, alignment: .center)
+        .onTapGesture(count: 1, perform: {
+            withAnimation {
+                needCorrectAnswer = nil
+            }
+        })
     }
 }
 
 struct EW_Overlay_Previews: PreviewProvider {
     static var previews: some View {
         //EW_Overlay(card: Card(emoji: "1", object_name: "wolf", real_name: "wolf"), swiped_right: false)
-        EW_Overlay(needCorrectAnswer: "cat")
+        EW_Overlay(needCorrectAnswer: .constant("Cat"))
     }
 }
