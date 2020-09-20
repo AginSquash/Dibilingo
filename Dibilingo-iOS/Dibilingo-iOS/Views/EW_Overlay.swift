@@ -26,7 +26,7 @@ struct EW_Overlay: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
                 .fill(Color.white)
-                .shadow(radius: 10)
+                .shadow(radius: 15)
         
             VStack {
                 HStack {
@@ -49,7 +49,7 @@ struct EW_Overlay: View {
             }
         }
         .onAppear(perform: {
-            answerCopy = needCorrectAnswer ?? "ERROE"
+            answerCopy = needCorrectAnswer ?? "ERROR"
         })
         .font(Font.custom("boomboom", size: 32))
         .frame(width: 400, height: 150, alignment: .center)

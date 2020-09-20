@@ -48,6 +48,7 @@
 	</array>
 	<key>UIAppFonts</key>
 	<array>
+		<string>gardenscregular.ttf</string>
 		<string>engine.ttf</string>
 		<string>boomboom.ttf</string>
 	</array>

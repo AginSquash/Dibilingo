@@ -19,6 +19,7 @@
 		CDE15D2D2517860900A3C8D4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D2C2517860900A3C8D4 /* Card.swift */; };
 		CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */; };
 		CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D34251794B900A3C8D4 /* Utilities.swift */; };
+		CDE15D3B2517D65900A3C8D4 /* gardenscregular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE15D3A2517D65900A3C8D4 /* gardenscregular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		CDE15D2C2517860900A3C8D4 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EW_Overlay.swift; sourceTree = "<group>"; };
 		CDE15D34251794B900A3C8D4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		CDE15D3A2517D65900A3C8D4 /* gardenscregular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gardenscregular.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 		CDE15D18251778F200A3C8D4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CDE15D3A2517D65900A3C8D4 /* gardenscregular.ttf */,
 				CDE15D1F251779EA00A3C8D4 /* engine.ttf */,
 				CDE15D20251779EA00A3C8D4 /* engineitalic.ttf */,
 				CDE15D2525177ADF00A3C8D4 /* boomboom.ttf */,
@@ -166,6 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE15D3B2517D65900A3C8D4 /* gardenscregular.ttf in Resources */,
 				CDE15D23251779EF00A3C8D4 /* engineitalic.ttf in Resources */,
 				CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */,
 				CDE15D2625177ADF00A3C8D4 /* boomboom.ttf in Resources */,

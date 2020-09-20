@@ -18,8 +18,9 @@ struct ContentView: View {
                         label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 100, height: 30, alignment: .center)
-                                Text("Level 1")
+                                    .frame(width: 150, height: 50, alignment: .center)
+                                Text("Level I")
+                                    .font(Font.custom("boomboom", size: 32))
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
@@ -29,8 +30,9 @@ struct ContentView: View {
                         label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 100, height: 30, alignment: .center)
-                                Text("Level 2")
+                                    .frame(width: 150, height: 50, alignment: .center)
+                                Text("Level II")
+                                    .font(Font.custom("boomboom", size: 32))
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
@@ -40,8 +42,9 @@ struct ContentView: View {
                         label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 100, height: 30, alignment: .center)
-                                Text("Level 3")
+                                    .frame(width: 150, height: 50, alignment: .center)
+                                Text("Level III")
+                                    .font(Font.custom("boomboom", size: 32))
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
