@@ -14,6 +14,7 @@ struct CardView: View {
     
     @State private var offset = CGSize.zero
     @State private var opacity: Double = 1.0
+    @State private var moveUP: Bool = false
     
     var body: some View {
         ZStack {
@@ -38,7 +39,7 @@ struct CardView: View {
             }
         }
         .opacity(opacity)
-        //.opacity( abs(self.offset.width) / 150)
+        .offset(y: moveUP ? -1000 : 0)
         .frame(width: 325, height: 400, alignment: .center)
         .rotationEffect(.degrees(Double(offset.width) / 7 ))
         .offset(x: offset.width / 2, y: 0)
@@ -46,7 +47,7 @@ struct CardView: View {
             DragGesture()
                 .onChanged({ gesture in
                     self.offset = gesture.translation
-                    self.opacity = 1 - Double(abs(self.offset.width)) / 150
+                    self.opacity = 1.5 - Double(abs(self.offset.width)) / 200
                 })
                 .onEnded({ _ in
                     
@@ -57,9 +58,11 @@ struct CardView: View {
                         
                         self.removal?()
                         self.offset = CGSize.zero
+                       // moveUP = true
                         
-                        withAnimation {
+                        withAnimation(.easeIn(duration: 1.0)) {
                             opacity = 1.0
+                         //   moveUP = false
                         }
                     } else {
                         withAnimation {
