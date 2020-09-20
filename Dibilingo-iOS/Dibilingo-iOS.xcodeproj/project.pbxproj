@@ -11,6 +11,7 @@
 		CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4972514FC57007D35AF /* ContentView.swift */; };
 		CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD4992514FC59007D35AF /* Assets.xcassets */; };
 		CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */; };
+		CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D132517628B00A3C8D4 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		CDDDD4992514FC59007D35AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CDDDD49E2514FC59007D35AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDE15D132517628B00A3C8D4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */,
 				CDDDD4972514FC57007D35AF /* ContentView.swift */,
+				CDE15D132517628B00A3C8D4 /* CardView.swift */,
 				CDDDD4992514FC59007D35AF /* Assets.xcassets */,
 				CDDDD49E2514FC59007D35AF /* Info.plist */,
 				CDDDD49B2514FC59007D35AF /* Preview Content */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */,
+				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
 				CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
