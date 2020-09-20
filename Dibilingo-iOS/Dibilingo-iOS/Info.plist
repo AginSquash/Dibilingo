@@ -46,5 +46,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>engine.ttf</string>
+		<string>boomboom.ttf</string>
+	</array>
 </dict>
 </plist>

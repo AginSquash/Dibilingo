@@ -12,6 +12,13 @@
 		CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD4992514FC59007D35AF /* Assets.xcassets */; };
 		CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */; };
 		CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D132517628B00A3C8D4 /* CardView.swift */; };
+		CDE15D21251779EC00A3C8D4 /* engine.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE15D1F251779EA00A3C8D4 /* engine.ttf */; };
+		CDE15D23251779EF00A3C8D4 /* engineitalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE15D20251779EA00A3C8D4 /* engineitalic.ttf */; };
+		CDE15D2625177ADF00A3C8D4 /* boomboom.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE15D2525177ADF00A3C8D4 /* boomboom.ttf */; };
+		CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D282517841600A3C8D4 /* EmojiWordView.swift */; };
+		CDE15D2D2517860900A3C8D4 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D2C2517860900A3C8D4 /* Card.swift */; };
+		CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */; };
+		CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D34251794B900A3C8D4 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CDDDD49E2514FC59007D35AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDE15D132517628B00A3C8D4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		CDE15D1F251779EA00A3C8D4 /* engine.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = engine.ttf; sourceTree = "<group>"; };
+		CDE15D20251779EA00A3C8D4 /* engineitalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = engineitalic.ttf; sourceTree = "<group>"; };
+		CDE15D2525177ADF00A3C8D4 /* boomboom.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = boomboom.ttf; sourceTree = "<group>"; };
+		CDE15D282517841600A3C8D4 /* EmojiWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiWordView.swift; sourceTree = "<group>"; };
+		CDE15D2C2517860900A3C8D4 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EW_Overlay.swift; sourceTree = "<group>"; };
+		CDE15D34251794B900A3C8D4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,11 +68,13 @@
 		CDDDD4942514FC57007D35AF /* Dibilingo-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CDE15D2B251785F200A3C8D4 /* Views */,
 				CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */,
-				CDDDD4972514FC57007D35AF /* ContentView.swift */,
-				CDE15D132517628B00A3C8D4 /* CardView.swift */,
+				CDE15D34251794B900A3C8D4 /* Utilities.swift */,
+				CDE15D2C2517860900A3C8D4 /* Card.swift */,
 				CDDDD4992514FC59007D35AF /* Assets.xcassets */,
 				CDDDD49E2514FC59007D35AF /* Info.plist */,
+				CDE15D18251778F200A3C8D4 /* Fonts */,
 				CDDDD49B2514FC59007D35AF /* Preview Content */,
 			);
 			path = "Dibilingo-iOS";
@@ -70,6 +86,27 @@
 				CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CDE15D18251778F200A3C8D4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CDE15D1F251779EA00A3C8D4 /* engine.ttf */,
+				CDE15D20251779EA00A3C8D4 /* engineitalic.ttf */,
+				CDE15D2525177ADF00A3C8D4 /* boomboom.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CDE15D2B251785F200A3C8D4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CDDDD4972514FC57007D35AF /* ContentView.swift */,
+				CDE15D282517841600A3C8D4 /* EmojiWordView.swift */,
+				CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */,
+				CDE15D132517628B00A3C8D4 /* CardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,7 +166,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE15D23251779EF00A3C8D4 /* engineitalic.ttf in Resources */,
 				CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */,
+				CDE15D2625177ADF00A3C8D4 /* boomboom.ttf in Resources */,
+				CDE15D21251779EC00A3C8D4 /* engine.ttf in Resources */,
 				CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,7 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */,
+				CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */,
 				CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */,
+				CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */,
+				CDE15D2D2517860900A3C8D4 /* Card.swift in Sources */,
 				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
 				CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */,
 			);
