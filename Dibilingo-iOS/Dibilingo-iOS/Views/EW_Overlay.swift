@@ -19,7 +19,7 @@ struct EW_Overlay: View {
     }
     */
     
-    let needCorrectAnswer: String?
+    let needCorrectAnswer: String
     
     var body: some View {
         ZStack {
@@ -27,37 +27,26 @@ struct EW_Overlay: View {
                 .fill(Color.white)
                 .shadow(radius: 10)
         
-            if self.needCorrectAnswer == nil {
-                    HStack {
-                        Image(systemName: "checkmark.circle")
-                            .foregroundColor(.green)
-                            .font(.system(size: 40, weight: .heavy))
-                        
-                        Text("Correct!")
-                            .offset(x: 0, y: 3)
-                            .font(Font.custom("boomboom", size: 38))
-                    }
-                } else {
-                    VStack {
-                        HStack {
-                            Image(systemName: "xmark.circle")
-                                .foregroundColor(.red)
-                                .font(.system(size: 40, weight: .heavy))
+            VStack {
+                HStack {
+                    Image(systemName: "xmark.circle")
+                        .foregroundColor(.red)
+                        .font(.system(size: 40, weight: .heavy))
                                 
-                            Text("Wrong!")
-                                .offset(x: 0, y: 3)
-                                .font(Font.custom("boomboom", size: 38))
+                    Text("Wrong!")
+                        .offset(x: 0, y: 3)
+                        .font(Font.custom("boomboom", size: 38))
                                 
                             
-                        }.padding(.bottom, 5)
+                }.padding(.bottom, 5)
                         
-                        HStack {
-                            Text("it is a")
-                            Text(needCorrectAnswer ?? "unwrapped error").foregroundColor(.red)
-                            Text("!")
-                        }
-                    }
+                HStack {
+                    Text("it is a")
+                    Text(needCorrectAnswer).foregroundColor(.red)
+                    Text("!")
                 }
+            }
+                
                 
             
         }
