@@ -14,7 +14,7 @@ struct ContentView: View {
                 // background here
                 VStack {
                     NavigationLink(
-                        destination: CardView(card: Card(emoji: "🐺", object_name: "wolf", real_name: "wolf")).navigationBarHidden(true),
+                        destination: EmojiWordView().navigationBarHidden(true),
                         label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)

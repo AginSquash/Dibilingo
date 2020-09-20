@@ -9,15 +9,16 @@ import SwiftUI
 
 struct CardView: View {
     
-    @State private var offset = CGSize.zero
-    
     let card: Card
+    var removal: (()->Void)? = nil
+    
+    @State private var offset = CGSize.zero
+    @State private var opacity: Double = 1.0
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
                 .fill(Color(hex: "93bfff"))
-                //.fill(Color(.sRGB, red: 0.5764705882352941, green: 0.7490196078431373, blue: 1.0, opacity: 1.0))
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20.0, style: .continuous)
@@ -36,6 +37,8 @@ struct CardView: View {
                 .font(Font.custom("boomboom", size: 42))
             }
         }
+        .opacity(opacity)
+        //.opacity( abs(self.offset.width) / 150)
         .frame(width: 325, height: 400, alignment: .center)
         .rotationEffect(.degrees(Double(offset.width) / 7 ))
         .offset(x: offset.width / 2, y: 0)
@@ -43,15 +46,30 @@ struct CardView: View {
             DragGesture()
                 .onChanged({ gesture in
                     self.offset = gesture.translation
+                    self.opacity = 1 - Double(abs(self.offset.width)) / 150
                 })
                 .onEnded({ _ in
-                    // delete card
-                    withAnimation {
+                    
+                    if abs(self.offset.width) > 150 {
+                        withAnimation {
+                            opacity = 0
+                        }
+                        
+                        self.removal?()
                         self.offset = CGSize.zero
+                        
+                        withAnimation {
+                            opacity = 1.0
+                        }
+                    } else {
+                        withAnimation {
+                            self.offset = CGSize.zero
+                        }
                     }
                 })
         )
     }
+    
 }
 
 struct CardView_Previews: PreviewProvider {

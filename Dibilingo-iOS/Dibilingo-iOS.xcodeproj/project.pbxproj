@@ -103,8 +103,8 @@
 			children = (
 				CDDDD4972514FC57007D35AF /* ContentView.swift */,
 				CDE15D282517841600A3C8D4 /* EmojiWordView.swift */,
-				CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */,
 				CDE15D132517628B00A3C8D4 /* CardView.swift */,
+				CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

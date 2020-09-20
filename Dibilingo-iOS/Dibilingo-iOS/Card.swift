@@ -13,6 +13,6 @@ struct Card: Codable {
     let real_name: String
     
     static func getExamples() -> [Card] {
-        return [Card(emoji: "🐺", object_name: "wolf", real_name: "wolf"), Card(emoji: "🐺", object_name: "wolf", real_name: "wolf"), Card(emoji: "🐺", object_name: "wolf", real_name: "wolf")]
+        return [Card(emoji: "🐺", object_name: "wolf", real_name: "wolf"), Card(emoji: "🐭", object_name: "mouse", real_name: "mouse"), Card(emoji: "🐹", object_name: "wolf", real_name: "hamster")]
     }
 }
