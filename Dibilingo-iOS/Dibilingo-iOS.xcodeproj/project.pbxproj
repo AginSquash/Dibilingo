@@ -20,6 +20,7 @@
 		CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */; };
 		CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D34251794B900A3C8D4 /* Utilities.swift */; };
 		CDE15D3B2517D65900A3C8D4 /* gardenscregular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE15D3A2517D65900A3C8D4 /* gardenscregular.ttf */; };
+		CDE15D422517DB6300A3C8D4 /* Coiny.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDE15D412517DB6300A3C8D4 /* Coiny.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EW_Overlay.swift; sourceTree = "<group>"; };
 		CDE15D34251794B900A3C8D4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		CDE15D3A2517D65900A3C8D4 /* gardenscregular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = gardenscregular.ttf; sourceTree = "<group>"; };
+		CDE15D412517DB6300A3C8D4 /* Coiny.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Coiny.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		CDE15D18251778F200A3C8D4 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CDE15D412517DB6300A3C8D4 /* Coiny.ttf */,
 				CDE15D3A2517D65900A3C8D4 /* gardenscregular.ttf */,
 				CDE15D1F251779EA00A3C8D4 /* engine.ttf */,
 				CDE15D20251779EA00A3C8D4 /* engineitalic.ttf */,
@@ -169,6 +172,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE15D422517DB6300A3C8D4 /* Coiny.ttf in Resources */,
 				CDE15D3B2517D65900A3C8D4 /* gardenscregular.ttf in Resources */,
 				CDE15D23251779EF00A3C8D4 /* engineitalic.ttf in Resources */,
 				CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */,

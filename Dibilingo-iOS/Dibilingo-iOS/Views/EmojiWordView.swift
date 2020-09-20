@@ -19,6 +19,7 @@ struct EmojiWordView: View {
     var body: some View {
         ZStack {
             Rectangle()
+                .foregroundColor(.white)
                 .edgesIgnoringSafeArea(.all)
                 .zIndex(1)
             
@@ -53,8 +54,6 @@ struct EmojiWordView: View {
     }
     
     func checkAnswer(rightSwipe: Bool) {
-        print(rightSwipe)
-        
         //check for correct answer
         if ((cards?[0].object_name == cards?[0].real_name) && rightSwipe) || (cards?[0].object_name != cards?[0].real_name) && !rightSwipe {
             self.coins += 5

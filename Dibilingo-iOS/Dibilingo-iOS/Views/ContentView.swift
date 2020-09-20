@@ -19,8 +19,12 @@ struct ContentView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(width: 150, height: 50, alignment: .center)
-                                Text("Level I")
+                                Text("Level ")
                                     .font(Font.custom("boomboom", size: 32))
+                                    .foregroundColor(.white)
+                                +
+                                Text("1")
+                                    .font(Font.custom("Coiny", size: 32))
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
@@ -31,8 +35,12 @@ struct ContentView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(width: 150, height: 50, alignment: .center)
-                                Text("Level II")
+                                Text("Level ")
                                     .font(Font.custom("boomboom", size: 32))
+                                    .foregroundColor(.white)
+                                +
+                                Text("2")
+                                    .font(Font.custom("Coiny", size: 32))
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
@@ -43,8 +51,12 @@ struct ContentView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)
                                     .frame(width: 150, height: 50, alignment: .center)
-                                Text("Level III")
+                                Text("Level ")
                                     .font(Font.custom("boomboom", size: 32))
+                                    .foregroundColor(.white)
+                                +
+                                Text("3")
+                                    .font(Font.custom("Coiny", size: 32))
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
