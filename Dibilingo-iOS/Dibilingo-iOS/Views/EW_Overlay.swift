@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EW_Overlay: View {
-    
+    /*
     let card: Card
     let swiped_right: Bool
     
@@ -17,8 +17,9 @@ struct EW_Overlay: View {
         if (card.object_name != card.real_name) && !swiped_right { return true }
         return false
     }
+    */
     
-    
+    let needCorrectAnswer: String?
     
     var body: some View {
         ZStack {
@@ -26,7 +27,7 @@ struct EW_Overlay: View {
                 .fill(Color.white)
                 .shadow(radius: 10)
         
-                if isCorrect {
+            if self.needCorrectAnswer == nil {
                     HStack {
                         Image(systemName: "checkmark.circle")
                             .foregroundColor(.green)
@@ -52,7 +53,7 @@ struct EW_Overlay: View {
                         
                         HStack {
                             Text("it is a")
-                            Text(card.real_name).foregroundColor(.red)
+                            Text(needCorrectAnswer ?? "unwrapped error").foregroundColor(.red)
                             Text("!")
                         }
                     }
@@ -67,6 +68,7 @@ struct EW_Overlay: View {
 
 struct EW_Overlay_Previews: PreviewProvider {
     static var previews: some View {
-        EW_Overlay(card: Card(emoji: "1", object_name: "wolf", real_name: "wolf"), swiped_right: false)
+        //EW_Overlay(card: Card(emoji: "1", object_name: "wolf", real_name: "wolf"), swiped_right: false)
+        EW_Overlay(needCorrectAnswer: "cat")
     }
 }
