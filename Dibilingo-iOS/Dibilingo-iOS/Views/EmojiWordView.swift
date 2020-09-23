@@ -13,21 +13,54 @@ struct EmojiWordView: View {
     @State private var currentCard: Card? = nil
     @State private var offset: CGFloat? = nil
     
-    @State private var coins: Int = 0
     @State var needShowCorrectAnswer: String? = nil
+    
+    @State private var coins: Int = 0
+    var ScoreText: String {
+        return "\(coins)/54"
+    }
+    
+    @State private var isPointUp: Bool = false
     
     var body: some View {
         ZStack {
+            /*
             Rectangle()
                 .foregroundColor(.white)
                 .edgesIgnoringSafeArea(.all)
                 .zIndex(1)
+             */
+            Image(decorative: "background")
+                .frame(width: 100, height: 100, alignment: .center)
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
+                .zIndex(1)
+            
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    if isPointUp {
+                        Image(systemName: "arrow.up.circle")
+                            .font(.system(size: 38, weight: .bold))
+                            .foregroundColor(.green)
+                            .transition(.opacity)
+                    }
+                    Text("\(coins)/54")
+                        .foregroundColor(.white)
+                        .font(Font.custom("Coiny", size: 38))
+                        .padding(.trailing)
+                }
+                Spacer()
+            }
+            .zIndex(2)
             
             VStack {
                 if currentCard != nil {
                     CardView(card: currentCard!, removal: self.checkAnswer )
                         .offset(y: self.offset ?? 0)
                         .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
+                        .transition(.scale)
                 }
             }
             .zIndex(2)
@@ -56,7 +89,11 @@ struct EmojiWordView: View {
     func checkAnswer(rightSwipe: Bool) {
         //check for correct answer
         if ((currentCard?.object_name == currentCard?.real_name) && rightSwipe) || (currentCard?.object_name != currentCard?.real_name) && !rightSwipe {
-            self.coins += 5
+            withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
+            }
         } else {
             withAnimation {
                 needShowCorrectAnswer = currentCard?.real_name
