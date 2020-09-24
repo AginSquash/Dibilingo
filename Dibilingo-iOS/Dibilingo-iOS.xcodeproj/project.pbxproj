@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CDB1A02C251CD2AB0009F7D8 /* orig.gif in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A02B251CD2AB0009F7D8 /* orig.gif */; };
+		CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */; };
+		CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */; };
 		CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */; };
 		CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4972514FC57007D35AF /* ContentView.swift */; };
 		CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD4992514FC59007D35AF /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CDB1A02B251CD2AB0009F7D8 /* orig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = orig.gif; sourceTree = "<group>"; };
+		CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGIFPlayerView.swift; sourceTree = "<group>"; };
+		CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFPlayerView.swift; sourceTree = "<group>"; };
 		CDDDD4922514FC57007D35AF /* Dibilingo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dibilingo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dibilingo_iOSApp.swift; sourceTree = "<group>"; };
 		CDDDD4972514FC57007D35AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +59,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CDB1A034251CD5880009F7D8 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CDE15D34251794B900A3C8D4 /* Utilities.swift */,
+				CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */,
+				CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CDB1A035251CD5A80009F7D8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CDE15D2C2517860900A3C8D4 /* Card.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		CDDDD4892514FC57007D35AF = {
 			isa = PBXGroup;
 			children = (
@@ -72,12 +96,13 @@
 		CDDDD4942514FC57007D35AF /* Dibilingo-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				CDE15D2B251785F200A3C8D4 /* Views */,
 				CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */,
-				CDE15D34251794B900A3C8D4 /* Utilities.swift */,
-				CDE15D2C2517860900A3C8D4 /* Card.swift */,
+				CDB1A035251CD5A80009F7D8 /* Data */,
+				CDE15D2B251785F200A3C8D4 /* Views */,
+				CDB1A034251CD5880009F7D8 /* Utilities */,
 				CDDDD4992514FC59007D35AF /* Assets.xcassets */,
 				CDDDD49E2514FC59007D35AF /* Info.plist */,
+				CDB1A02B251CD2AB0009F7D8 /* orig.gif */,
 				CDE15D18251778F200A3C8D4 /* Fonts */,
 				CDDDD49B2514FC59007D35AF /* Preview Content */,
 			);
@@ -177,6 +202,7 @@
 				CDE15D23251779EF00A3C8D4 /* engineitalic.ttf in Resources */,
 				CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */,
 				CDE15D2625177ADF00A3C8D4 /* boomboom.ttf in Resources */,
+				CDB1A02C251CD2AB0009F7D8 /* orig.gif in Resources */,
 				CDE15D21251779EC00A3C8D4 /* engine.ttf in Resources */,
 				CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */,
 			);
@@ -195,7 +221,9 @@
 				CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */,
 				CDE15D2D2517860900A3C8D4 /* Card.swift in Sources */,
 				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
+				CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */,
 				CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */,
+				CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

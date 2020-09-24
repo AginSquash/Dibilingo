@@ -12,7 +12,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // background here
+                SwiftUIGIFPlayerView(gifName: "orig")
+                    .scaledToFill()
+                    .ignoresSafeArea(.all)
                 VStack {
                     NavigationLink(
                         destination: EmojiWordView().navigationBarHidden(true),
