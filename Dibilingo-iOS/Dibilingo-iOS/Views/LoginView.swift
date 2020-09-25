@@ -84,6 +84,7 @@ struct LoginView: View {
                                             print(error.localizedDescription)
                                         }
                                     } else {
+                                        print("DEBUG: incorrect data with \(card)")
                                         var newCL = cardsList
                                         newCL.cards.removeAll(where: { $0 == card })
                                         if let encoded = try? JSONEncoder().encode(newCL) {
