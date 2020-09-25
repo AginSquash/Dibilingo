@@ -11,7 +11,8 @@ import SwiftUI
 struct Dibilingo_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
+            //ContentView()
         }
     }
 }

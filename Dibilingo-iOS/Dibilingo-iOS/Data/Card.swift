@@ -16,3 +16,7 @@ struct Card: Codable {
         return [Card(emoji: "🐺", object_name: "wolf", real_name: "wolf"), Card(emoji: "🐭", object_name: "mouse", real_name: "mouse"), Card(emoji: "🐹", object_name: "wolf", real_name: "hamster")]
     }
 }
+
+struct CardList: Codable {
+    var cards: [String] = []
+}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BDD10251E179100985BB1 /* LoginView.swift */; };
 		CDB1A02C251CD2AB0009F7D8 /* orig.gif in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A02B251CD2AB0009F7D8 /* orig.gif */; };
 		CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */; };
 		CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD3BDD10251E179100985BB1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CDB1A02B251CD2AB0009F7D8 /* orig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = orig.gif; sourceTree = "<group>"; };
 		CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGIFPlayerView.swift; sourceTree = "<group>"; };
 		CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFPlayerView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		CDE15D2B251785F200A3C8D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD3BDD10251E179100985BB1 /* LoginView.swift */,
 				CDDDD4972514FC57007D35AF /* ContentView.swift */,
 				CDE15D282517841600A3C8D4 /* EmojiWordView.swift */,
 				CDE15D132517628B00A3C8D4 /* CardView.swift */,
@@ -223,6 +226,7 @@
 				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
 				CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */,
 				CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */,
+				CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */,
 				CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
