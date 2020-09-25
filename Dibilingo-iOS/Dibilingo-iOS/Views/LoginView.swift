@@ -7,12 +7,43 @@
 
 import SwiftUI
 
+let serverURL = "http://192.168.88.133:5000"
+
 struct LoginView: View {
+    @State private var downloadedImages: Int = 0
+    @State private var totalImages: Int = 0
+    
+    @State private var username: String = ""
+    
     var body: some View {
         ZStack {
+            
+            // background
+            
             VStack {
-                Text("Loadnig...")
-            }
+                Spacer()
+                Text("Loading: \(downloadedImages)/\(totalImages)")
+                    .padding()
+            }.zIndex(1)
+            
+            VStack {
+                HStack {
+                    Text("Your name:")
+                        .frame(width: 100, height: 50, alignment: .center)
+                    
+                    TextField("name", text: $username)
+                        .multilineTextAlignment(.center)
+                        .frame(width: 175, height: 50, alignment: .center)
+                        .padding([.bottom, .top])
+                    
+                    Spacer()
+                        .frame(width: 100, height: 50, alignment: .center)
+                      
+                }
+                Button("Sign up", action: {})
+                    .disabled(downloadedImages != totalImages)
+                    .padding()
+            }.zIndex(2)
         }
         .onAppear(perform: loadData)
         //.onAppear(perform: checkData)
@@ -43,7 +74,7 @@ struct LoginView: View {
     }
     
     func loadData() {
-        guard let url = URL(string: "http://127.0.0.1:5000/dibilingo/api/v1.0/cardlist") else { return }
+        guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/cardlist") else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
             
@@ -66,8 +97,12 @@ struct LoginView: View {
                             print(error.localizedDescription)
                         }
                         
+                        DispatchQueue.main.async {
+                            self.totalImages = cardsList.cards.count
+                        }
+                        
                         for card in cardsList.cards {
-                            guard let url = URL(string: "http://127.0.0.1:5000/dibilingo/api/v1.0/image/\(card)/") else { return }
+                            guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/image/\(card)/") else { return }
                             
                             URLSession.shared.dataTask(with: url) { imageData, response, error in
                                 
@@ -80,10 +115,21 @@ struct LoginView: View {
                                         print(imageData)
                                         do {
                                             try imageData.write(to: baseURL.appendingPathComponent("\(card).jpg"))
+                                            
+                                            DispatchQueue.main.async {
+                                                self.downloadedImages += 1
+                                            }
+
+                                            
                                         } catch {
                                             print(error.localizedDescription)
                                         }
                                     } else {
+                                        
+                                        DispatchQueue.main.async {
+                                            self.totalImages -= 1
+                                        }
+                                        
                                         print("DEBUG: incorrect data with \(card)")
                                         var newCL = cardsList
                                         newCL.cards.removeAll(where: { $0 == card })
