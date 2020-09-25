@@ -30,7 +30,7 @@ struct EmojiWordView: View {
                 .edgesIgnoringSafeArea(.all)
                 .zIndex(1)
              */
-            Image(decorative: "background")
+            Image(decorative: "back_1st")
                 .frame(width: 100, height: 100, alignment: .center)
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
@@ -56,6 +56,8 @@ struct EmojiWordView: View {
             .zIndex(2)
             
             VStack {
+                Spacer()
+                    .frame(width: 100, height: 150, alignment: .center)
                 if currentCard != nil {
                     CardView(card: currentCard!, removal: self.checkAnswer )
                         .offset(y: self.offset ?? 0)

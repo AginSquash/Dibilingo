@@ -22,27 +22,29 @@ struct LoginView: View {
             
             VStack {
                 Spacer()
-                Text("Loading: \(downloadedImages)/\(totalImages)")
-                    .padding()
+                HStack {
+                    Text("Loading:")
+                        .font(Font.custom("boomboom", size: 26))
+                    Text("\(downloadedImages)/\(totalImages)")
+                        .font(Font.custom("Coiny", size: 26))
+                }
             }.zIndex(1)
             
             VStack {
-                HStack {
-                    Text("Your name:")
-                        .frame(width: 100, height: 50, alignment: .center)
+                Text("Your name:")
+                    .font(Font.custom("boomboom", size: 32))
                     
-                    TextField("name", text: $username)
-                        .multilineTextAlignment(.center)
-                        .frame(width: 175, height: 50, alignment: .center)
-                        .padding([.bottom, .top])
+                TextField("name", text: $username)
+                    .font(Font.custom("boomboom", size: 38))
+                    .multilineTextAlignment(.center)
+                    .padding([.bottom, .top])
                     
-                    Spacer()
-                        .frame(width: 100, height: 50, alignment: .center)
-                      
-                }
-                Button("Sign up", action: {})
-                    .disabled(downloadedImages != totalImages)
-                    .padding()
+                Button(action: {}, label: {
+                    Text("Sign up")
+                        .font(Font.custom("boomboom", size: 32))
+                })
+                .disabled(downloadedImages != totalImages)
+                
             }.zIndex(2)
         }
         .onAppear(perform: loadData)
