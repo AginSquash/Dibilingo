@@ -16,6 +16,9 @@ struct CardView: View {
     @State private var opacity: Double = 1.0
     @State private var moveUP: Bool = false
     
+    var feedback: UINotificationFeedbackGenerator?
+    
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
@@ -48,6 +51,7 @@ struct CardView: View {
                 .onChanged({ gesture in
                     self.offset = gesture.translation
                     self.opacity = 1.5 - Double(abs(self.offset.width)) / 200
+                    self.feedback?.prepare()
                 })
                 .onEnded({ _ in
                     

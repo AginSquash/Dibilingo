@@ -21,6 +21,7 @@ struct EmojiWordView: View {
     }
     
     @State private var isPointUp: Bool = false
+    @State private var feedback = UINotificationFeedbackGenerator()
     
     var body: some View {
         ZStack {
@@ -59,7 +60,7 @@ struct EmojiWordView: View {
                 Spacer()
                     .frame(width: 100, height: 150, alignment: .center)
                 if currentCard != nil {
-                    CardView(card: currentCard!, removal: self.checkAnswer )
+                    CardView(card: currentCard!, removal: self.checkAnswer, feedback: feedback )
                         .offset(y: self.offset ?? 0)
                         .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
                         .transition(.scale)
@@ -99,6 +100,7 @@ struct EmojiWordView: View {
         } else {
             withAnimation {
                 needShowCorrectAnswer = currentCard?.real_name
+                feedback.notificationOccurred(.error)
             }
         }
         
