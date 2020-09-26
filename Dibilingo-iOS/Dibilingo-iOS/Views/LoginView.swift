@@ -103,10 +103,10 @@ struct LoginView: View {
                         }
                         
                         DispatchQueue.main.async {
-                            self.totalImages = cl.cards.count
+                            self.totalImages = cl.new_cards.count
                         }
                         
-                        for card in cl.cards {
+                        for card in cl.new_cards {
                             guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/image/\(card)/") else { return }
                             
                             URLSession.shared.dataTask(with: url) { imageData, response, error in
@@ -137,7 +137,7 @@ struct LoginView: View {
                                         
                                         print("DEBUG: incorrect data with \(card)")
                                         var newCL = cl
-                                        newCL.cards.removeAll(where: { $0 == card })
+                                        newCL.new_cards.removeAll(where: { $0 == card })
                                         if let encoded = try? JSONEncoder().encode(newCL) {
                                             do {
                                                 try encoded.write(to: baseURL.appendingPathComponent("CardsList"))

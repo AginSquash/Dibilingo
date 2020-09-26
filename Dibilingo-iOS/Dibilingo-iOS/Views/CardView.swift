@@ -29,8 +29,7 @@ struct CardView: View {
                         .fill(Color.white)
                         .frame(width: 300, height: 300, alignment: .center)
                     
-                    Text(card.emoji)
-                        .font(.system(size: 175))
+                    card.image
                 }
                
                 HStack {
@@ -81,6 +80,8 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(emoji: "🐺", object_name: "wolf", real_name: "wolf"))
+        let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let image = UIImage(contentsOfFile: baseURL.appendingPathComponent("wolf.png").absoluteString)!
+        return CardView(card: Card(image: Image(uiImage: image), object_name: "wolf", real_name: "wolf"))
     }
 }

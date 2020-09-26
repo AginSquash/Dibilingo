@@ -11,7 +11,7 @@ struct EmojiWordView: View {
     
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     
-    @State private var cards: [Card]? = nil
+    @State private var cards: [Card] = []
     @State private var currentCard: Card? = nil
     @State private var offset: CGFloat? = nil
     
@@ -147,7 +147,14 @@ struct EmojiWordView: View {
                 let real_name = cl.answered_cards.randomElement()!
                 var card = generateNewCard(real_name: real_name)
             } */
+            
+            self.cards.removeAll()
+            for _ in 0..<10 {
+                self.cards.append(getNewCard())
+            }
         }
+        
+        
         //cards = //Card.getExamples()
         //cards?.append(contentsOf: Card.getExamples())
         nextCard()
@@ -173,9 +180,8 @@ struct EmojiWordView: View {
     }
     
     func nextCard() {
-        guard let cards = cards else { return }
-        guard cards.count > 0 else { return }
-        self.cards?.remove(at: 0)
+        guard cards.count > 0 else { loadCards(); return }
+        self.cards.remove(at: 0)
         
         currentCard = cards[0]
         
