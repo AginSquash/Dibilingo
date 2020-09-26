@@ -15,7 +15,7 @@ struct EmojiWordView: View {
     @State private var currentCard: Card? = nil
     @State private var offset: CGFloat? = nil
     
-    @State var needShowCorrectAnswer: String? = nil
+    @State private var needShowCorrectAnswer: String? = nil
     
     @State private var coins: Int = 0
     var ScoreText: String {
@@ -25,6 +25,8 @@ struct EmojiWordView: View {
     @State private var isPointUp: Bool = false
     @State private var feedback = UINotificationFeedbackGenerator()
     @State private var cardList = CardList()
+    
+    var debugCard: Card? = nil
     
     var body: some View {
         ZStack {
@@ -43,6 +45,13 @@ struct EmojiWordView: View {
             
             VStack {
                 HStack {
+                    
+                    Text("Save")
+                        .foregroundColor(.red)
+                        .font(Font.custom("boomboom", size: 42))
+                        .padding(.leading)
+                        .onTapGesture(count: 1, perform: saveCardList)
+                    
                     Spacer()
                     if isPointUp {
                         Image(systemName: "arrow.up.circle")
@@ -54,6 +63,7 @@ struct EmojiWordView: View {
                         .foregroundColor(.white)
                         .font(Font.custom("Coiny", size: 38))
                         .padding(.trailing)
+                        .onTapGesture(count: 2, perform: printCL)
                 }
                 Spacer()
             }
@@ -111,9 +121,25 @@ struct EmojiWordView: View {
         return Card(image: imageSafe, object_name: object_name, real_name: real_name)
     }
     
+    func printCL() {
+        print(cardList)
+        
+    }
+    
+    func refreshCards() {
+        self.cards.removeAll()
+        for _ in 0..<10 {
+            self.cards.append(getNewCard())
+        }
+    }
     
     func loadCards() {
         /// need update!
+        
+        if debugCard != nil {
+            currentCard = debugCard
+            return
+        }
         
         // check for end game!
         let data = try? Data(contentsOf: baseURL.appendingPathComponent("CardsList"))
@@ -126,11 +152,7 @@ struct EmojiWordView: View {
             
             self.cardList = cl
             
-            self.cards.removeAll()
-            for _ in 0..<10 {
-                self.cards.append(getNewCard())
-                print("Added new card")
-            }
+            refreshCards()
         }
         
         
@@ -139,14 +161,35 @@ struct EmojiWordView: View {
         nextCard()
     }
     
+    func saveCardList() {
+        if let encoded = try? JSONEncoder().encode(cardList) {
+            do {
+                try encoded.write(to: baseURL.appendingPathComponent("CardsList"))
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func checkAnswer(rightSwipe: Bool) {
         //check for correct answer
         if ((currentCard?.object_name == currentCard?.real_name) && rightSwipe) || (currentCard?.object_name != currentCard?.real_name) && !rightSwipe {
+            
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
             }
+            
+            if (currentCard?.object_name == currentCard?.real_name) && rightSwipe {
+                guard let card_name = currentCard?.real_name else { fatalError("card_name is nil") }
+                
+                if cardList.answered_cards.contains(card_name) == false {
+                    cardList.new_cards.removeAll(where: { $0 == card_name })
+                    cardList.answered_cards.append(card_name)
+                }
+            }
+            
         } else {
             withAnimation {
                 needShowCorrectAnswer = currentCard?.real_name
@@ -159,7 +202,7 @@ struct EmojiWordView: View {
     }
     
     func nextCard() {
-        guard cards.count > 0 else { loadCards(); return }
+        guard cards.count > 1 else { refreshCards(); return }
         self.cards.remove(at: 0)
         
         currentCard = cards[0]
@@ -171,6 +214,11 @@ struct EmojiWordView: View {
 
 struct EmojiWordView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiWordView()
+        let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
+        let image = UIImage(data: data!)!
+        let card = Card(image: image, object_name: "wolf", real_name: "wolf")
+        
+        return EmojiWordView(debugCard: card)
     }
 }
