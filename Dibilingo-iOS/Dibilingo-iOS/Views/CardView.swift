@@ -22,7 +22,9 @@ struct CardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-                .fill(Color(hex: "93bfff"))
+                //.fill(Color(hex: "93bfff"))
+                .fill(Color.yellow)
+            
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 20.0, style: .continuous)

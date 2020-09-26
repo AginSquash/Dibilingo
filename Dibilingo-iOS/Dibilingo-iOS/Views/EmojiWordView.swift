@@ -102,13 +102,13 @@ struct EmojiWordView: View {
             object_name = totalCards.randomElement()!
         }
         
-        let data = try? Data(contentsOf: baseURL.appendingPathComponent("\(object_name).jpg"))
-        guard let dataSafe = data else { fatalError("Cannot load \(object_name)") }
+        let data = try? Data(contentsOf: baseURL.appendingPathComponent("\(real_name).jpg"))
+        guard let dataSafe = data else { fatalError("Cannot load \(real_name)") }
         
         let image = UIImage(data: dataSafe)
-        guard let imageSafe = image else { fatalError("Cannot load \(object_name)") }
+        guard let imageSafe = image else { fatalError("Cannot load \(real_name)") }
         
-        return Card(image: imageSafe ,object_name: object_name, real_name:real_name)
+        return Card(image: imageSafe, object_name: object_name, real_name: real_name)
     }
     
     
