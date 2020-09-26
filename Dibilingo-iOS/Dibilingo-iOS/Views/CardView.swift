@@ -29,7 +29,9 @@ struct CardView: View {
                         .fill(Color.white)
                         .frame(width: 300, height: 300, alignment: .center)
                     
-                    card.image
+                    Image(uiImage:  card.image)
+                        .resizable()
+                        .frame(width: 300, height: 300, alignment: .center)
                 }
                
                 HStack {
@@ -81,7 +83,8 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let image = UIImage(contentsOfFile: baseURL.appendingPathComponent("wolf.png").absoluteString)!
-        return CardView(card: Card(image: Image(uiImage: image), object_name: "wolf", real_name: "wolf"))
+        let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
+        let image = UIImage(data: data!)!
+        return CardView(card: Card(image: image, object_name: "wolf", real_name: "wolf"))
     }
 }

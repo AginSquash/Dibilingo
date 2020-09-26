@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1567B6CD-8E72-4B22-9B29-38814D67F55F"
-            shouldBeEnabled = "Yes"
+            uuid = "DDAC9278-2D31-419B-825D-AA73AC9927FA"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Dibilingo-iOS/Views/EmojiWordView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "nextCard()"
             landmarkType = "7">
          </BreakpointContent>

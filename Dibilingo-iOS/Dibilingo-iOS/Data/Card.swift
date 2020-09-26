@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import SwiftUI
+import UIKit
 
 struct Card {
     
-    let image: Image
+    let image: UIImage
     let object_name: String
     let real_name: String
     

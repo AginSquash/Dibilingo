@@ -48,8 +48,8 @@ struct LoginView: View {
                 
             }.zIndex(2)
         }
-        .onAppear(perform: loadData)
-        //.onAppear(perform: checkData)
+        //.onAppear(perform: loadData)
+        .onAppear(perform: checkData)
     }
     
     func checkData() {
