@@ -6,17 +6,37 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Card: Codable {
-    let emoji: String
+struct Card {
+    
+    let image: Image
     let object_name: String
     let real_name: String
     
+    /*
     static func getExamples() -> [Card] {
-        return [Card(emoji: "🐺", object_name: "wolf", real_name: "wolf"), Card(emoji: "🐭", object_name: "mouse", real_name: "mouse"), Card(emoji: "🐹", object_name: "wolf", real_name: "hamster")]
+        return [Card(object_name: "wolf", real_name: "wolf"), Card(object_name: "mouse", real_name: "mouse"), Card(object_name: "wolf", real_name: "hamster")]
     }
+     */
+    
+}
+ 
+
+struct CardList_server: Codable {
+    var cards: [String] = []
 }
 
 struct CardList: Codable {
-    var cards: [String] = []
+    var new_cards: [String] = []
+    var answered_cards: [String] = []
+    
+    init(cl_s: CardList_server) {
+        self.new_cards = cl_s.cards
+    }
+    
+    init() {
+        self.new_cards = []
+        self.answered_cards = []
+    }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EmojiWordView: View {
     
+    let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
     @State private var cards: [Card]? = nil
     @State private var currentCard: Card? = nil
     @State private var offset: CGFloat? = nil
@@ -22,6 +24,7 @@ struct EmojiWordView: View {
     
     @State private var isPointUp: Bool = false
     @State private var feedback = UINotificationFeedbackGenerator()
+    @State private var cardList = CardList()
     
     var body: some View {
         ZStack {
@@ -82,10 +85,71 @@ struct EmojiWordView: View {
         .onAppear(perform: loadCards)
     }
     
+    func getNewCard() -> Card {
+        
+        var real_name = String()
+        if (Int.random(in: 1...4) > 1 && cardList.new_cards.count != 0) || cardList.answered_cards.count == 0 {
+             real_name = cardList.new_cards.randomElement()!
+        } else {
+             real_name = cardList.answered_cards.randomElement()!
+        }
+        
+        var object_name = String()
+        if Bool.random() == true {
+            object_name = real_name
+        } else {
+            let totalCards = cardList.answered_cards + cardList.new_cards
+            object_name = totalCards.randomElement()!
+        }
+        
+        let image = UIImage(contentsOfFile: baseURL.appendingPathComponent("\(object_name).png").absoluteString)
+       
+        guard let imageSafe = image else { fatalError("Cannot load \(object_name)") }
+        
+        return Card(image: Image(uiImage: imageSafe),object_name: object_name, real_name:real_name)
+    }
+    
     func loadCards() {
+        
         /// need update!
-        cards = Card.getExamples()
-        cards?.append(contentsOf: Card.getExamples())
+        
+        // check for end game!
+        let data = try? Data(contentsOf: baseURL.appendingPathComponent("CardsList"))
+        if let data = data {
+            let cardsList = try? JSONDecoder().decode(CardList.self, from: data)
+            print(cardsList)
+            
+            guard let cl = cardsList else { return }
+            
+            self.cardList = cl
+            /*
+            let totalCards = cl.answered_cards + cl.new_cards
+            
+            func generateNewCard(real_name: String) -> Card {
+                var object_name = String()
+                if Bool.random() == true {
+                    object_name = real_name
+                } else {
+                    let totalCards = cl.answered_cards + cl.new_cards
+                    object_name = totalCards.randomElement()!
+                }
+                let image = UIImage(contentsOfFile: baseURL.appendingPathComponent("\(object_name).png").absoluteString)
+               
+                guard let imageSafe = image else { fatalError("Cannot load \(object_name)") }
+                
+                return Card(image: Image(uiImage: imageSafe),object_name: object_name, real_name:real_name)
+            }
+            
+            if (Int.random(in: 1...4) > 1 && cl.new_cards.count != 0) || cl.answered_cards.count == 0 {
+                let real_name = cl.new_cards.randomElement()!
+                var card = generateNewCard(real_name: real_name)
+            } else {
+                let real_name = cl.answered_cards.randomElement()!
+                var card = generateNewCard(real_name: real_name)
+            } */
+        }
+        //cards = //Card.getExamples()
+        //cards?.append(contentsOf: Card.getExamples())
         nextCard()
     }
     

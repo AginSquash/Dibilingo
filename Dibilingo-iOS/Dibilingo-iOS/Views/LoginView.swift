@@ -42,6 +42,7 @@ struct LoginView: View {
                 Button(action: {}, label: {
                     Text("Sign up")
                         .font(Font.custom("boomboom", size: 32))
+                        .foregroundColor(Color.init(hex: "#87ff6d"))
                 })
                 .disabled(downloadedImages != totalImages)
                 
@@ -81,29 +82,31 @@ struct LoginView: View {
         DispatchQueue.global(qos: .userInitiated).async {
             
             // Load json with cards-name
-            URLSession.shared.dataTask(with: url) { data_cl, response, error in
+            URLSession.shared.dataTask(with: url) { data_cl_s, response, error in
                 
                 if let response = response {
                     //print(response)
                 }
                 
-                if let data_cl = data_cl {
-                    let cardsList = try? JSONDecoder().decode(CardList.self, from: data_cl)
+                if let data_cl = data_cl_s {
+                    let cardsList_server = try? JSONDecoder().decode(CardList_server.self, from: data_cl)
                 
                     // Load cards
-                    if let cardsList = cardsList {
+                    if let cardsList_server = cardsList_server {
                         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                        let cl = CardList(cl_s: cardsList_server)
                         do {
+                            let data_cl = try JSONEncoder().encode(cl)
                             try data_cl.write(to: baseURL.appendingPathComponent("CardsList"))
                         } catch {
                             print(error.localizedDescription)
                         }
                         
                         DispatchQueue.main.async {
-                            self.totalImages = cardsList.cards.count
+                            self.totalImages = cl.cards.count
                         }
                         
-                        for card in cardsList.cards {
+                        for card in cl.cards {
                             guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/image/\(card)/") else { return }
                             
                             URLSession.shared.dataTask(with: url) { imageData, response, error in
@@ -133,7 +136,7 @@ struct LoginView: View {
                                         }
                                         
                                         print("DEBUG: incorrect data with \(card)")
-                                        var newCL = cardsList
+                                        var newCL = cl
                                         newCL.cards.removeAll(where: { $0 == card })
                                         if let encoded = try? JSONEncoder().encode(newCL) {
                                             do {

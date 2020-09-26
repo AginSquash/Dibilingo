@@ -18,9 +18,9 @@ def connectionTest():
 @app.route('/dibilingo/api/v1.0/image/<image>/')
 def get_image(image):
     if image in cards:
-        filename = image + ".jpg"
+        filename = image + ".png"
         if path.exists("img/{}".format(filename)):
-            return send_file("img/{}".format(filename), mimetype='image/jpg', attachment_filename=filename)
+            return send_file("img/{}".format(filename), mimetype='image/png', attachment_filename=filename)
         else:
             # must send default img
             return ""
@@ -38,7 +38,7 @@ def not_found(error):
 
 def updateCardList():
     for name in listdir("img"):
-        if name.endswith(".jpg"):
+        if name.endswith(".png"):
             cards.append(name[0: -4])
     print(cards)
 
