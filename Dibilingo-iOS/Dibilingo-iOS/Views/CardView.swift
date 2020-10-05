@@ -80,6 +80,7 @@ struct CardView: View {
                     } else {
                         withAnimation {
                             self.offset = CGSize.zero
+                            opacity = 1.0
                         }
                     }
                 })
