@@ -10,6 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     let card: Card
+    let isLastCard: Bool
     var removal: ((Bool)->Void)? = nil
     
     @State private var offset = CGSize.zero
@@ -24,6 +25,8 @@ struct CardView: View {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
                 //.fill(Color(hex: "93bfff"))
                 .fill(Color.yellow)
+                //.shadow(radius: -1, x: 0, y: 1)
+                .shadow(isLast: isLastCard)
             
             VStack {
                 ZStack {
@@ -42,10 +45,11 @@ struct CardView: View {
                     Text("?").foregroundColor(.white)
                 }
                 .font(Font.custom("boomboom", size: 42))
+                .shadow(radius: 0 )
             }
         }
         
-        .shadow(radius: -1, x: 0, y: 1)
+        
         .opacity(opacity)
         .offset(y: moveUP ? -1000 : 0)
         .frame(width: 325, height: 400, alignment: .center)
@@ -60,12 +64,12 @@ struct CardView: View {
                 })
                 .onEnded({ _ in
                     
-                    if abs(self.offset.width) > 250 {
+                    if abs(self.offset.width) > 200 {
                         withAnimation {
                             opacity = 0
                         }
                         
-                        self.removal?(self.offset.width > 250 ? true : false)
+                        self.removal?(self.offset.width > 200 ? true : false)
                         self.offset = CGSize.zero
                        // moveUP = true
                         
@@ -84,11 +88,18 @@ struct CardView: View {
     
 }
 
+extension View {
+    func shadow(isLast: Bool) -> some View {
+        if isLast { return self.shadow(radius: 0, x: 0, y: 0)  }
+        return self.shadow(radius: -1, x: 0, y: 1)
+    }
+}
+
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
         let image = UIImage(data: data!)!
-        return CardView(card: Card(image: image, object_name: "wolf", real_name: "wolf"))
+        return CardView(card: Card(image: image, object_name: "wolf", real_name: "wolf"), isLastCard: false)
     }
 }

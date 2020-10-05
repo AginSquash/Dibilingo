@@ -66,25 +66,14 @@ struct EmojiWordView: View {
             
 
                 ZStack {
-                    
                     ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index], removal: self.checkAnswer, feedback: feedback )
+                        CardView(card: cards[index], isLastCard: index == 0, removal: self.checkAnswer, feedback: feedback )
                             .stacked(at: index, in: cards.count)
                             .offset(y: self.offset ?? 0)
                             .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
+                            .allowsHitTesting(index == cards.count-1)
                             .transition(.scale)
-                           // .animation(.spring())
                     }
-                    
-                    
-                    
-                    /*
-                if currentCard != nil {
-                    CardView(card: currentCard!, removal: self.checkAnswer, feedback: feedback )
-                        .offset(y: self.offset ?? 0)
-                        .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
-                        .transition(.scale)
-                } */
                 }
             
             .zIndex(2)
@@ -132,14 +121,15 @@ struct EmojiWordView: View {
     
     func printCL() {
         print(cardList)
-        
     }
     
     func refreshCards() {
         self.cards.removeAll()
+        var newCards: [Card] = []
         for _ in 0..<10 {
-            self.cards.append(getNewCard())
+            newCards.append(getNewCard())
         }
+        withAnimation { self.cards = newCards }
     }
     
     func loadCards() {
@@ -165,9 +155,6 @@ struct EmojiWordView: View {
             refreshCards()
         }
         
-        
-        //cards = //Card.getExamples()
-        //cards?.append(contentsOf: Card.getExamples())
         nextCard()
     }
     
@@ -182,7 +169,7 @@ struct EmojiWordView: View {
     }
     
     func checkAnswer(rightSwipe: Bool) {
-        //check for correct answer
+        // check for correct answer
         if ((currentCard?.object_name == currentCard?.real_name) && rightSwipe) || (currentCard?.object_name != currentCard?.real_name) && !rightSwipe {
             
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
@@ -206,17 +193,14 @@ struct EmojiWordView: View {
                 feedback.notificationOccurred(.error)
             }
         }
-        
+        self.cards.remove(at: cards.endIndex-1)
     
         nextCard()
     }
     
     func nextCard() {
-        guard cards.count > 1 else { refreshCards(); return }
-        self.cards.remove(at: 0)
-        
-        currentCard = cards[0]
-        
+        if cards.count < 1 { refreshCards() }
+        currentCard = cards[cards.endIndex-1]
         print("current card settup")
     }
     
