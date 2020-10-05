@@ -44,6 +44,8 @@ struct CardView: View {
                 .font(Font.custom("boomboom", size: 42))
             }
         }
+        
+        .shadow(radius: -1, x: 0, y: 1)
         .opacity(opacity)
         .offset(y: moveUP ? -1000 : 0)
         .frame(width: 325, height: 400, alignment: .center)
@@ -58,12 +60,12 @@ struct CardView: View {
                 })
                 .onEnded({ _ in
                     
-                    if abs(self.offset.width) > 150 {
+                    if abs(self.offset.width) > 250 {
                         withAnimation {
                             opacity = 0
                         }
                         
-                        self.removal?(self.offset.width > 150 ? true : false)
+                        self.removal?(self.offset.width > 250 ? true : false)
                         self.offset = CGSize.zero
                        // moveUP = true
                         

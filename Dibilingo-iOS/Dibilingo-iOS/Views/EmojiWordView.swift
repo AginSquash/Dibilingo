@@ -30,12 +30,7 @@ struct EmojiWordView: View {
     
     var body: some View {
         ZStack {
-            /*
-            Rectangle()
-                .foregroundColor(.white)
-                .edgesIgnoringSafeArea(.all)
-                .zIndex(1)
-             */
+
             Image(decorative: "back_1st")
                 .frame(width: 100, height: 100, alignment: .center)
                 .scaledToFill()
@@ -69,16 +64,29 @@ struct EmojiWordView: View {
             }
             .zIndex(2)
             
-            VStack {
-                Spacer()
-                    .frame(width: 100, height: 150, alignment: .center)
+
+                ZStack {
+                    
+                    ForEach(0..<cards.count, id: \.self) { index in
+                        CardView(card: cards[index], removal: self.checkAnswer, feedback: feedback )
+                            .stacked(at: index, in: cards.count)
+                            .offset(y: self.offset ?? 0)
+                            .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
+                            .transition(.scale)
+                           // .animation(.spring())
+                    }
+                    
+                    
+                    
+                    /*
                 if currentCard != nil {
                     CardView(card: currentCard!, removal: self.checkAnswer, feedback: feedback )
                         .offset(y: self.offset ?? 0)
                         .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
                         .transition(.scale)
+                } */
                 }
-            }
+            
             .zIndex(2)
             
             if needShowCorrectAnswer != nil {
@@ -94,6 +102,7 @@ struct EmojiWordView: View {
         })
         .onAppear(perform: loadCards)
     }
+
     
     func getNewCard() -> Card {
         
@@ -137,7 +146,8 @@ struct EmojiWordView: View {
         /// need update!
         
         if debugCard != nil {
-            currentCard = debugCard
+            //currentCard = debugCard
+            cards = [debugCard!, debugCard!, debugCard!, debugCard!, debugCard!, debugCard!]
             return
         }
         
@@ -211,6 +221,14 @@ struct EmojiWordView: View {
     }
     
 }
+
+extension View {
+    func stacked(at position: Int, in total: Int) -> some View {
+        let offset = CGFloat(total - position)
+        return self.offset(CGSize(width: 0, height: offset * 10))
+    }
+}
+
 
 struct EmojiWordView_Previews: PreviewProvider {
     static var previews: some View {
