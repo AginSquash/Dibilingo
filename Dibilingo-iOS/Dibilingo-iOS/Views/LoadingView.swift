@@ -51,7 +51,7 @@ struct LoadingView: View {
        
         guard let dataVersionURL = URL(string: "\(serverURL)/dibilingo/api/v1.0/datahash") else { return }
         
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
+        var timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
             print("No internet")
             
             guard let dvData = try? Data(contentsOf: baseURL.appendingPathComponent("DataVersion")) else { return }
@@ -76,20 +76,20 @@ struct LoadingView: View {
             guard let dvFromDisk = try? JSONDecoder().decode(DataVersion.self, from: dvData) else { setLinkView(); return }
             //loading data version
             URLSession.shared.dataTask(with: dataVersionURL) { data, responce, error in
-                
                 if let data = data {
-                    print(data)
+                    timer.invalidate()
                     if let dv = try? JSONDecoder().decode(DataVersion.self, from: data) {
                         if dv.dataHash == dvFromDisk.dataHash {
-                            setLinkView(setContentView: true)
-                            return
+                            if let _ = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
+                                setLinkView(setContentView: true)
+                                return
+                            }
                         }
                     }
                 } else {
                     print("No data")
                     return
                 }
-                setLinkView()
             }.resume()
         }
     }
