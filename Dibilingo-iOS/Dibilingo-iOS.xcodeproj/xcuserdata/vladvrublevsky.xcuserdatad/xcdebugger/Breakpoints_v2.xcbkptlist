@@ -3,4 +3,54 @@
    uuid = "409A8F02-CBB3-460C-9CB0-2AA8A6CFFAA7"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "770AA451-E7CA-4B75-B86F-5A6E3DAE4566"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Dibilingo-iOS/Views/LoadingView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "checkData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "770AA451-E7CA-4B75-B86F-5A6E3DAE4566 - 62fc958f521fdec4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Dibilingo_iOS.LoadingView.checkData() -&gt; ()"
+                  moduleName = "Dibilingo-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladvrublevsky/Documents/Projects/Dibilingo/Dibilingo-iOS/Dibilingo-iOS/Views/LoadingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "920">
+               </Location>
+               <Location
+                  uuid = "770AA451-E7CA-4B75-B86F-5A6E3DAE4566 - c37260a2541aa927"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in closure #1 () -&gt; () in Dibilingo_iOS.LoadingView.checkData() -&gt; ()"
+                  moduleName = "Dibilingo-iOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vladvrublevsky/Documents/Projects/Dibilingo/Dibilingo-iOS/Dibilingo-iOS/Views/LoadingView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
