@@ -10,43 +10,60 @@ import SwiftUI
 let serverURL = "http://192.168.88.133:5000"
 
 struct LoginView: View {
+    let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
     @State private var downloadedImages: Int = 0
     @State private var totalImages: Int = 0
     
     @State private var username: String = ""
     
+    var isEnableRegister: Bool {
+        (totalImages == downloadedImages) && (username.count > 3)
+    }
+    
+    @State private var pushToMain = false
+    
     var body: some View {
-        ZStack {
-            
-            // background
-            
-            VStack {
-                Spacer()
-                HStack {
-                    Text("Loading:")
-                        .font(Font.custom("boomboom", size: 26))
-                    Text("\(downloadedImages)/\(totalImages)")
-                        .font(Font.custom("Coiny", size: 26))
-                }
-            }.zIndex(1)
-            
-            VStack {
-                Text("Your name:")
-                    .font(Font.custom("boomboom", size: 32))
-                    
-                TextField("name", text: $username)
-                    .font(Font.custom("boomboom", size: 38))
-                    .multilineTextAlignment(.center)
-                    .padding([.bottom, .top])
-                    
-                Button(action: {}, label: {
-                    Text("Sign up")
-                        .font(Font.custom("boomboom", size: 32))
-                        .foregroundColor(Color.init(hex: "#87ff6d"))
-                })
-                .disabled(downloadedImages != totalImages)
+        NavigationView {
+            ZStack {
                 
-            }.zIndex(2)
+                // background
+                
+                    NavigationLink(
+                        destination: ContentView().navigationBarHidden(true),
+                        isActive: $pushToMain,
+                        label: { })
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Text("Loading:")
+                            .font(Font.custom("boomboom", size: 26))
+                        Text("\(downloadedImages)/\(totalImages)")
+                            .font(Font.custom("Coiny", size: 26))
+                    }
+                }.zIndex(1)
+                
+                VStack {
+                    Text("Your name:")
+                        .font(Font.custom("boomboom", size: 32))
+                        
+                    TextField("name", text: $username)
+                        .font(Font.custom("boomboom", size: 38))
+                        .multilineTextAlignment(.center)
+                        .padding([.bottom, .top])
+                        
+                    Button(action: register, label: {
+                        Text("Sign up")
+                            .font(Font.custom("boomboom", size: 32))
+                            .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
+                    })
+                    .disabled(!isEnableRegister)
+                    //.disabled(username.count < 3)
+                    
+                }.zIndex(2)
+            }
+            .navigationBarHidden(true)
         }
         .onAppear(perform: loadData)
         //.onAppear(perform: checkData)
@@ -158,6 +175,22 @@ struct LoginView: View {
             }.resume()
         }
     }
+    
+    func register() {
+        let name = username
+        // here must be user register on server
+        
+        let newUP = UserProfile(id: UUID().uuidString, name: name, coins: 0)
+        
+        if let encoded = try? JSONEncoder().encode(newUP) {
+            if let succefullWrited = try? encoded.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic) {
+                self.pushToMain = true
+                return
+            }
+        }
+        fatalError("Cannot register")
+    }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
