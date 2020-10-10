@@ -18,7 +18,7 @@ struct LoginView: View {
     @State private var username: String = ""
     
     var isEnableRegister: Bool {
-        (totalImages == downloadedImages) && (username.count > 3)
+       return (totalImages == downloadedImages) && (username.count > 3)
     }
     
     @State private var pushToMain = false
@@ -59,7 +59,6 @@ struct LoginView: View {
                             .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
                     })
                     .disabled(!isEnableRegister)
-                    //.disabled(username.count < 3)
                     
                 }.zIndex(2)
             }
@@ -94,9 +93,20 @@ struct LoginView: View {
     }
     
     func loadData() {
+        guard let dataVersionURL = URL(string: "\(serverURL)/dibilingo/api/v1.0/datahash") else { return }
         guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/cardlist") else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
+            
+            //loading data version
+            URLSession.shared.dataTask(with: dataVersionURL) { data, responce, error in
+                if let data = data {
+                    if let _ = try? JSONDecoder().decode(DataVersion.self, from: data) {
+                        try? data.write(to: baseURL.appendingPathComponent("DataVersion"))
+                    }
+                }
+                
+            }.resume()
             
             // Load json with cards-name
             URLSession.shared.dataTask(with: url) { data_cl_s, response, error in

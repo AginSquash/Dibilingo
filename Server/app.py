@@ -36,7 +36,7 @@ def get_cardlist():
 
 @app.route('/dibilingo/api/v1.0/datahash', methods=['GET'])
 def get_datahash():
-    return jsonify({'hash': dataHash }) 
+    return jsonify({'dataHash': dataHash }) 
 
 @app.errorhandler(404)
 def not_found(error):

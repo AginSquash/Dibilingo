@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BDD10251E179100985BB1 /* LoginView.swift */; };
 		CD94A71C25326B36009750AC /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A71B25326B36009750AC /* UserProfile.swift */; };
+		CD94A7202532722A009750AC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A71F2532722A009750AC /* LoadingView.swift */; };
+		CD94A72425327332009750AC /* DataVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A72325327332009750AC /* DataVersion.swift */; };
 		CDB1A02C251CD2AB0009F7D8 /* orig.gif in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A02B251CD2AB0009F7D8 /* orig.gif */; };
 		CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */; };
 		CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		CD3BDD10251E179100985BB1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD94A71B25326B36009750AC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile.swift; path = "Dibilingo-iOS/Data/UserProfile.swift"; sourceTree = SOURCE_ROOT; };
+		CD94A71F2532722A009750AC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		CD94A72325327332009750AC /* DataVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataVersion.swift; sourceTree = "<group>"; };
 		CDB1A02B251CD2AB0009F7D8 /* orig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = orig.gif; sourceTree = "<group>"; };
 		CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGIFPlayerView.swift; sourceTree = "<group>"; };
 		CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFPlayerView.swift; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 			children = (
 				CDE15D2C2517860900A3C8D4 /* Card.swift */,
 				CD94A71B25326B36009750AC /* UserProfile.swift */,
+				CD94A72325327332009750AC /* DataVersion.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 		CDE15D2B251785F200A3C8D4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CD94A71F2532722A009750AC /* LoadingView.swift */,
 				CD3BDD10251E179100985BB1 /* LoginView.swift */,
 				CDDDD4972514FC57007D35AF /* ContentView.swift */,
 				CDE15D282517841600A3C8D4 /* EmojiWordView.swift */,
@@ -226,6 +232,8 @@
 				CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */,
 				CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */,
 				CDE15D2D2517860900A3C8D4 /* Card.swift in Sources */,
+				CD94A7202532722A009750AC /* LoadingView.swift in Sources */,
+				CD94A72425327332009750AC /* DataVersion.swift in Sources */,
 				CD94A71C25326B36009750AC /* UserProfile.swift in Sources */,
 				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
 				CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */,
