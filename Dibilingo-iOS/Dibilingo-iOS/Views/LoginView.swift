@@ -17,6 +17,9 @@ struct LoginView: View {
     
     @State private var username: String = ""
     
+    @State private var userAlreadyExist = false
+    @State private var isUpdated = false
+    
     var isEnableRegister: Bool {
        return (totalImages == downloadedImages) && (username.count > 3)
     }
@@ -44,23 +47,36 @@ struct LoginView: View {
                     }
                 }.zIndex(1)
                 
-                VStack {
-                    Text("Your name:")
-                        .font(Font.custom("boomboom", size: 32))
-                        
-                    TextField("name", text: $username)
-                        .font(Font.custom("boomboom", size: 38))
-                        .multilineTextAlignment(.center)
-                        .padding([.bottom, .top])
-                        
-                    Button(action: register, label: {
-                        Text("Sign up")
+                if !userAlreadyExist {
+                    VStack {
+                        Text("Your name:")
                             .font(Font.custom("boomboom", size: 32))
-                            .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
-                    })
-                    .disabled(!isEnableRegister)
-                    
-                }.zIndex(2)
+                        
+                        TextField("name", text: $username)
+                            .font(Font.custom("boomboom", size: 38))
+                            .multilineTextAlignment(.center)
+                            .padding([.bottom, .top])
+                            
+                        Button(action: register, label: {
+                            Text("Sign up")
+                                .font(Font.custom("boomboom", size: 32))
+                                .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
+                        })
+                        .disabled(!isEnableRegister)
+                    }.zIndex(2)
+                } else {
+                    VStack {
+                        Text("Dear, \(username)")
+                            .font(Font.custom("boomboom", size: 32))
+                            .padding(.bottom)
+                        Text("Please, wait for updating...")
+                            .font(Font.custom("boomboom", size: 32))
+                            NavigationLink(
+                                destination: ContentView().navigationBarHidden(true),
+                                isActive: $isUpdated,
+                                label: { })
+                    }.zIndex(2)
+                }
             }
             .navigationBarHidden(true)
         }
@@ -95,6 +111,17 @@ struct LoginView: View {
     func loadData() {
         guard let dataVersionURL = URL(string: "\(serverURL)/dibilingo/api/v1.0/datahash") else { return }
         guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/cardlist") else { return }
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            if let upEncoded = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
+                if let up = try? JSONDecoder().decode(UserProfile.self, from: upEncoded) {
+                    DispatchQueue.main.async {
+                        self.username = up.name
+                        self.userAlreadyExist = true
+                    }
+                }
+            }
+        }
         
         DispatchQueue.global(qos: .userInitiated).async {
             
@@ -150,6 +177,9 @@ struct LoginView: View {
                                             
                                             DispatchQueue.main.async {
                                                 self.downloadedImages += 1
+                                                if self.totalImages == self.downloadedImages {
+                                                    self.isUpdated = true
+                                                }
                                             }
 
                                             
@@ -160,6 +190,9 @@ struct LoginView: View {
                                         
                                         DispatchQueue.main.async {
                                             self.totalImages -= 1
+                                            if self.totalImages == self.downloadedImages {
+                                                self.isUpdated = true
+                                            }
                                         }
                                         
                                         print("DEBUG: incorrect data with \(card)")
