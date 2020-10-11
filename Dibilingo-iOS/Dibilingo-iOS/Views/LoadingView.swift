@@ -84,7 +84,7 @@ struct LoadingView: View {
                                 setLinkView(setContentView: true)
                                 return
                             }
-                        }
+                        } else { setLinkView(); return }
                     }
                 } else {
                     print("No data")
