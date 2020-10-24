@@ -51,7 +51,7 @@ struct LoadingView: View {
        
         guard let dataVersionURL = URL(string: "\(serverURL)/dibilingo/api/v1.0/datahash") else { return }
         
-        var timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { timer in
+        var timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
             print("No internet")
             
             guard let dvData = try? Data(contentsOf: baseURL.appendingPathComponent("DataVersion")) else { return }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EmojiWordView: View {
     
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     
     @State private var cards: [Card] = []
@@ -41,11 +43,14 @@ struct EmojiWordView: View {
             VStack {
                 HStack {
                     
-                    Text("Save")
+                    Text("Go Back")
                         .foregroundColor(.red)
                         .font(Font.custom("boomboom", size: 42))
                         .padding(.leading)
-                        .onTapGesture(count: 1, perform: saveCardList)
+                        .onTapGesture(count: 1, perform: {
+                            saveCardList()
+                            self.mode.wrappedValue.dismiss()
+                        })
                     
                     Spacer()
                     if isPointUp {
