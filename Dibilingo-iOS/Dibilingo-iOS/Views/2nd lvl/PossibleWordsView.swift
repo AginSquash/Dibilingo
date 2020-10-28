@@ -9,40 +9,39 @@ import SwiftUI
 
 struct PossibleWordsView: View {
     var height: CGFloat
+    var onEnded: ((DragGesture.Value, String) -> Void)
+
     var words: [String]
-    
+
+    // sorted words little-big-little
     var words_paired: [String] {
         var words_sorted = words.sorted()
-        print(words_sorted)
         
-        //var words_paired = [[String]]()
         var words = [String]()
         while words_sorted.count != 0 {
             let w1 = words_sorted.removeFirst()
             words.append(w1)
             guard words_sorted.count > 0 else {
-                //words_paired.append([w1])
-                
                 break
             }
             let w2 = words_sorted.removeLast()
             words.append(w2)
             guard words_sorted.count > 0 else {
-                //words_paired.append([w1, w2])
                 break
             }
             let w3 = words_sorted.removeFirst()
             words.append(w3)
-            //words_paired.append([w1, w2, w3])
         }
         
         return words
     }
     
     @State private var usedWords = [String]()
+    @State private var checkedWord = String()
     
     var body: some View {
-        ZStack {
+        
+         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .foregroundColor(.yellow)
             ZStack {
@@ -58,16 +57,10 @@ struct PossibleWordsView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(words_paired, id: \.self) { word in
                             if usedWords.contains(word) == false {
-                                WordView(text: word)
-                                    .onTapGesture(count: 2, perform: {
-                                        withAnimation {
-                                            usedWords.append(word)
-                                        }
-                                    })
+                                WordView(text: word, onEnded: onEnded)
                                 }
                         }
                     }
-                    //.padding([.trailing, .leading])
                 }
                 .padding(.top)
                 
@@ -77,11 +70,10 @@ struct PossibleWordsView: View {
         .frame(height: height, alignment: .center)
     }
     
- 
 }
 
 struct PossibleWordsView_Previews: PreviewProvider {
     static var previews: some View {
-        PossibleWordsView(height: 300, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa", "dsaadsda", "aa" ])
+        PossibleWordsView(height: 300, onEnded: { _,_  in }, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa", "dsaadsda", "aa" ])
     }
 }

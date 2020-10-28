@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct IrregVerbView: View {
+    
+    @State private var geo: GeometryProxy?
+    @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ]
+    
     var body: some View {
         GeometryReader { geo in
             ZStack {
@@ -16,13 +20,13 @@ struct IrregVerbView: View {
                         Spacer()
                         HStack(alignment: .center, spacing: nil) {
                             Spacer()
-                            WordView(text: "BEGIN")
+                            WordView(text: "BEGIN", isBased: true)
                             Image(systemName: "arrow.right")
                                 .font(.title)
-                            WordView(text: "BEGAN")
+                            WordView()
                             Image(systemName: "arrow.right")
                                 .font(.title)
-                            WordView(text: "BEGUN")
+                            WordView()
                             Spacer()
                         }
                     
@@ -30,11 +34,28 @@ struct IrregVerbView: View {
                 }
                 VStack {
                     Spacer()
-                    PossibleWordsView(height: geo.size.height/3, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ])
+                    PossibleWordsView(height: geo.size.height/3, onEnded: onEnded, words: words )
                         .padding([.leading, .trailing])
                 }
             }
+            .onAppear(perform: {
+                self.geo = geo
+            })
         }
+    }
+    
+    func onEnded(value: DragGesture.Value, choosenWord: String) {
+        
+        print("Ok")
+        print(choosenWord)
+        
+        guard let midY = geo?.frame(in: .global).midY else { return }
+        if value.location.y > ( midY + 20)  {
+            print("OK")
+        } else {
+            
+        }
+        
     }
 }
 
