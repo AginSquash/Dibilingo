@@ -11,34 +11,35 @@ struct PossibleWordsView: View {
     var height: CGFloat
     var words: [String]
     
-    var words_p: [String] {
+    var words_paired: [String] {
         var words_sorted = words.sorted()
         print(words_sorted)
         
         //var words_paired = [[String]]()
-        var w_PP = [String]()
+        var words = [String]()
         while words_sorted.count != 0 {
             let w1 = words_sorted.removeFirst()
-            w_PP.append(w1)
+            words.append(w1)
             guard words_sorted.count > 0 else {
                 //words_paired.append([w1])
                 
                 break
             }
             let w2 = words_sorted.removeLast()
-            w_PP.append(w2)
+            words.append(w2)
             guard words_sorted.count > 0 else {
                 //words_paired.append([w1, w2])
                 break
             }
             let w3 = words_sorted.removeFirst()
-            w_PP.append(w3)
+            words.append(w3)
             //words_paired.append([w1, w2, w3])
         }
         
-        print(w_PP)
-        return w_PP
+        return words
     }
+    
+    @State private var usedWords = [String]()
     
     var body: some View {
         ZStack {
@@ -55,11 +56,18 @@ struct PossibleWordsView: View {
                         GridItem(.flexible())
                     ]
                     LazyVGrid(columns: columns) {
-                        ForEach(words_p, id: \.self) { word in
-                            WordView(text: word)
+                        ForEach(words_paired, id: \.self) { word in
+                            if usedWords.contains(word) == false {
+                                WordView(text: word)
+                                    .onTapGesture(count: 2, perform: {
+                                        withAnimation {
+                                            usedWords.append(word)
+                                        }
+                                    })
+                                }
                         }
                     }
-                    .padding(.trailing)
+                    //.padding([.trailing, .leading])
                 }
                 .padding(.top)
                 
