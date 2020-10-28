@@ -53,7 +53,7 @@ struct IrregVerbView: View {
         print(choosenWord)
         
        
-        if value.location.y < 510  {
+        if (value.location.y < 510) && (value.location.y > 450)  {
             
             if value.location.x < 256 {
                 if wv2.text != nil { words.append(wv2.text!) }
