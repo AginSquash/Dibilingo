@@ -33,7 +33,7 @@ struct ContentView: View {
                         }).padding(5)
                     
                     NavigationLink(
-                        destination: Text("Level 2 here"),
+                        destination: IrregVerbView(),
                         label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 25)

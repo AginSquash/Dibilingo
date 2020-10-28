@@ -19,7 +19,7 @@ struct WordView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20.0, style: .continuous)
                 .foregroundColor(.yellow)
-            Text(text)
+            Text(text.uppercased())
                 .font(Font.custom("boomboom", size: 30))
                 .foregroundColor(.white)
         }

@@ -13,19 +13,25 @@ struct IrregVerbView: View {
             ZStack {
                 //background
                 VStack {
-                    Spacer()
-                    HStack(alignment: .center, spacing: nil) {
                         Spacer()
-                        WordView(text: "BEGIN")
-                        Image(systemName: "arrow.right")
-                            .font(.title)
-                        WordView(text: "BEGAN")
-                        Image(systemName: "arrow.right")
-                            .font(.title)
-                        WordView(text: "BEGUN")
-                        Spacer()
-                    }
+                        HStack(alignment: .center, spacing: nil) {
+                            Spacer()
+                            WordView(text: "BEGIN")
+                            Image(systemName: "arrow.right")
+                                .font(.title)
+                            WordView(text: "BEGAN")
+                            Image(systemName: "arrow.right")
+                                .font(.title)
+                            WordView(text: "BEGUN")
+                            Spacer()
+                        }
+                    
                     Spacer()
+                }
+                VStack {
+                    Spacer()
+                    PossibleWordsView(height: geo.size.height/3, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ])
+                        .padding([.leading, .trailing])
                 }
             }
         }
