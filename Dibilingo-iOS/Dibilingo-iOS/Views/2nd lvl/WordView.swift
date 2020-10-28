@@ -10,7 +10,7 @@ import SwiftUI
 struct WordView: View {
     var text: String?
     var isBased: Bool = false
-    var onEnded: ((DragGesture.Value, String) -> Void)?
+    var onEnded: ((DragGesture.Value, String) -> Bool)?
     
     var computedWidth: CGFloat {
         guard let text = text else { return 60 }
@@ -19,6 +19,7 @@ struct WordView: View {
     }
     
     @State private var offset = CGSize.zero
+    @State private var opacity = 1.0
     
     var body: some View {
         ZStack {
@@ -32,18 +33,35 @@ struct WordView: View {
         .gesture(
             DragGesture(minimumDistance: 0, coordinateSpace: .global)
                 .onChanged({ value in
-                    if isBased  { return }
+                    if isBased || text == nil { return }
                     self.offset = value.translation
                     print(value.location)
                 })
                 .onEnded({ value in
-                    withAnimation {
+                    let isSetted = (onEnded ?? { _,_ in return false })(value, text ?? "")
+                    
+                    if isSetted == false {
+                        withAnimation {
+                            offset = CGSize.zero
+                        }
+                        return
+                    } else {
+                        opacity = 0
                         offset = CGSize.zero
+                        
                     }
-                    (onEnded ?? { _,_ in })(value, text ?? "")
                 })
         )
         .offset(offset)
+        .opacity(opacity)
+        .onDisappear(perform: {
+            opacity = 0
+            offset = CGSize.zero
+        })
+        .onAppear(perform: {
+            opacity = 1
+            offset = CGSize.zero
+        })
     }
 }
 

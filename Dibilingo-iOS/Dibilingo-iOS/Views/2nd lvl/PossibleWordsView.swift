@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PossibleWordsView: View {
     var height: CGFloat
-    var onEnded: ((DragGesture.Value, String) -> Void)
+    var onEnded: ((DragGesture.Value, String) -> Bool)
 
     var words: [String]
 
@@ -74,6 +74,6 @@ struct PossibleWordsView: View {
 
 struct PossibleWordsView_Previews: PreviewProvider {
     static var previews: some View {
-        PossibleWordsView(height: 300, onEnded: { _,_  in }, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa", "dsaadsda", "aa" ])
+        PossibleWordsView(height: 300, onEnded: { _,_  in return false}, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa", "dsaadsda", "aa" ])
     }
 }
