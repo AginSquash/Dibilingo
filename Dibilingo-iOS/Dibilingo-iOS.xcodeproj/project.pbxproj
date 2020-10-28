@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD036D8C2549A3060003C1CE /* IrregVerbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD036D8B2549A3060003C1CE /* IrregVerbView.swift */; };
+		CD036D922549A3F90003C1CE /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD036D912549A3F90003C1CE /* WordView.swift */; };
 		CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BDD10251E179100985BB1 /* LoginView.swift */; };
 		CD94A71C25326B36009750AC /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A71B25326B36009750AC /* UserProfile.swift */; };
 		CD94A7202532722A009750AC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A71F2532722A009750AC /* LoadingView.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD036D8B2549A3060003C1CE /* IrregVerbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrregVerbView.swift; sourceTree = "<group>"; };
+		CD036D912549A3F90003C1CE /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
 		CD3BDD10251E179100985BB1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD94A71B25326B36009750AC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile.swift; path = "Dibilingo-iOS/Data/UserProfile.swift"; sourceTree = SOURCE_ROOT; };
 		CD94A71F2532722A009750AC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -67,6 +71,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD036D8F2549A3B00003C1CE /* 1st lvl */ = {
+			isa = PBXGroup;
+			children = (
+				CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */,
+				CDE15D132517628B00A3C8D4 /* CardView.swift */,
+				CDE15D282517841600A3C8D4 /* EmojiWordView.swift */,
+			);
+			path = "1st lvl";
+			sourceTree = "<group>";
+		};
+		CD036D902549A3C70003C1CE /* 2nd lvl */ = {
+			isa = PBXGroup;
+			children = (
+				CD036D8B2549A3060003C1CE /* IrregVerbView.swift */,
+				CD036D912549A3F90003C1CE /* WordView.swift */,
+			);
+			path = "2nd lvl";
+			sourceTree = "<group>";
+		};
 		CDB1A034251CD5880009F7D8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,9 +168,8 @@
 				CD94A71F2532722A009750AC /* LoadingView.swift */,
 				CD3BDD10251E179100985BB1 /* LoginView.swift */,
 				CDDDD4972514FC57007D35AF /* ContentView.swift */,
-				CDE15D282517841600A3C8D4 /* EmojiWordView.swift */,
-				CDE15D132517628B00A3C8D4 /* CardView.swift */,
-				CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */,
+				CD036D8F2549A3B00003C1CE /* 1st lvl */,
+				CD036D902549A3C70003C1CE /* 2nd lvl */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */,
+				CD036D8C2549A3060003C1CE /* IrregVerbView.swift in Sources */,
 				CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */,
 				CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */,
 				CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */,
@@ -237,6 +260,7 @@
 				CD94A71C25326B36009750AC /* UserProfile.swift in Sources */,
 				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
 				CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */,
+				CD036D922549A3F90003C1CE /* WordView.swift in Sources */,
 				CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */,
 				CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */,
 				CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */,
