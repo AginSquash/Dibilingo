@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct IrregVerbView: View {
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var geo: GeometryProxy?
-    @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "forgotten1", "adaa" ]
+    @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ]
     
     @State var wv2 = WordView(isBased: true)
     @State var wv3 = WordView(isBased: true)
@@ -20,7 +21,21 @@ struct IrregVerbView: View {
         GeometryReader { geo in
             ZStack {
                 //background
+                
                 VStack {
+                    HStack {
+                        Text("Go Back")
+                            .foregroundColor(.red)
+                            .font(Font.custom("boomboom", size: 42))
+                            .padding([.leading, .top])
+                            .onTapGesture(count: 1, perform: {
+                                self.mode.wrappedValue.dismiss()
+                            })
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                //VStack {
                        // Spacer()
                         //VStack(alignment: .center, spacing: nil) {
                             //Spacer()
@@ -50,7 +65,7 @@ struct IrregVerbView: View {
                     }
                     
                     //Spacer()
-                }
+                //}
                 VStack {
                     Spacer()
                     PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: words )
