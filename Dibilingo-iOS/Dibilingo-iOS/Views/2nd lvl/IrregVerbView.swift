@@ -20,31 +20,37 @@ struct IrregVerbView: View {
             ZStack {
                 //background
                 VStack {
-                        Spacer()
-                        HStack(alignment: .center, spacing: nil) {
-                            Spacer()
+                       // Spacer()
+                        //VStack(alignment: .center, spacing: nil) {
+                            //Spacer()
+                    ZStack {
                             WordView(text: "BEGIN", isBased: true)
-                            Image(systemName: "arrow.right")
-                                .font(.title)
+                                .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*7) //geo.frame(in: .global).midX
+                            //Image(systemName: "arrow.down")
+                            //   .font(.headline)
+                            //   .position(x: geo.frame(in: .global).midX, y: geo.size.height/16*5.7)
                             wv2
-                            Image(systemName: "arrow.right")
-                                .font(.title)
+                                .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
+                           // Image(systemName: "arrow.right")
+                             //   .font(.title)
                             wv3
-                            Spacer()
-                        }
+                                .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*11)
+                            //Spacer()
+                       // }
+                    }
                     
-                    Spacer()
+                    //Spacer()
                 }
                 VStack {
                     Spacer()
-                    PossibleWordsView(height: geo.size.height/3, onEnded: onEnded, words: words )
+                    PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: words )
                         .padding([.leading, .trailing])
                 }
             }
             .onAppear(perform: {
                 self.geo = geo
             })
-        }
+        }.navigationBarHidden(true)
     }
     
     func onEnded(value: DragGesture.Value, choosenWord: String) -> Bool {
@@ -52,10 +58,22 @@ struct IrregVerbView: View {
         print("Ok")
         print(choosenWord)
         
+        guard let geo = self.geo else { return false }
        
-        if (value.location.y < 510) && (value.location.y > 450)  {
+        print(geo.frame(in: .global).midX)
+        
+        if (value.location.x > geo.frame(in: .global).midX - 50) && (value.location.x < geo.frame(in: .global).midX + 50)  {
+             
+            if value.location.y < geo.size.height/20*7 {
+                return false
+            }
             
-            if value.location.x < 256 {
+            if value.location.y > geo.size.height/20*13 {
+                return false
+            }
+            
+            
+            if value.location.y < geo.size.height/20*11 {
                 if wv2.text != nil { words.append(wv2.text!) }
                 wv2.text = choosenWord
             } else {
