@@ -12,8 +12,8 @@ struct IrregVerbView: View {
     @State private var geo: GeometryProxy?
     @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ]
     
-    @State var wv2 = WordView()
-    @State var wv3 = WordView()
+    @State var wv2 = WordView(isBased: true)
+    @State var wv3 = WordView(isBased: true)
     
     var body: some View {
         GeometryReader { geo in
@@ -31,6 +31,15 @@ struct IrregVerbView: View {
                             //   .position(x: geo.frame(in: .global).midX, y: geo.size.height/16*5.7)
                             wv2
                                 .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
+                                .transition(.opacity)
+                                
+                                .onTapGesture(count: 2, perform: {
+                                    guard let text = wv2.text else { return }
+                                    withAnimation {
+                                        self.words.append(text)
+                                        wv2.text = nil
+                                    }
+                                })
                            // Image(systemName: "arrow.right")
                              //   .font(.title)
                             wv3
@@ -49,6 +58,22 @@ struct IrregVerbView: View {
             }
             .onAppear(perform: {
                 self.geo = geo
+                
+                wv2.onLongTap = { text in
+                    guard let text = text else { return }
+                    withAnimation {
+                        self.words.append(text)
+                        wv2.text = nil
+                    }
+                }
+                
+                wv3.onLongTap = { text in
+                    guard let text = text else { return }
+                    withAnimation {
+                        self.words.append(text)
+                        wv3.text = nil
+                    }
+                }
             })
         }.navigationBarHidden(true)
     }
@@ -64,13 +89,8 @@ struct IrregVerbView: View {
         
         if (value.location.x > geo.frame(in: .global).midX - 50) && (value.location.x < geo.frame(in: .global).midX + 50)  {
              
-            if value.location.y < geo.size.height/20*7 {
-                return false
-            }
-            
-            if value.location.y > geo.size.height/20*13 {
-                return false
-            }
+            if value.location.y < geo.size.height/20*7 { return false }
+            if value.location.y > geo.size.height/20*13 { return false }
             
             
             if value.location.y < geo.size.height/20*11 {

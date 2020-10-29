@@ -11,6 +11,7 @@ struct WordView: View {
     var text: String?
     var isBased: Bool = false
     var onEnded: ((DragGesture.Value, String) -> Bool)?
+    var onLongTap: ((String?) -> Void)?
     
     var computedWidth: CGFloat {
         guard let text = text else { return 60 }
@@ -30,6 +31,10 @@ struct WordView: View {
                 .foregroundColor(.white)
         }
         .frame(width: computedWidth, height: 45, alignment: .center)
+        .onLongPressGesture {
+            print("Long")
+            (onLongTap ?? { _ in })(self.text)
+        }
         .gesture(
             DragGesture(minimumDistance: 0, coordinateSpace: .global)
                 .onChanged({ value in
