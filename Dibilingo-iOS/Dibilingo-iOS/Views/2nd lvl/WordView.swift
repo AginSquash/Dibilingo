@@ -32,7 +32,6 @@ struct WordView: View {
         }
         .frame(width: computedWidth, height: 45, alignment: .center)
         .onLongPressGesture {
-            print("Long")
             (onLongTap ?? { _ in })(self.text)
         }
         .gesture(
@@ -40,7 +39,7 @@ struct WordView: View {
                 .onChanged({ value in
                     if isBased || text == nil { return }
                     self.offset = value.translation
-                    print(value.location)
+                    //print(value.location)
                 })
                 .onEnded({ value in
                     let isSetted = (onEnded ?? { _,_ in return false })(value, text ?? "")

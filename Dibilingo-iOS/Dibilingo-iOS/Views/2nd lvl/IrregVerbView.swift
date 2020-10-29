@@ -14,6 +14,7 @@ struct IrregVerbView: View {
     
     @State var wv2 = WordView(isBased: true)
     @State var wv3 = WordView(isBased: true)
+    @State private var feedback = UINotificationFeedbackGenerator()
     
     var body: some View {
         GeometryReader { geo in
@@ -60,19 +61,23 @@ struct IrregVerbView: View {
                 self.geo = geo
                 
                 wv2.onLongTap = { text in
+                    feedback.prepare()
                     guard let text = text else { return }
                     withAnimation {
                         self.words.append(text)
                         wv2.text = nil
                     }
+                    self.feedback.notificationOccurred(.error)
                 }
                 
                 wv3.onLongTap = { text in
+                    feedback.prepare()
                     guard let text = text else { return }
                     withAnimation {
                         self.words.append(text)
                         wv3.text = nil
                     }
+                    self.feedback.notificationOccurred(.error)
                 }
             })
         }.navigationBarHidden(true)
