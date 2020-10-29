@@ -12,12 +12,20 @@ struct CardView: View {
     let card: Card
     let isLastCard: Bool
     var removal: ((Bool)->Void)? = nil
+    var feedback: UINotificationFeedbackGenerator?
+    
+    var computedFontSize: CGFloat {
+        if card.object_name.count < 7 {
+            return 42
+        } else {
+            let fontSize = 42 - (card.object_name.count - 7) * 3
+            return CGFloat(fontSize)
+        }
+    }
     
     @State private var offset = CGSize.zero
     @State private var opacity: Double = 1.0
     @State private var moveUP: Bool = false
-    
-    var feedback: UINotificationFeedbackGenerator?
     
     
     var body: some View {
@@ -44,7 +52,9 @@ struct CardView: View {
                     Text(card.object_name.uppercased()).foregroundColor(.red)
                     Text("?").foregroundColor(.white)
                 }
-                .font(Font.custom("boomboom", size: 42))
+                // .font(Font.custom("boomboom", size: 42))
+                .font(Font.custom("boomboom", size: computedFontSize))
+                .offset(y: computedFontSize < 42 ? 10 : 0)
                 .shadow(radius: 0 )
             }
         }
@@ -98,9 +108,10 @@ extension View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
-        let image = UIImage(data: data!)!
-        return CardView(card: Card(image: image, object_name: "wolf", real_name: "wolf"), isLastCard: false)
+        //let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        //let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
+        //let image = UIImage(data: data!)!
+        let image = UIImage(named: "wolf.png")!
+        return CardView(card: Card(image: image, object_name: "watermelon", real_name: "wolf"), isLastCard: false)
     }
 }
