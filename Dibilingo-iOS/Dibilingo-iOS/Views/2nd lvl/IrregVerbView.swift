@@ -10,7 +10,7 @@ import SwiftUI
 struct IrregVerbView: View {
     
     @State private var geo: GeometryProxy?
-    @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ]
+    @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "forgotten1", "adaa" ]
     
     @State var wv2 = WordView(isBased: true)
     @State var wv3 = WordView(isBased: true)
@@ -99,11 +99,15 @@ struct IrregVerbView: View {
             
             
             if value.location.y < geo.size.height/20*11 {
-                if wv2.text != nil { words.append(wv2.text!) }
-                wv2.text = choosenWord
+                withAnimation {
+                    if wv2.text != nil { words.append(wv2.text!) }
+                    wv2.text = choosenWord
+                }
             } else {
-                if wv3.text != nil { words.append(wv3.text!) }
-                wv3.text = choosenWord
+                withAnimation {
+                    if wv3.text != nil { words.append(wv3.text!) }
+                    wv3.text = choosenWord
+                }
             }
             
             withAnimation {
