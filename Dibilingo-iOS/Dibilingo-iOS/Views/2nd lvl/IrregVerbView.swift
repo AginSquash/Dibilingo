@@ -109,7 +109,7 @@ struct IrregVerbView: View {
         
         if (value.location.x > geo.frame(in: .global).midX - 50) && (value.location.x < geo.frame(in: .global).midX + 50)  {
              
-            if value.location.y < geo.size.height/20*7 { return false }
+            if value.location.y < geo.size.height/20*9 { return false }
             if value.location.y > geo.size.height/20*13 { return false }
             
             
