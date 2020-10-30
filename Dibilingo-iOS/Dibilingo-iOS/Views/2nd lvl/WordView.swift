@@ -15,7 +15,7 @@ struct WordView: View {
     
     var computedWidth: CGFloat {
         guard let text = text else { return 60 }
-        let width = 60 + (text.count * 9)
+        let width = 40 + (text.count * 12)
         return CGFloat(width)
     }
     

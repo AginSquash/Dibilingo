@@ -51,7 +51,7 @@ struct IrregVerbView: View {
                 VStack {
                     Spacer()
                     PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: possible_words )
-                        .padding([.leading, .trailing])
+                        .padding([.leading, .trailing], 6)
                 }
             }
             .onAppear(perform: {
