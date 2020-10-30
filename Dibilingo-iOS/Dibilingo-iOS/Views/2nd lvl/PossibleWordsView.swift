@@ -15,7 +15,7 @@ struct PossibleWordsView: View {
 
     // sorted words little-big-little
     var words_paired: [String] {
-        var words_sorted = words.sorted()
+        var words_sorted = words.sorted(by: { $0.count < $1.count })
         
         var words = [String]()
         while words_sorted.count != 0 {

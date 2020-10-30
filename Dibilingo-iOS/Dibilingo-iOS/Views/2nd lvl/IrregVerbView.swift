@@ -11,11 +11,13 @@ struct IrregVerbView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var geo: GeometryProxy?
-    @State private var words = ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa" ]
+    @State private var possible_words: [String] = []
     
-    @State var wv2 = WordView(isBased: true)
-    @State var wv3 = WordView(isBased: true)
+    @State var p_simpleView = WordView(isBased: true)
+    @State var p_participleView = WordView(isBased: true)
     @State private var feedback = UINotificationFeedbackGenerator()
+    
+    @State private var currentVerb: IrregVerb = IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["example", "example"])
     
     var body: some View {
         GeometryReader { geo in
@@ -37,40 +39,42 @@ struct IrregVerbView: View {
                 }
                 
                 ZStack {
-                        WordView(text: "BEGIN", isBased: true)
+                    WordView(text: currentVerb.infinitive, isBased: true)
                             .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*7)
-                        wv2
+                        p_simpleView
                             .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
                                 
-                        wv3
+                        p_participleView
                             .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*11)
                 }
                     
                 VStack {
                     Spacer()
-                    PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: words )
+                    PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: possible_words )
                         .padding([.leading, .trailing])
                 }
             }
             .onAppear(perform: {
                 self.geo = geo
                 
-                wv2.onLongTap = { text in
+                loadVerbs()
+                
+                p_simpleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
                     withAnimation {
-                        self.words.append(text)
-                        wv2.text = nil
+                        self.possible_words.append(text)
+                        p_simpleView.text = nil
                     }
                     self.feedback.notificationOccurred(.error)
                 }
                 
-                wv3.onLongTap = { text in
+                p_participleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
                     withAnimation {
-                        self.words.append(text)
-                        wv3.text = nil
+                        self.possible_words.append(text)
+                        p_participleView.text = nil
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -95,18 +99,18 @@ struct IrregVerbView: View {
             
             if value.location.y < geo.size.height/20*11 {
                 withAnimation {
-                    if wv2.text != nil { words.append(wv2.text!) }
-                    wv2.text = choosenWord
+                    if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
+                    p_simpleView.text = choosenWord
                 }
             } else {
                 withAnimation {
-                    if wv3.text != nil { words.append(wv3.text!) }
-                    wv3.text = choosenWord
+                    if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
+                    p_participleView.text = choosenWord
                 }
             }
             
             withAnimation {
-                self.words.removeAll(where: { $0 == choosenWord })
+                self.possible_words.removeAll(where: { $0 == choosenWord })
             }
             return true
             
@@ -114,6 +118,23 @@ struct IrregVerbView: View {
             return false
         }
         
+    }
+    
+    func loadVerbs () {
+        nextVerb()
+    }
+    
+    func nextVerb() {
+        let verb = IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn"])
+        self.currentVerb = verb
+        
+        p_simpleView.text = nil
+        p_participleView.text = nil
+        
+        var words = verb.other_options
+        words.append(verb.past_simple)
+        words.append(verb.past_participle)
+        self.possible_words = words.shuffled()
     }
 }
 
