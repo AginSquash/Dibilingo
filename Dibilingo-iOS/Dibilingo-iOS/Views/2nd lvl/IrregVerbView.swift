@@ -35,37 +35,17 @@ struct IrregVerbView: View {
                     }
                     Spacer()
                 }
-                //VStack {
-                       // Spacer()
-                        //VStack(alignment: .center, spacing: nil) {
-                            //Spacer()
-                    ZStack {
-                            WordView(text: "BEGIN", isBased: true)
-                                .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*7) //geo.frame(in: .global).midX
-                            //Image(systemName: "arrow.down")
-                            //   .font(.headline)
-                            //   .position(x: geo.frame(in: .global).midX, y: geo.size.height/16*5.7)
-                            wv2
-                                .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
-                                .transition(.opacity)
+                
+                ZStack {
+                        WordView(text: "BEGIN", isBased: true)
+                            .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*7)
+                        wv2
+                            .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
                                 
-                                .onTapGesture(count: 2, perform: {
-                                    guard let text = wv2.text else { return }
-                                    withAnimation {
-                                        self.words.append(text)
-                                        wv2.text = nil
-                                    }
-                                })
-                           // Image(systemName: "arrow.right")
-                             //   .font(.title)
-                            wv3
-                                .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*11)
-                            //Spacer()
-                       // }
-                    }
+                        wv3
+                            .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*11)
+                }
                     
-                    //Spacer()
-                //}
                 VStack {
                     Spacer()
                     PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: words )
