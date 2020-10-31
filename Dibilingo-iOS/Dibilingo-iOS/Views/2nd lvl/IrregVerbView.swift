@@ -11,6 +11,7 @@ struct IrregVerbView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @State private var geo: GeometryProxy?
+    @State private var cloudSize: CGFloat = 175
     @State private var possible_words: [String] = []
     
     @State var p_simpleView = WordView(isBased: true)
@@ -41,19 +42,29 @@ struct IrregVerbView: View {
                 }
                 
                 ZStack {
-                    VStack(spacing: -25) {
-                        Image("2lvl1cloud")
+                    VStack(spacing: -20) {
+                        Image("cloud1")
                             .resizable()
-                            .frame(width: 200, height: 200, alignment: .center)
+                            .frame(width: cloudSize, height: cloudSize, alignment: .center)
                         WordView(text: currentVerb.infinitive, isBased: true)
                     }
-                    .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/20*4)
+                    .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/100*25)
 
-                    p_simpleView
-                            .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
+                    VStack(spacing: -20) {
+                        Image("cloud2")
+                            .resizable()
+                            .frame(width: cloudSize, height: cloudSize, alignment: .center)
+                        p_simpleView
+                    }
+                    .position(x: geo.frame(in: .global).maxX-110, y: geo.size.height/100*40)
                                 
-                    p_participleView
-                            .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*11)
+                    VStack(spacing: -20) {
+                        Image("cloud3")
+                            .resizable()
+                            .frame(width: cloudSize, height: cloudSize, alignment: .center)
+                        p_participleView
+                    }
+                    .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/100*55)
                 }
                     
                 VStack {
@@ -64,6 +75,7 @@ struct IrregVerbView: View {
             }
             .onAppear(perform: {
                 self.geo = geo
+                self.cloudSize = geo.size.height/100*25
                 
                 loadVerbs()
                 
@@ -99,32 +111,39 @@ struct IrregVerbView: View {
        
         print(geo.frame(in: .global).midX)
         
-        if (value.location.x > geo.frame(in: .global).midX - 50) && (value.location.x < geo.frame(in: .global).midX + 50)  {
-             
-            if value.location.y < geo.size.height/20*9 { return false }
-            if value.location.y > geo.size.height/20*13 { return false }
-            
-            
-            if value.location.y < geo.size.height/20*11 {
+        let offsetByImageCenter: CGFloat = 15 //offset needed to move hitbox on 15 pixels down by Y
+        
+        let maxX = geo.frame(in: .global).maxX
+        if (value.location.x > maxX - 150)&&(value.location.x < maxX - 50) {
+            let height =  geo.size.height/100*(40 + offsetByImageCenter)
+            if (value.location.y > height) && (value.location.y < height + 50) {
                 withAnimation {
                     if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                     p_simpleView.text = choosenWord
+                    self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
-            } else {
+                return true
+            }
+        }
+        
+        let minX = geo.frame(in: .global).minX
+        if (value.location.x > minX + 50)&&(value.location.x < minX + 150) {
+            let height =  geo.size.height/100*(55 + offsetByImageCenter)
+            if (value.location.y > height) && (value.location.y < height + 50) {
+                
+                print("pos3")
+                
                 withAnimation {
                     if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
                     p_participleView.text = choosenWord
+                    self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
+                return true
             }
-            
-            withAnimation {
-                self.possible_words.removeAll(where: { $0 == choosenWord })
-            }
-            return true
-            
-        } else {
-            return false
         }
+        
+        
+        return false
         
     }
     
