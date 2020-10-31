@@ -22,7 +22,9 @@ struct IrregVerbView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                //background
+                
+                Color(hex: "#3F92D2")
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     HStack {
@@ -39,19 +41,25 @@ struct IrregVerbView: View {
                 }
                 
                 ZStack {
-                    WordView(text: currentVerb.infinitive, isBased: true)
-                            .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*7)
-                        p_simpleView
+                    VStack(spacing: -25) {
+                        Image("2lvl1cloud")
+                            .resizable()
+                            .frame(width: 200, height: 200, alignment: .center)
+                        WordView(text: currentVerb.infinitive, isBased: true)
+                    }
+                    .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/20*4)
+
+                    p_simpleView
                             .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*9)
                                 
-                        p_participleView
+                    p_participleView
                             .position(x: geo.frame(in: .global).midX, y: geo.size.height/20*11)
                 }
                     
                 VStack {
                     Spacer()
-                    PossibleWordsView(height: geo.size.height/6*2, onEnded: onEnded, words: possible_words )
-                        .padding([.leading, .trailing], 6)
+                    PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words )
+                        .padding(.all, 6)
                 }
             }
             .onAppear(perform: {
@@ -140,6 +148,11 @@ struct IrregVerbView: View {
 
 struct IrregVerbView_Previews: PreviewProvider {
     static var previews: some View {
-        IrregVerbView()
+        Group {
+            IrregVerbView()
+                .previewDevice("iPhone 11")
+            IrregVerbView()
+                .previewDevice("iPhone 8")
+        }
     }
 }

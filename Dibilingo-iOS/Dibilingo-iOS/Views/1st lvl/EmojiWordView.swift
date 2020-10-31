@@ -138,11 +138,9 @@ struct EmojiWordView: View {
     }
     
     func loadCards() {
-        /// need update!
         
         if debugCard != nil {
-            //currentCard = debugCard
-            cards = [debugCard!, debugCard!, debugCard!, debugCard!, debugCard!, debugCard!]
+            cards = repeatElement(debugCard!, count: 10).map({$0})
             return
         }
         
@@ -221,11 +219,14 @@ extension View {
 
 struct EmojiWordView_Previews: PreviewProvider {
     static var previews: some View {
-        let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
-        let image = UIImage(data: data!)!
-        let card = Card(image: image, object_name: "wolf", real_name: "wolf")
         
-        return EmojiWordView(debugCard: card)
+        let card = Card(image: UIImage(named: "wolf")!, object_name: "wolf", real_name: "wolf")
+        
+        return Group  {
+                EmojiWordView(debugCard: card)
+                    .previewDevice("iPhone 11")
+                EmojiWordView(debugCard: card)
+                    .previewDevice("iPhone 8")
+            }
     }
 }

@@ -46,8 +46,9 @@ struct PossibleWordsView: View {
                 .foregroundColor(.yellow)
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "#3F92D2"))
                     .padding(5)
+                
                 GeometryReader { geo in
                     let columns = [
                         GridItem(.flexible()),
@@ -62,7 +63,7 @@ struct PossibleWordsView: View {
                         }
                     }
                 }
-                .padding(.top)
+                .padding([.top, .bottom])
                 
             }
             
