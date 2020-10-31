@@ -4,5 +4,5 @@ xcode_project: Dibilingo-iOS.xcodeproj
 xcode_scheme: Dibilingo-iOS
 
 script:
-  - xcodebuild -project Dibilingo-iOS/Dibilingo-iOS.xcodeproj -scheme open2fa -destination "platform=iOS Simulator,OS=14.1,name=iPhone 11" -sdk iphonesimulator CODE_SIGNING_REQUIRED=NO
+  - xcodebuild -project Dibilingo-iOS/Dibilingo-iOS.xcodeproj -scheme Dibilingo-iOS -destination "platform=iOS Simulator,OS=14.0,name=iPhone 11" -sdk iphonesimulator CODE_SIGNING_REQUIRED=NO
   
