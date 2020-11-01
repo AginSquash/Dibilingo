@@ -21,6 +21,7 @@ struct EW_Overlay: View {
     
     @Binding var needCorrectAnswer: String?
     @State var answerCopy: String = ""
+    var customView: Bool = false
     
     var body: some View {
         ZStack {
@@ -40,12 +41,14 @@ struct EW_Overlay: View {
                         .foregroundColor(.black)
                             
                 }.padding(.bottom, 5)
-                        
-                HStack {
-                    Text("it is a").foregroundColor(.black)
-                    Text(answerCopy).foregroundColor(.red)
-                    Text("!").foregroundColor(.black)
-                }
+                
+                    HStack {
+                        if self.customView == false {
+                            Text("it is a").foregroundColor(.black)
+                        }
+                        Text(answerCopy).foregroundColor(.red)
+                        Text("!").foregroundColor(.black)
+                    }
             }
         }
         .onAppear(perform: {

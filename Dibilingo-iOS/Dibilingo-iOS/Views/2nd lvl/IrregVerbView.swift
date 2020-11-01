@@ -18,28 +18,50 @@ struct IrregVerbView: View {
     @State var p_participleView = WordView(isBased: true)
     @State private var feedback = UINotificationFeedbackGenerator()
     
+    @State private var coins: Int = 0
+    var ScoreText: String {
+        return "\(coins)/54"
+    }
+    @State private var isPointUp: Bool = false
+    
     @State private var currentVerb: IrregVerb = IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["example", "example"])
+    @State private var needShowCorrectAnswer: String? = nil
+    
+    @State private var verbs: [IrregVerb] = []
     
     var body: some View {
         GeometryReader { geo in
+            
             ZStack {
-                
                 Color(hex: "#3F92D2")
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
                     HStack {
+                        
                         Text("Go Back")
                             .foregroundColor(.red)
                             .font(Font.custom("boomboom", size: 42))
-                            .padding([.leading, .top])
+                            .padding(.leading)
                             .onTapGesture(count: 1, perform: {
                                 self.mode.wrappedValue.dismiss()
                             })
+                        
                         Spacer()
+                        if isPointUp {
+                            Image(systemName: "arrow.up.circle")
+                                .font(.system(size: 38, weight: .bold))
+                                .foregroundColor(.green)
+                                .transition(.opacity)
+                        }
+                        Text("\(coins)/54")
+                            .foregroundColor(.white)
+                            .font(Font.custom("Coiny", size: 38))
+                            .padding(.trailing)
                     }
                     Spacer()
                 }
+                .zIndex(1)
                 
                 ZStack {
                     VStack(spacing: -20) {
@@ -72,7 +94,9 @@ struct IrregVerbView: View {
                     PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words )
                         .padding(.all, 6)
                 }
+                .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
             }
+            .zIndex(2)
             .onAppear(perform: {
                 self.geo = geo
                 self.cloudSize = geo.size.height/100*25
@@ -99,7 +123,24 @@ struct IrregVerbView: View {
                     self.feedback.notificationOccurred(.error)
                 }
             })
-        }.navigationBarHidden(true)
+            
+            if needShowCorrectAnswer != nil {
+                VStack(alignment: .center) {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        EW_Overlay(needCorrectAnswer: $needShowCorrectAnswer, customView: true)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .transition(.slide)
+                .zIndex(3)
+                .allowsHitTesting(true)
+            }
+            
+        }
+        .navigationBarHidden(true)
     }
     
     func onEnded(value: DragGesture.Value, choosenWord: String) -> Bool {
@@ -122,6 +163,7 @@ struct IrregVerbView: View {
                     p_simpleView.text = choosenWord
                     self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
+                checkCorrect()
                 return true
             }
         }
@@ -138,6 +180,7 @@ struct IrregVerbView: View {
                     p_participleView.text = choosenWord
                     self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
+                checkCorrect()
                 return true
             }
         }
@@ -148,11 +191,20 @@ struct IrregVerbView: View {
     }
     
     func loadVerbs () {
+        self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
+        self.verbs.append(IrregVerb(infinitive: "see", past_simple: "saw", past_participle: "seen", other_options: ["seenning", "sawed", "seed", "sow"]))
+        self.verbs.append(IrregVerb(infinitive: "ring", past_simple: "rang", past_participle: "rung", other_options: ["running", "run", "ranned", "ran"]))
+        
         nextVerb()
     }
     
     func nextVerb() {
-        let verb = IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn"])
+        guard self.verbs.count > 0 else {
+            withAnimation { self.needShowCorrectAnswer = "End of the demo" }
+            return
+        }
+        
+        let verb = self.verbs.removeFirst()
         self.currentVerb = verb
         
         p_simpleView.text = nil
@@ -162,6 +214,30 @@ struct IrregVerbView: View {
         words.append(verb.past_simple)
         words.append(verb.past_participle)
         self.possible_words = words.shuffled()
+    }
+    
+    func checkCorrect() {
+        guard let p_simple = p_simpleView.text else { return }
+        guard let p_participle = p_participleView.text else { return }
+        
+        if (p_simple == currentVerb.past_simple)&&(p_participle == currentVerb.past_participle) {
+            
+            withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
+            }
+            
+            withAnimation {
+                nextVerb()
+            }
+            
+        } else {
+            withAnimation {
+                self.needShowCorrectAnswer = "\(currentVerb.infinitive)-\(currentVerb.past_simple)-\(currentVerb.past_participle)"
+                nextVerb()
+            }
+        }
     }
 }
 

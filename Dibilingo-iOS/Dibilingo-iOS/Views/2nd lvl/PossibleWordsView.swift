@@ -14,10 +14,12 @@ struct PossibleWordsView: View {
     var words: [String]
 
     // sorted words little-big-little
+    /*
     var words_paired: [String] {
-        var words_sorted = words.sorted(by: { $0.count < $1.count })
+        //var words_sorted = words.sorted(by: { $0 < $1 })
         
-        var words = [String]()
+        //var words = [String]()
+        /*
         while words_sorted.count != 0 {
             let w1 = words_sorted.removeFirst()
             words.append(w1)
@@ -26,37 +28,41 @@ struct PossibleWordsView: View {
             }
             let w2 = words_sorted.removeLast()
             words.append(w2)
+            /*
             guard words_sorted.count > 0 else {
                 break
             }
             let w3 = words_sorted.removeFirst()
-            words.append(w3)
-        }
+            words.append(w3) */
+        } */
         
-        return words
+        
+        
+        return words //.shuffled()
     }
+    */
     
     @State private var usedWords = [String]()
     @State private var checkedWord = String()
     
     var body: some View {
         
-         ZStack {
+         /*ZStack {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
                 .foregroundColor(.yellow)
             ZStack {
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
                     .foregroundColor(Color(hex: "#3F92D2"))
                     .padding(5)
-                
+                */
                 GeometryReader { geo in
                     let columns = [
                         GridItem(.flexible()),
-                        GridItem(.flexible()),
+                        //GridItem(.flexible()),
                         GridItem(.flexible())
                     ]
                     LazyVGrid(columns: columns) {
-                        ForEach(words_paired, id: \.self) { word in
+                        ForEach(words, id: \.self) { word in
                             if usedWords.contains(word) == false {
                                 WordView(text: word, onEnded: onEnded)
                                 }
@@ -65,9 +71,9 @@ struct PossibleWordsView: View {
                 }
                 .padding([.top, .bottom])
                 
-            }
+            //}
             
-        }
+        //}
         .frame(height: height, alignment: .center)
     }
     
