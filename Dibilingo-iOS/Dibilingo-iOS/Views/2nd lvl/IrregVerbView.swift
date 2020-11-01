@@ -104,12 +104,12 @@ struct IrregVerbView: View {
     
     func onEnded(value: DragGesture.Value, choosenWord: String) -> Bool {
         
-        print("Ok")
-        print(choosenWord)
+        //print("Ok")
+        //print(choosenWord)
         
         guard let geo = self.geo else { return false }
        
-        print(geo.frame(in: .global).midX)
+        //print(geo.frame(in: .global).midX)
         
         let offsetByImageCenter: CGFloat = 15 //offset needed to move hitbox on 15 pixels down by Y
         
