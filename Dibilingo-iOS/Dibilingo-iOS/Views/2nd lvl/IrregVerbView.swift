@@ -33,8 +33,18 @@ struct IrregVerbView: View {
         GeometryReader { geo in
             
             ZStack {
-                Color(hex: "#3F92D2")
-                    .edgesIgnoringSafeArea(.all)
+                //Color(hex: "#3F92D2")
+                //    .edgesIgnoringSafeArea(.all)
+                Color(hex: "#ddf0ff")
+                    .edgesIgnoringSafeArea(.top)
+                VStack(spacing: 0) {
+                    Image("ship_400_400_drugoy")
+                        .resizable()
+                        .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
+                        //.offset(x: 30)
+                    Color(hex: "#a5dddd")
+                }
+                .edgesIgnoringSafeArea([.top, .bottom])
                 
                 VStack {
                     HStack {
@@ -55,7 +65,7 @@ struct IrregVerbView: View {
                                 .transition(.opacity)
                         }
                         Text("\(coins)/54")
-                            .foregroundColor(.white)
+                            .foregroundColor(.blue)
                             .font(Font.custom("Coiny", size: 38))
                             .padding(.trailing)
                     }
@@ -64,6 +74,8 @@ struct IrregVerbView: View {
                 .zIndex(1)
                 
                 ZStack {
+                    
+                    /*
                     VStack(spacing: -20) {
                         Image("cloud1")
                             .resizable()
@@ -71,22 +83,16 @@ struct IrregVerbView: View {
                         WordView(text: currentVerb.infinitive, isBased: true)
                     }
                     .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/100*25)
-
-                    VStack(spacing: -20) {
-                        Image("cloud2")
-                            .resizable()
-                            .frame(width: cloudSize, height: cloudSize, alignment: .center)
-                        p_simpleView
-                    }
-                    .position(x: geo.frame(in: .global).maxX-110, y: geo.size.height/100*40)
+                    */
+                    
+                    WordView(text: currentVerb.infinitive, isBased: true)
+                        .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
+                    
+                    p_simpleView
+                        .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*55)
                                 
-                    VStack(spacing: -20) {
-                        Image("cloud3")
-                            .resizable()
-                            .frame(width: cloudSize, height: cloudSize, alignment: .center)
-                        p_participleView
-                    }
-                    .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/100*55)
+                    p_participleView
+                        .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*65)
                 }
                     
                 VStack {
@@ -106,9 +112,10 @@ struct IrregVerbView: View {
                 p_simpleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
+                    p_simpleView.text = nil
+                    
                     withAnimation {
                         self.possible_words.append(text)
-                        p_simpleView.text = nil
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -116,9 +123,10 @@ struct IrregVerbView: View {
                 p_participleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
+                    p_participleView.text = nil
+                    
                     withAnimation {
                         self.possible_words.append(text)
-                        p_participleView.text = nil
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -152,39 +160,33 @@ struct IrregVerbView: View {
        
         //print(geo.frame(in: .global).midX)
         
-        let offsetByImageCenter: CGFloat = 15 //offset needed to move hitbox on 15 pixels down by Y
         
-        let maxX = geo.frame(in: .global).maxX
-        if (value.location.x > maxX - 150)&&(value.location.x < maxX - 50) {
-            let height =  geo.size.height/100*(40 + offsetByImageCenter)
-            if (value.location.y > height) && (value.location.y < height + 50) {
+        let midX = geo.frame(in: .global).midX
+        if (value.location.x > midX - 50)&&(value.location.x < midX + 50) {
+            
+            let height =  geo.size.height/100
+            if (value.location.y > height * 55) && (value.location.y < height * 65) {
+                p_simpleView.text = choosenWord
                 withAnimation {
                     if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
-                    p_simpleView.text = choosenWord
+                    //p_simpleView.text = choosenWord
                     self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
                 checkCorrect()
                 return true
             }
-        }
-        
-        let minX = geo.frame(in: .global).minX
-        if (value.location.x > minX + 50)&&(value.location.x < minX + 150) {
-            let height =  geo.size.height/100*(55 + offsetByImageCenter)
-            if (value.location.y > height) && (value.location.y < height + 50) {
-                
-                print("pos3")
-                
+            
+            if (value.location.y > height * 65) && (value.location.y < height * 75) {
+                p_participleView.text = choosenWord
                 withAnimation {
                     if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
-                    p_participleView.text = choosenWord
+                    //p_participleView.text = choosenWord
                     self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
                 checkCorrect()
                 return true
             }
         }
-        
         
         return false
         
