@@ -215,7 +215,9 @@ struct IrregVerbView: View {
         var words = verb.other_options
         words.append(verb.past_simple)
         words.append(verb.past_participle)
-        self.possible_words = words.shuffled()
+        withAnimation {
+            self.possible_words = words.shuffled()
+        }
     }
     
     func checkCorrect() {
@@ -230,15 +232,15 @@ struct IrregVerbView: View {
                 withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
             }
             
-            withAnimation {
+            
                 nextVerb()
-            }
+            
             
         } else {
             withAnimation {
                 self.needShowCorrectAnswer = "\(currentVerb.infinitive)-\(currentVerb.past_simple)-\(currentVerb.past_participle)"
-                nextVerb()
             }
+            nextVerb()
         }
     }
 }
