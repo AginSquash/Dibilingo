@@ -8,32 +8,43 @@
 import SwiftUI
 
 struct WordView: View {
-    var text: String?
+    var text: String? {
+        didSet {
+            if text != nil {
+                currentColor = Color(hex: "#585ea8")
+            }
+        }
+    }
     var isBased: Bool = false
     var onEnded: ((DragGesture.Value, String) -> Bool)?
     var onLongTap: ((String?) -> Void)?
     
     var computedWidth: CGFloat {
         guard let text = text else { return 60 }
-        let width = 40 + (text.count * 12)
+        let width = 40 + (text.count * 10)
         return CGFloat(width)
     }
     
     @State private var offset = CGSize.zero
     @State private var opacity = 1.0
     
+    @State private var currentColor = Color(hex: "#909090")
+    
     var body: some View {
         HStack(spacing: 0) {
-            if text != nil {
-                Image("fish_head")
+            //if text != nil {
+            Image( self.text != nil ? "fish_head" : "fish_head_g")
                     .resizable()
-                    .frame(width: 25, height: 45, alignment: .center)
-            }
+                    //.transition(.opacity)
+                    //.transition()
+                    .frame(width: 45, height: 45, alignment: .center)
+            //}
             ZStack {
                 //RoundedRectangle(cornerRadius: 20.0, style: .continuous)
                 Rectangle()
-                    .foregroundColor( self.text != nil ? Color(hex: "#585ea8") : .gray)
+                    .foregroundColor(self.text != nil ? Color(hex: "#585ea8") : Color(hex: "#909090"))
                     .frame(height: 45, alignment: .center)
+                    //.animation(.easeIn(duration: 0.1))
                 
                 Text(text?.uppercased() ?? "...")
                     .font(Font.custom("boomboom", size: 30))
@@ -43,10 +54,28 @@ struct WordView: View {
             //.onLongPressGesture {
             //    (onLongTap ?? { _ in })(self.text)
            // }
+            //if text != nil {
+            Image(self.text != nil ? "fish_tail" : "fish_tail_g")
+                    .resizable()
+                    //.transition(.opacity)
+                    .frame(width: 45, height: 45, alignment: .center)
+            //}
         }
         .onLongPressGesture {
-            (onLongTap ?? { _ in })(self.text)
+            //withAnimation(.easeIn(duration: 0.1), { self.opacity = 0.0 })
+            //DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                //withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
+            
+                currentColor = Color(hex: "#909090")
+                (onLongTap ?? { _ in })(self.text)
+                
+               // DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+               //     withAnimation(.easeIn(duration: 0.1), { self.opacity = 1.0 })
+                //}
+            //}
+            
         }
+        .drawingGroup()
         .gesture(
             DragGesture(minimumDistance: 0, coordinateSpace: .global)
                 .onChanged({ value in
