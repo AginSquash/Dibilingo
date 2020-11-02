@@ -35,16 +35,16 @@ struct IrregVerbView: View {
             ZStack {
                 //Color(hex: "#3F92D2")
                 //    .edgesIgnoringSafeArea(.all)
-                
-                VStack {
-                    Image("ship")
+                Color(hex: "#ddf0ff")
+                    .edgesIgnoringSafeArea(.top)
+                VStack(spacing: 0) {
+                    Image("ship_400_400_drugoy")
                         .resizable()
-                        .frame(width: 300, height: 300, alignment: .center)
-                        .edgesIgnoringSafeArea(.all)
-                    
-                    Spacer()
-                
+                        .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
+                        //.offset(x: 30)
+                    Color(hex: "#a5dddd")
                 }
+                .edgesIgnoringSafeArea([.top, .bottom])
                 
                 VStack {
                     HStack {
@@ -65,7 +65,7 @@ struct IrregVerbView: View {
                                 .transition(.opacity)
                         }
                         Text("\(coins)/54")
-                            .foregroundColor(.white)
+                            .foregroundColor(.blue)
                             .font(Font.custom("Coiny", size: 38))
                             .padding(.trailing)
                     }

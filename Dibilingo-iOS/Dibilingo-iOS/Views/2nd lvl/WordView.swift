@@ -23,14 +23,27 @@ struct WordView: View {
     @State private var opacity = 1.0
     
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20.0, style: .continuous)
-                .foregroundColor( self.text != nil ? .yellow : .gray)
-            Text(text?.uppercased() ?? "...")
-                .font(Font.custom("boomboom", size: 30))
-                .foregroundColor(.white)
+        HStack(spacing: 0) {
+            if text != nil {
+                Image("fish_head")
+                    .resizable()
+                    .frame(width: 25, height: 45, alignment: .center)
+            }
+            ZStack {
+                //RoundedRectangle(cornerRadius: 20.0, style: .continuous)
+                Rectangle()
+                    .foregroundColor( self.text != nil ? Color(hex: "#585ea8") : .gray)
+                    .frame(height: 45, alignment: .center)
+                
+                Text(text?.uppercased() ?? "...")
+                    .font(Font.custom("boomboom", size: 30))
+                    .foregroundColor(.white)
+            }
+            .frame(width: computedWidth, height: 45, alignment: .center)
+            //.onLongPressGesture {
+            //    (onLongTap ?? { _ in })(self.text)
+           // }
         }
-        .frame(width: computedWidth, height: 45, alignment: .center)
         .onLongPressGesture {
             (onLongTap ?? { _ in })(self.text)
         }
