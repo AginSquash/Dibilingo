@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct WordView: View {
-    var text: String? {
-        didSet {
-            if text != nil {
-                currentColor = Color(hex: "#585ea8")
-            }
-        }
-    }
+    var text: String?
     var isBased: Bool = false
     var onEnded: ((DragGesture.Value, String) -> Bool)?
     var onLongTap: ((String?) -> Void)?
@@ -28,7 +22,6 @@ struct WordView: View {
     @State private var offset = CGSize.zero
     @State private var opacity = 1.0
     
-    @State private var currentColor = Color(hex: "#909090")
     
     var body: some View {
         HStack(spacing: 0) {
@@ -66,7 +59,7 @@ struct WordView: View {
             //DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 //withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
             
-                currentColor = Color(hex: "#909090")
+
                 (onLongTap ?? { _ in })(self.text)
                 
                // DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -85,6 +78,7 @@ struct WordView: View {
                 })
                 .onEnded({ value in
                     let isSetted = (onEnded ?? { _,_ in return false })(value, text ?? "")
+            
                     
                     if isSetted == false {
                         withAnimation {

@@ -112,9 +112,10 @@ struct IrregVerbView: View {
                 p_simpleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
+                    p_simpleView.text = nil
+                    
                     withAnimation {
                         self.possible_words.append(text)
-                        p_simpleView.text = nil
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -122,9 +123,10 @@ struct IrregVerbView: View {
                 p_participleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
+                    p_participleView.text = nil
+                    
                     withAnimation {
                         self.possible_words.append(text)
-                        p_participleView.text = nil
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -158,39 +160,6 @@ struct IrregVerbView: View {
        
         //print(geo.frame(in: .global).midX)
         
-        /*
-        let offsetByImageCenter: CGFloat = 15 //offset needed to move hitbox on 15 pixels down by Y
-        
-        let maxX = geo.frame(in: .global).maxX
-        if (value.location.x > maxX - 150)&&(value.location.x < maxX - 50) {
-            let height =  geo.size.height/100*(40 + offsetByImageCenter)
-            if (value.location.y > height) && (value.location.y < height + 50) {
-                withAnimation {
-                    if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
-                    p_simpleView.text = choosenWord
-                    self.possible_words.removeAll(where: { $0 == choosenWord })
-                }
-                checkCorrect()
-                return true
-            }
-        }
-        
-        let minX = geo.frame(in: .global).minX
-        if (value.location.x > minX + 50)&&(value.location.x < minX + 150) {
-            let height =  geo.size.height/100*(55 + offsetByImageCenter)
-            if (value.location.y > height) && (value.location.y < height + 50) {
-                
-                print("pos3")
-                
-                withAnimation {
-                    if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
-                    p_participleView.text = choosenWord
-                    self.possible_words.removeAll(where: { $0 == choosenWord })
-                }
-                checkCorrect()
-                return true
-            }
-        } */
         
         let midX = geo.frame(in: .global).midX
         if (value.location.x > midX - 50)&&(value.location.x < midX + 50) {
