@@ -166,9 +166,12 @@ struct IrregVerbView: View {
             
             let height =  geo.size.height/100
             if (value.location.y > height * 55) && (value.location.y < height * 65) {
+                //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
+                let oldWord = p_simpleView.text
                 p_simpleView.text = choosenWord
                 withAnimation {
-                    if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
+                    if oldWord != nil { possible_words.append(oldWord!) }
+                    //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                     //p_simpleView.text = choosenWord
                     self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
@@ -177,9 +180,11 @@ struct IrregVerbView: View {
             }
             
             if (value.location.y > height * 65) && (value.location.y < height * 75) {
+                let oldWord = p_participleView.text
                 p_participleView.text = choosenWord
                 withAnimation {
-                    if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
+                    if oldWord != nil { possible_words.append(oldWord!) }
+                    //if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
                     //p_participleView.text = choosenWord
                     self.possible_words.removeAll(where: { $0 == choosenWord })
                 }
