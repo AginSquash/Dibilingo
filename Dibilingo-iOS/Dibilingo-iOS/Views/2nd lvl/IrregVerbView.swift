@@ -34,52 +34,34 @@ struct IrregVerbView: View {
         GeometryReader { geo in
             
             ZStack {
-                //Color(hex: "#3F92D2")
-                //    .edgesIgnoringSafeArea(.all)
+    
                 
-                    
+                VStack {
+                    ZStack{
+                        Color(hex: "#ddf0ff")
+                            .edgesIgnoringSafeArea(.top)
+                            .frame(width: geo.size.width , height: geo.size.width*0.7, alignment: .center)
+                        Image("ship_400_400_left")
+                            .resizable()
+                            .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
+                    }
+                    Spacer()
+                }
+                .zIndex(3)
+                
                 if showFishNet {
                     Image("fishing_net")
                         .resizable()
                         //.aspectRatio(contentMode: .fit)
                         .frame(width: geo.size.width*0.65, height: geo.size.height/100*40, alignment: .center)
-                        //.frame(width: 350, height: 350, alignment: .center)
                         .position(x: geo.size.width/2, y: geo.size.height*0.54)
-                       /* .mask(
-                            Rectangle()
-                                .frame(width: 500, height: 346, alignment: .center)
-                                .position(x: 230, y: 415)
-                        ) */
-                        //.frame(width: geo.size.width*0.5, height: geo.size.width*0.5, alignment: .center)
                         .transition(.customTransition)
                         .zIndex(1)
                 }
                 
-                //VStack(spacing: 0) {
-                    //ZStack {
-                    VStack {
-                        ZStack{
-                            Color(hex: "#ddf0ff")
-                                .edgesIgnoringSafeArea(.top)
-                                .frame(width: geo.size.width , height: geo.size.width*0.7, alignment: .center)
-                            Image("ship_400_400_left")
-                                .resizable()
-                                .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
-                        }
-                        Spacer()
-                    }
-                   // }
-                    .zIndex(3)
-                    //.frame(width: geo.size.width , height: geo.size.width*0.7, alignment: .center)
-                    //.zIndex(3)
-                        //.offset(x: 30)
-                    Color(hex: "#a5dddd")
-                        .zIndex(0)
-                        //.zIndex(3)
-                //}
-                //.zIndex(3)
-                .edgesIgnoringSafeArea([.top, .bottom])
-                
+                Color(hex: "#a5dddd")
+                    .zIndex(0)
+                    .edgesIgnoringSafeArea(.bottom)
                 
                 VStack {
                     HStack {
@@ -137,7 +119,6 @@ struct IrregVerbView: View {
                 .zIndex(4)
                 .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
             }
-            //.zIndex(2)
             .onAppear(perform: {
                 self.geo = geo
                 self.cloudSize = geo.size.height/100*25
