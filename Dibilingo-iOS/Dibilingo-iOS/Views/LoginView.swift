@@ -126,11 +126,22 @@ struct LoginView: View {
         
         DispatchQueue.global(qos: .userInitiated).async {
             
-            //loading data version
+            // Loading data version
             URLSession.shared.dataTask(with: dataVersionURL) { data, responce, error in
                 if let data = data {
                     if let _ = try? JSONDecoder().decode(DataVersion.self, from: data) {
                         try? data.write(to: baseURL.appendingPathComponent("DataVersion"))
+                    }
+                }
+                
+            }.resume()
+            
+            // Loading verbs json
+            URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/verbs")!) { data, responce, error in
+                if let data = data {
+                    if let _ = try? JSONDecoder().decode([IrregVerb].self, from: data) {
+                        try? data.write(to: baseURL.appendingPathComponent("IrregVerb.json"))
+                        print("SAVED: IrregVerb.json")
                     }
                 }
                 
