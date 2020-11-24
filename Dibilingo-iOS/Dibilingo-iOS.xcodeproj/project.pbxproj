@@ -190,7 +190,6 @@
 				CDDDD48E2514FC57007D35AF /* Sources */,
 				CDDDD48F2514FC57007D35AF /* Frameworks */,
 				CDDDD4902514FC57007D35AF /* Resources */,
-				CD1EEACC255CB05C004873ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -250,26 +249,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		CD1EEACC255CB05C004873ED /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nagvtool next-version -all\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CDDDD48E2514FC57007D35AF /* Sources */ = {
@@ -421,7 +400,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Dibilingo-iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z7788V56C7;
 				ENABLE_PREVIEWS = YES;
@@ -435,7 +413,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -445,7 +422,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Dibilingo-iOS/Preview Content\"";
 				DEVELOPMENT_TEAM = Z7788V56C7;
 				ENABLE_PREVIEWS = YES;
@@ -459,7 +435,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
