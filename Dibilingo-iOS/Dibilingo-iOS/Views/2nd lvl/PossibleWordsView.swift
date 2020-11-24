@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct PossibleWordsView: View {
+    let uuid = UUID().uuidString
     var height: CGFloat
     var onEnded: ((DragGesture.Value, String) -> Bool)
-
-    var words: [String]
+    var words: [words_for_verbs]
 
     // sorted words little-big-little
     /*
@@ -62,10 +62,10 @@ struct PossibleWordsView: View {
                         GridItem(.flexible())
                     ]
                     LazyVGrid(columns: columns) {
-                        ForEach(words, id: \.self) { word in
-                            if usedWords.contains(word) == false {
-                                WordView(text: word, onEnded: onEnded)
-                                }
+                        ForEach(words, id: \.id) { word in
+                            if usedWords.contains(word.text) == false {
+                                WordView(text: word.text, onEnded: onEnded)
+                            }
                         }
                     }
                 }
@@ -81,6 +81,6 @@ struct PossibleWordsView: View {
 
 struct PossibleWordsView_Previews: PreviewProvider {
     static var previews: some View {
-        PossibleWordsView(height: 300, onEnded: { _,_  in return false}, words: ["begin", "begun", "began", "adsd", "forgot", "forgotten", "adaa", "dsaadsda", "aa" ])
+        PossibleWordsView(height: 300, onEnded: { _,_  in return false}, words: [words_for_verbs(text: "begin")]) //, words_for_verbs(id: 1, text: "begun"), words_for_verbs(id: 2, text: "began"), words_for_verbs(id: 3, text: "begin") ])
     }
 }

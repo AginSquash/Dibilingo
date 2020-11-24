@@ -1,16 +1,4 @@
 [{
-  "infinitive": "begin",
-  "past_simple": "began",
-  "past_participle": "begun",
-  "other_options": ["begeining", "begot", "begyn", "begon"]
-},
-{
-  "infinitive": "see",
-  "past_simple": "saw",
-  "past_participle": "seen",
-  "other_options": ["seenning", "sawed", "seed", "sow"]
-},
-{
 "infinitive": "be",
 "past_simple": "was",
 "past_participle": "been",

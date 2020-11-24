@@ -13,9 +13,11 @@ struct IrregVerbView: View {
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
     @State private var possible_words: [String] = []
+    @State private var possible_words_id: [words_for_verbs] = []
     
     @State var p_simpleView = WordView(isBased: true)
     @State var p_participleView = WordView(isBased: true)
+    @State var possibleWordsView: PossibleWordsView? // = PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words )
     @State private var feedback = UINotificationFeedbackGenerator()
     
     @State private var coins: Int = 0
@@ -24,7 +26,7 @@ struct IrregVerbView: View {
     }
     @State private var isPointUp: Bool = false
     
-    @State private var currentVerb: IrregVerb = IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["example", "example"])
+    @State private var currentVerb: IrregVerb? //= IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["example", "example"])
     @State private var needShowCorrectAnswer: String? = nil
     @State private var showFishNet: Bool = true
     
@@ -96,7 +98,7 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 ZStack {
-                    WordView(text: currentVerb.infinitive, isBased: true)
+                    WordView(text: currentVerb?.infinitive, isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
                         .offset(x: -10)
                     p_simpleView
@@ -113,7 +115,11 @@ struct IrregVerbView: View {
                     
                 VStack {
                     Spacer()
-                    PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words )
+                    //if possibleWordsView != nil {
+                       // possibleWordsView
+                        //    .padding(.all, 6)
+                    //}
+                    PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words_id )
                         .padding(.all, 6)
                 }
                 .zIndex(4)
@@ -221,10 +227,20 @@ struct IrregVerbView: View {
     }
     
     func loadVerbs () {
+        /*
         self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
         self.verbs.append(IrregVerb(infinitive: "see", past_simple: "saw", past_participle: "seen", other_options: ["seenning", "sawed", "seed", "sow"]))
         self.verbs.append(IrregVerb(infinitive: "ring", past_simple: "rang", past_participle: "rung", other_options: ["running", "run", "ranned", "ran"]))
+        */
+        let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("IrregVerb.json")) else {
+            fatalError("Cannot load IrregVerb.json")
+        }
+        guard let decoded = try? JSONDecoder().decode([IrregVerb].self, from: data) else {
+            fatalError("Cannot decode IrregVerb.json")
+        }
         
+        self.verbs = decoded.shuffled()
         nextVerb()
     }
     
@@ -233,7 +249,6 @@ struct IrregVerbView: View {
             withAnimation { self.needShowCorrectAnswer = "End of the demo" }
             return
         }
-        
         let verb = self.verbs.removeFirst()
         self.currentVerb = verb
         
@@ -243,8 +258,12 @@ struct IrregVerbView: View {
         var words = verb.other_options
         words.append(verb.past_simple)
         words.append(verb.past_participle)
+        
         withAnimation {
             self.possible_words = words.shuffled()
+            
+            self.possible_words_id = self.possible_words.map({ words_for_verbs(text: $0) }) //worddds
+            //self.possibleWordsView = PossibleWordsView(height: 175, onEnded: onEnded, words: worddds )
         }
     }
     
@@ -257,7 +276,7 @@ struct IrregVerbView: View {
         }
         
         
-        if (p_simple == currentVerb.past_simple)&&(p_participle == currentVerb.past_participle) {
+        if (p_simple == currentVerb?.past_simple)&&(p_participle == currentVerb?.past_participle) {
             
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
@@ -278,7 +297,7 @@ struct IrregVerbView: View {
             
         } else {
             withAnimation {
-                self.needShowCorrectAnswer = "\(currentVerb.infinitive)-\(currentVerb.past_simple)-\(currentVerb.past_participle)"
+                self.needShowCorrectAnswer = "\(currentVerb!.infinitive)-\(currentVerb!.past_simple)-\(currentVerb!.past_participle)"
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 nextVerb()
