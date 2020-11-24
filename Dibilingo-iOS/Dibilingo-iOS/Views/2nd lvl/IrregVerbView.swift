@@ -12,7 +12,7 @@ struct IrregVerbView: View {
     
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
-    @State private var possible_words: [String] = []
+    //@State private var possible_words: [String] = []
     @State private var possible_words_id: [words_for_verbs] = []
     
     @State var p_simpleView = WordView(isBased: true)
@@ -137,7 +137,7 @@ struct IrregVerbView: View {
                     p_simpleView.text = nil
                     
                     withAnimation {
-                        self.possible_words.append(text)
+                        self.possible_words_id.append( words_for_verbs(text) )
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -148,7 +148,7 @@ struct IrregVerbView: View {
                     p_participleView.text = nil
                     
                     withAnimation {
-                        self.possible_words.append(text)
+                        self.possible_words_id.append( words_for_verbs(text) )
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -199,10 +199,10 @@ struct IrregVerbView: View {
                 let oldWord = p_simpleView.text
                 p_simpleView.text = choosenWord
                 withAnimation {
-                    if oldWord != nil { possible_words.append(oldWord!) }
+                    if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!)) }
                     //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                     //p_simpleView.text = choosenWord
-                    self.possible_words.removeAll(where: { $0 == choosenWord })
+                    self.possible_words_id.removeAll(where: { $0.text == choosenWord })
                 }
                 checkCorrect()
                 return true
@@ -212,10 +212,10 @@ struct IrregVerbView: View {
                 let oldWord = p_participleView.text
                 p_participleView.text = choosenWord
                 withAnimation {
-                    if oldWord != nil { possible_words.append(oldWord!) }
+                    if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!) ) }
                     //if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
                     //p_participleView.text = choosenWord
-                    self.possible_words.removeAll(where: { $0 == choosenWord })
+                    self.possible_words_id.removeAll(where: { $0.text == choosenWord })
                 }
                 checkCorrect()
                 return true
@@ -260,9 +260,9 @@ struct IrregVerbView: View {
         words.append(verb.past_participle)
         
         withAnimation {
-            self.possible_words = words.shuffled()
+            //self.possible_words = words.shuffled()
             
-            self.possible_words_id = self.possible_words.map({ words_for_verbs(text: $0) }) //worddds
+            self.possible_words_id = words.shuffled().map({ words_for_verbs($0) }) //worddds
             //self.possibleWordsView = PossibleWordsView(height: 175, onEnded: onEnded, words: worddds )
         }
     }

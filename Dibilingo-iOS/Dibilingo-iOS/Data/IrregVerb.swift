@@ -18,4 +18,8 @@ struct IrregVerb: Codable {
 struct words_for_verbs: Identifiable {
     let id = UUID()
     let text: String
+    
+    init (_ text: String) {
+        self.text = text
+    }
 }
