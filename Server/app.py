@@ -34,6 +34,10 @@ def get_image(image):
 def get_cardlist():
     return jsonify({'cards': cards }) 
 
+@app.route('/dibilingo/api/v1.0/verbs', methods=['GET'])
+def get_verbs():
+    return send_file("data/irregVerb.json", mimetype="application/json", attachment_filename="rregVerb.json")
+
 @app.route('/dibilingo/api/v1.0/datahash', methods=['GET'])
 def get_datahash():
     return jsonify({'dataHash': dataHash }) 
