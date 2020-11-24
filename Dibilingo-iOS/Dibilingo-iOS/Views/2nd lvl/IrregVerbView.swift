@@ -26,6 +26,7 @@ struct IrregVerbView: View {
     
     @State private var currentVerb: IrregVerb = IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["example", "example"])
     @State private var needShowCorrectAnswer: String? = nil
+    @State private var showFishNet: Bool = true
     
     @State private var verbs: [IrregVerb] = []
     
@@ -35,16 +36,50 @@ struct IrregVerbView: View {
             ZStack {
                 //Color(hex: "#3F92D2")
                 //    .edgesIgnoringSafeArea(.all)
-                Color(hex: "#ddf0ff")
-                    .edgesIgnoringSafeArea(.top)
-                VStack(spacing: 0) {
-                    Image("ship_400_400_drugoy")
+                
+                    
+                if showFishNet {
+                    Image("fishing_net")
                         .resizable()
-                        .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
+                        //.aspectRatio(contentMode: .fit)
+                        .frame(width: geo.size.width*0.6, height: geo.size.height/100*40, alignment: .center)
+                        //.frame(width: 350, height: 350, alignment: .center)
+                        .position(x: geo.size.width/2, y: geo.size.height*0.54)
+                       /* .mask(
+                            Rectangle()
+                                .frame(width: 500, height: 346, alignment: .center)
+                                .position(x: 230, y: 415)
+                        ) */
+                        //.frame(width: geo.size.width*0.5, height: geo.size.width*0.5, alignment: .center)
+                        .transition(.customTransition)
+                        .zIndex(1)
+                }
+                
+                //VStack(spacing: 0) {
+                    //ZStack {
+                    VStack {
+                        ZStack{
+                            Color(hex: "#ddf0ff")
+                                .edgesIgnoringSafeArea(.top)
+                                .frame(width: geo.size.width , height: geo.size.width*0.7, alignment: .center)
+                            Image("ship_400_400_drugoy")
+                                .resizable()
+                                .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
+                        }
+                        Spacer()
+                    }
+                   // }
+                    .zIndex(3)
+                    //.frame(width: geo.size.width , height: geo.size.width*0.7, alignment: .center)
+                    //.zIndex(3)
                         //.offset(x: 30)
                     Color(hex: "#a5dddd")
-                }
+                        .zIndex(0)
+                        //.zIndex(3)
+                //}
+                //.zIndex(3)
                 .edgesIgnoringSafeArea([.top, .bottom])
+                
                 
                 VStack {
                     HStack {
@@ -68,41 +103,41 @@ struct IrregVerbView: View {
                             .foregroundColor(.blue)
                             .font(Font.custom("Coiny", size: 38))
                             .padding(.trailing)
+                            .onTapGesture(count: 1, perform: {
+                                withAnimation(Animation.easeInOut(duration: 2)) {
+                                    self.showFishNet.toggle()
+                                }
+                            })
                     }
                     Spacer()
                 }
-                .zIndex(1)
+                .zIndex(3)
                 
                 ZStack {
-                    
-                    /*
-                    VStack(spacing: -20) {
-                        Image("cloud1")
-                            .resizable()
-                            .frame(width: cloudSize, height: cloudSize, alignment: .center)
-                        WordView(text: currentVerb.infinitive, isBased: true)
-                    }
-                    .position(x: geo.frame(in: .global).minX + 110, y: geo.size.height/100*25)
-                    */
-                    
                     WordView(text: currentVerb.infinitive, isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
-                    
+                        .offset(x: -10)
                     p_simpleView
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*55)
-                                
+                        .offset(x: 10)
+                    
                     p_participleView
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*65)
+                        .offset(x: -20)
                 }
+                .zIndex(showFishNet ? 2 : 0.5)
+                .offset(y: showFishNet ? 0 : -600)
+
                     
                 VStack {
                     Spacer()
                     PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words )
                         .padding(.all, 6)
                 }
+                .zIndex(4)
                 .allowsHitTesting(needShowCorrectAnswer == nil ? true : false)
             }
-            .zIndex(2)
+            //.zIndex(2)
             .onAppear(perform: {
                 self.geo = geo
                 self.cloudSize = geo.size.height/100*25
@@ -143,12 +178,19 @@ struct IrregVerbView: View {
                     Spacer()
                 }
                 .transition(.slide)
-                .zIndex(3)
+                .zIndex(5)
                 .allowsHitTesting(true)
             }
             
+            
         }
         .navigationBarHidden(true)
+    }
+    
+    func HoleShapeMask(in rect: CGRect) -> Path {
+        var shape = Rectangle().path(in: rect)
+        shape.addPath(Circle().path(in: rect))
+        return shape
     }
     
     func onEnded(value: DragGesture.Value, choosenWord: String) -> Bool {
@@ -162,7 +204,7 @@ struct IrregVerbView: View {
         
         
         let midX = geo.frame(in: .global).midX
-        if (value.location.x > midX - 50)&&(value.location.x < midX + 50) {
+        if (value.location.x > midX - 50)&&(value.location.x < midX + 60) {
             
             let height =  geo.size.height/100
             if (value.location.y > height * 55) && (value.location.y < height * 65) {
@@ -249,6 +291,19 @@ struct IrregVerbView: View {
         }
     }
 }
+
+extension AnyTransition {
+  static var customTransition: AnyTransition {
+    //let transition = AnyTransition.move(edge: .top)
+    //    .combined(with: .scale(scale: 0.2, anchor: .top))
+        //.combined(with: .opacity)
+    let transition = AnyTransition.offset(x: 0, y: -600)
+        //.combined(with: .scale()
+        .combined(with: .scale(scale: 0.3))
+    return transition
+  }
+}
+
 
 struct IrregVerbView_Previews: PreviewProvider {
     static var previews: some View {
