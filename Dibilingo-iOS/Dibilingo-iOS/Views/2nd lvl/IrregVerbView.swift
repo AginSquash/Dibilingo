@@ -42,7 +42,7 @@ struct IrregVerbView: View {
                     Image("fishing_net")
                         .resizable()
                         //.aspectRatio(contentMode: .fit)
-                        .frame(width: geo.size.width*0.6, height: geo.size.height/100*40, alignment: .center)
+                        .frame(width: geo.size.width*0.65, height: geo.size.height/100*40, alignment: .center)
                         //.frame(width: 350, height: 350, alignment: .center)
                         .position(x: geo.size.width/2, y: geo.size.height*0.54)
                        /* .mask(
@@ -126,7 +126,7 @@ struct IrregVerbView: View {
                         .offset(x: -20)
                 }
                 .zIndex(showFishNet ? 2 : 0.5)
-                .offset(y: showFishNet ? 0 : -600)
+                .offset(y: showFishNet ? 0 : -650)
 
                     
                 VStack {
@@ -271,6 +271,11 @@ struct IrregVerbView: View {
         guard let p_simple = p_simpleView.text else { return }
         guard let p_participle = p_participleView.text else { return }
         
+        withAnimation(Animation.easeInOut(duration: 2)) {
+            self.showFishNet = false
+        }
+        
+        
         if (p_simple == currentVerb.past_simple)&&(p_participle == currentVerb.past_participle) {
             
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
@@ -280,14 +285,28 @@ struct IrregVerbView: View {
             }
             
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 nextVerb()
+                
+                withAnimation(Animation.easeInOut(duration: 1)) {
+                    self.showFishNet = true
+                }
+            }
+               
             
             
         } else {
             withAnimation {
                 self.needShowCorrectAnswer = "\(currentVerb.infinitive)-\(currentVerb.past_simple)-\(currentVerb.past_participle)"
             }
-            nextVerb()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                nextVerb()
+                
+                withAnimation(Animation.easeInOut(duration: 1)) {
+                    self.showFishNet = true
+                }
+            }
+            //nextVerb()
         }
     }
 }
