@@ -53,7 +53,7 @@ def get_datahash():
 
 @app.route('/dibilingo/api/v1.0/login/<name>/')
 def login(name):
-    user = collection.find_one({ "name": name }) #debug this one
+    user = collection.find_one({ "name": name }) 
 
     userId = ObjectId()
     if user == None:

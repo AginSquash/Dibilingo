@@ -93,14 +93,41 @@ struct LoadingView: View {
             
             guard let dvData = try? Data(contentsOf: baseURL.appendingPathComponent("DataVersion")) else { setLinkView(); return }
             guard let dvFromDisk = try? JSONDecoder().decode(DataVersion.self, from: dvData) else { setLinkView(); return }
+            
             //loading data version
             URLSession.shared.dataTask(with: dataVersionURL) { data, responce, error in
                 if let data = data {
                     timer.invalidate()
+                    
+                    // check for data version
                     if let dv = try? JSONDecoder().decode(DataVersion.self, from: data) {
                         if dv.dataHash == dvFromDisk.dataHash {
-                            if let _ = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
-                                setLinkView(setContentView: true)
+                            
+                            // if dataHash updated check userprofile for update
+                            // loading from disk
+                            if let up_data = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
+                                if let up_decoded = try? JSONDecoder().decode(UserProfile.self, from: up_data) {
+                                    
+                                    // loading from server
+                                    URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(up_decoded.name)/")! ) { data, response, error in
+                                        
+                                        if let data = data {
+                                            print("DATA NOT NIL!")
+                                            let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
+                                            if decoded != nil{
+                                                let data_write_result = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
+                                                if data_write_result != nil {
+                                                    print("UPDATED!")
+                                                    setLinkView(setContentView: true)
+                                                    return
+                                                }
+                                            }
+                                        }
+                                        
+                                    }.resume()
+                                    
+                                }
+                                
                                 return
                             } else { setLinkView(); return }
                         } else { setLinkView(); return }
@@ -110,7 +137,12 @@ struct LoadingView: View {
                     return
                 }
             }.resume()
+            
         }
+    }
+    
+    func updateUserProfeile() {
+        
     }
 }
 

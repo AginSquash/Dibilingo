@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State private var userprofile: UserProfile?
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -63,12 +65,7 @@ struct ContentView: View {
                                     .foregroundColor(.white)
                             }
                         }).padding(5)
-                    
-                    Text("TEST")
-                        .onTapGesture(count: 1, perform: {
-                            //URLSession.shared.
-                        })
-                    
+                                        
                 }
             }
             .navigationBarHidden(true)
