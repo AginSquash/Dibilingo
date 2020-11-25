@@ -316,6 +316,8 @@ struct IrregVerbView_Previews: PreviewProvider {
                 .previewDevice("iPhone 11")
             IrregVerbView()
                 .previewDevice("iPhone 8")
+            IrregVerbView()
+                .previewDevice("iPad Air")
         }
     }
 }

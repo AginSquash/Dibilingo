@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-let serverURL = "http://192.168.88.32:5000"
-//let serverURL = "http://127.0.0.1:5000"
+//let serverURL = "http://192.168.88.32:5000"
+let serverURL = "http://127.0.0.1:5000"
 
 struct LoginView: View {
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -82,6 +82,7 @@ struct LoginView: View {
             .navigationBarHidden(true)
         }
         .onAppear(perform: loadData)
+        .navigationViewStyle(StackNavigationViewStyle())
         //.onAppear(perform: checkData)
     }
     
