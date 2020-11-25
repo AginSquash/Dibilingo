@@ -16,7 +16,7 @@ struct WordView: View {
     
     var computedWidth: CGFloat {
         guard let text = word?.text else { return 60 }
-        let width = 52 + (text.count * 8)
+        let width = 52 + (text.count * 9)
         return CGFloat(width)
     }
     
@@ -51,6 +51,7 @@ struct WordView: View {
                     //.transition()
                     .frame(width: 45, height: 45, alignment: .center)
                     .offset(x: 2.5)
+                    .zIndex(0)
             //}
             ZStack {
                 //RoundedRectangle(cornerRadius: 20.0, style: .continuous)
@@ -63,8 +64,10 @@ struct WordView: View {
                 Text(word?.text.uppercased() ?? "...")
                     .font(Font.custom("boomboom", size: computedFontSize))
                     .foregroundColor(.white)
+                    .frame(height: 45, alignment: .center)
             }
-            .frame(width: computedWidth, height: 45, alignment: .center)
+            .zIndex(1)
+            //.frame(width: computedWidth, height: 45, alignment: .center)
             //.onLongPressGesture {
             //    (onLongTap ?? { _ in })(self.text)
            // }
@@ -74,6 +77,7 @@ struct WordView: View {
                     //.transition(.opacity)
                     .frame(width: 45, height: 45, alignment: .center)
                     .offset(x: -1.5)
+                    .zIndex(0)
             //}
         }
         .onLongPressGesture {
@@ -128,6 +132,14 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(word: words_for_verbs("knowed"))
+        return WordView(word: words_for_verbs("knowed"))
+        ZStack {
+            Rectangle()
+                .foregroundColor(.blue)
+                //.frame(width: 20, height: 45, alignment: .center)
+            Text("WW")
+                .font(Font.custom("boomboom", size: 30))
+        }
+        .frame(width: 51, height: 45, alignment: .center)
     }
 }
