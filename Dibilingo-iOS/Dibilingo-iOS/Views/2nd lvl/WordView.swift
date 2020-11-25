@@ -8,15 +8,23 @@
 import SwiftUI
 
 struct WordView: View {
-    var text: String?
+    //var text: String?
+    var word: words_for_verbs?
     var isBased: Bool = false
-    var onEnded: ((DragGesture.Value, String) -> Bool)?
+    var onEnded: ((DragGesture.Value, UUID, String) -> Bool)?
     var onLongTap: ((String?) -> Void)?
     
     var computedWidth: CGFloat {
-        guard let text = text else { return 60 }
+        guard let text = word?.text else { return 60 }
         let width = 40 + (text.count * 10)
         return CGFloat(width)
+    }
+    
+    var text: String? {
+        if word != nil {
+            return word?.text
+        }
+        return nil
     }
     
     @State private var offset = CGSize.zero
@@ -39,7 +47,7 @@ struct WordView: View {
                     .frame(height: 45, alignment: .center)
                     //.animation(.easeIn(duration: 0.1))
                 
-                Text(text?.uppercased() ?? "...")
+                Text(word?.text.uppercased() ?? "...")
                     .font(Font.custom("boomboom", size: 29))
                     .foregroundColor(.white)
             }
@@ -74,10 +82,9 @@ struct WordView: View {
                 .onChanged({ value in
                     if isBased || text == nil { return }
                     self.offset = value.translation
-                    //print(value.location)
                 })
                 .onEnded({ value in
-                    let isSetted = (onEnded ?? { _,_ in return false })(value, text ?? "")
+                    let isSetted = (onEnded ?? { _,_,_ in return false })(value, word?.id ?? UUID() ,text ?? "")
             
                     
                     if isSetted == false {
@@ -107,6 +114,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(text: "shakeing")
+        WordView(word: words_for_verbs("shakeing"))
     }
 }
