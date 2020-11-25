@@ -17,7 +17,6 @@ struct IrregVerbView: View {
     
     @State var p_simpleView = WordView(isBased: true)
     @State var p_participleView = WordView(isBased: true)
-    @State var possibleWordsView: PossibleWordsView? // = PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words )
     @State private var feedback = UINotificationFeedbackGenerator()
     
     @State private var coins: Int = 0
@@ -232,6 +231,11 @@ struct IrregVerbView: View {
         self.verbs.append(IrregVerb(infinitive: "see", past_simple: "saw", past_participle: "seen", other_options: ["seenning", "sawed", "seed", "sow"]))
         self.verbs.append(IrregVerb(infinitive: "ring", past_simple: "rang", past_participle: "rung", other_options: ["running", "run", "ranned", "ran"]))
         */
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            self.possible_words_id = [words_for_verbs("begin")]
+            return
+        }
+        
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("IrregVerb.json")) else {
             fatalError("Cannot load IrregVerb.json")
@@ -242,6 +246,7 @@ struct IrregVerbView: View {
         
         self.verbs = decoded.shuffled()
         nextVerb()
+        
     }
     
     func nextVerb() {
@@ -260,10 +265,7 @@ struct IrregVerbView: View {
         words.append(verb.past_participle)
         
         withAnimation {
-            //self.possible_words = words.shuffled()
-            
-            self.possible_words_id = words.shuffled().map({ words_for_verbs($0) }) //worddds
-            //self.possibleWordsView = PossibleWordsView(height: 175, onEnded: onEnded, words: worddds )
+            self.possible_words_id = words.shuffled().map({ words_for_verbs($0) })
         }
     }
     
