@@ -16,10 +16,16 @@ struct IrregVerb: Codable {
 }
 
 struct words_for_verbs: Identifiable {
-    let id = UUID()
+    let id: UUID
     let text: String
     
     init (_ text: String) {
+        self.id = UUID()
+        self.text = text
+    }
+    
+    init (id: UUID, text: String) {
+        self.id = id
         self.text = text
     }
 }

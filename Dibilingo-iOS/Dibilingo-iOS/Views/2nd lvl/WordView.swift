@@ -8,15 +8,34 @@
 import SwiftUI
 
 struct WordView: View {
-    var text: String?
+    //var text: String?
+    var word: words_for_verbs?
     var isBased: Bool = false
-    var onEnded: ((DragGesture.Value, String) -> Bool)?
+    var onEnded: ((DragGesture.Value, UUID, String) -> Bool)?
     var onLongTap: ((String?) -> Void)?
     
     var computedWidth: CGFloat {
-        guard let text = text else { return 60 }
-        let width = 40 + (text.count * 10)
+        guard let text = word?.text else { return 60 }
+        let width = 52 + (text.count * 8)
         return CGFloat(width)
+    }
+    
+    var computedFontSize: CGFloat {
+        guard let text = word?.text else { return 30 }
+        if text.count > 8 {
+            return 24
+        }
+        if text.count > 6 {
+            return 27
+        }
+        return 30
+    }
+    
+    var text: String? {
+        if word != nil {
+            return word?.text
+        }
+        return nil
     }
     
     @State private var offset = CGSize.zero
@@ -31,16 +50,18 @@ struct WordView: View {
                     //.transition(.opacity)
                     //.transition()
                     .frame(width: 45, height: 45, alignment: .center)
+                    .offset(x: 2.5)
             //}
             ZStack {
                 //RoundedRectangle(cornerRadius: 20.0, style: .continuous)
                 Rectangle()
                     .foregroundColor(self.text != nil ? Color(hex: "#585ea8") : Color(hex: "#909090"))
-                    .frame(height: 45, alignment: .center)
+                    //.frame(height: 45, alignment: .center)
                     //.animation(.easeIn(duration: 0.1))
+                    .frame(width: computedWidth-2.5, height: 45, alignment: .center)
                 
-                Text(text?.uppercased() ?? "...")
-                    .font(Font.custom("boomboom", size: 29))
+                Text(word?.text.uppercased() ?? "...")
+                    .font(Font.custom("boomboom", size: computedFontSize))
                     .foregroundColor(.white)
             }
             .frame(width: computedWidth, height: 45, alignment: .center)
@@ -52,6 +73,7 @@ struct WordView: View {
                     .resizable()
                     //.transition(.opacity)
                     .frame(width: 45, height: 45, alignment: .center)
+                    .offset(x: -1.5)
             //}
         }
         .onLongPressGesture {
@@ -74,10 +96,9 @@ struct WordView: View {
                 .onChanged({ value in
                     if isBased || text == nil { return }
                     self.offset = value.translation
-                    //print(value.location)
                 })
                 .onEnded({ value in
-                    let isSetted = (onEnded ?? { _,_ in return false })(value, text ?? "")
+                    let isSetted = (onEnded ?? { _,_,_ in return false })(value, word?.id ?? UUID() ,text ?? "")
             
                     
                     if isSetted == false {
@@ -107,6 +128,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(text: "shakeing")
+        WordView(word: words_for_verbs("knowed"))
     }
 }

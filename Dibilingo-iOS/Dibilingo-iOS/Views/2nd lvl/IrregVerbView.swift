@@ -97,7 +97,7 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 ZStack {
-                    WordView(text: currentVerb?.infinitive, isBased: true)
+                    WordView(word: words_for_verbs(currentVerb?.infinitive ?? ""), isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
                         .offset(x: -10)
                     p_simpleView
@@ -133,7 +133,7 @@ struct IrregVerbView: View {
                 p_simpleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
-                    p_simpleView.text = nil
+                    p_simpleView.word = nil
                     
                     withAnimation {
                         self.possible_words_id.append( words_for_verbs(text) )
@@ -144,7 +144,7 @@ struct IrregVerbView: View {
                 p_participleView.onLongTap = { text in
                     feedback.prepare()
                     guard let text = text else { return }
-                    p_participleView.text = nil
+                    p_participleView.word = nil
                     
                     withAnimation {
                         self.possible_words_id.append( words_for_verbs(text) )
@@ -179,7 +179,7 @@ struct IrregVerbView: View {
         return shape
     }
     
-    func onEnded(value: DragGesture.Value, choosenWord: String) -> Bool {
+    func onEnded(value: DragGesture.Value, id: UUID, choosenWord: String) -> Bool {
         
         //print("Ok")
         //print(choosenWord)
@@ -196,12 +196,12 @@ struct IrregVerbView: View {
             if (value.location.y > height * 55) && (value.location.y < height * 65) {
                 //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                 let oldWord = p_simpleView.text
-                p_simpleView.text = choosenWord
+                p_simpleView.word = words_for_verbs(id: id, text: choosenWord)
                 withAnimation {
                     if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!)) }
                     //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                     //p_simpleView.text = choosenWord
-                    self.possible_words_id.removeAll(where: { $0.text == choosenWord })
+                    self.possible_words_id.removeAll(where: { $0.id == id })
                 }
                 checkCorrect()
                 return true
@@ -209,12 +209,12 @@ struct IrregVerbView: View {
             
             if (value.location.y > height * 65) && (value.location.y < height * 75) {
                 let oldWord = p_participleView.text
-                p_participleView.text = choosenWord
+                p_participleView.word = words_for_verbs(id: id, text: choosenWord)
                 withAnimation {
                     if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!) ) }
                     //if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
                     //p_participleView.text = choosenWord
-                    self.possible_words_id.removeAll(where: { $0.text == choosenWord })
+                    self.possible_words_id.removeAll(where: { $0.id == id })
                 }
                 checkCorrect()
                 return true
@@ -258,8 +258,8 @@ struct IrregVerbView: View {
         let verb = self.verbs.removeFirst()
         self.currentVerb = verb
         
-        p_simpleView.text = nil
-        p_participleView.text = nil
+        p_simpleView.word = nil
+        p_participleView.word = nil
         
         var words = verb.other_options
         words.append(verb.past_simple)
