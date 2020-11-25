@@ -1,5 +1,6 @@
 #!flask/bin/python
 from flask import Flask, jsonify, send_file, make_response
+import json
 
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -55,22 +56,23 @@ def get_datahash():
 def login(name):
     user = collection.find_one({ "name": name }) 
 
-    userId = ObjectId()
+    userID = ObjectId()
     if user == None:
         newUser = {
             "name": name,
-            "coins": "0",
-            "coinsInCategories": { }
+            "coins": 0,
+            "coinsInCategories": json.dumps([[]]) 
             }
-        userId = collection.insert_one(newUser).inserted_id
+        userID = collection.insert_one(newUser).inserted_id
+        user = collection.find_one({ "name": name }) 
     else:
-        userId = user["_id"]
+        userID = user["_id"]
 
     callback = { 
-        "id": str(userId),
+        "id": str(userID),
         "name": name,
-        "coins": "0",                 
-        "coinsInCategories": { }
+        "coins": int( user["coins"] ),                 
+        "coinsInCategories": user["coinsInCategories"] 
         }
 
     return jsonify(callback)
