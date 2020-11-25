@@ -50,3 +50,10 @@ func getUserProfile() -> UserProfile? {
     }
     return nil
 }
+
+func saveUserProfile(_ up: UserProfile) {
+    let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    if let encoded = try? JSONEncoder().encode(up) {
+        try? encoded.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
+    }
+}
