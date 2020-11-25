@@ -9,10 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var userprofile: UserProfile? = getUserProfile()
-    
     var body: some View {
-        NavigationView {
+         NavigationView {
             ZStack {
                 SwiftUIGIFPlayerView(gifName: "orig")
                     .scaledToFill()
@@ -71,6 +69,12 @@ struct ContentView: View {
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear(perform: {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                print(getUserProfile())
+            }
+         })
     }
 }
 

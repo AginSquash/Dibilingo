@@ -10,7 +10,7 @@ import SwiftUI
 struct IrregVerbView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    @Binding var userprofile: UserProfile
+    @State var userprofile: UserProfile?
     
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
@@ -31,6 +31,7 @@ struct IrregVerbView: View {
     @State private var showFishNet: Bool = true
     
     @State private var verbs: [IrregVerb] = []
+    
     
     var body: some View {
         GeometryReader { geo in
@@ -94,6 +95,9 @@ struct IrregVerbView: View {
                                     self.showFishNet.toggle()
                                 }
                             })
+                            .onLongPressGesture {
+                                print(getUserProfile())
+                            }
                     }
                     Spacer()
                 }
@@ -150,6 +154,13 @@ struct IrregVerbView: View {
                     }
                     self.feedback.notificationOccurred(.error)
                 }
+            })
+            .onDisappear(perform: {
+                guard var up = self.userprofile else { fatalError("userprofile is nil") }
+                
+                up.coinsInCategories["irregVerbs"] = self.coins
+                saveUserProfile(up)
+                print("Saved!")
             })
             
             if needShowCorrectAnswer != nil {
@@ -226,12 +237,15 @@ struct IrregVerbView: View {
             return
         }
         
-        let coins = userprofile.coinsInCategories["irregVerbs"]
+        guard var up = getUserProfile() else { fatalError("getUserProfile is nil") }
+    
+        let coins = up.coinsInCategories["irregVerbs"]
         if coins != nil {
             self.coins = coins ?? 0
         } else {
-            userprofile.coinsInCategories["irregVerbs"] = 0
+            up.coinsInCategories["irregVerbs"] = 0
         }
+        self.userprofile = up
         
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("IrregVerb.json")) else {
@@ -320,11 +334,11 @@ extension AnyTransition {
 struct IrregVerbView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let up = UserProfile(id: "0", name: "0", coins: "0", coinsInCategories: [:])
+        let up = UserProfile(id: "0", name: "0", coins: 0, coinsInCategories: [:])
         return Group {
-            IrregVerbView(userprofile: .constant(up))
+            IrregVerbView()
                 .previewDevice("iPhone 11")
-            IrregVerbView(userprofile: .constant(up))
+            IrregVerbView()
                 .previewDevice("iPhone 8")
         }
     }
