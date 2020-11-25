@@ -11,4 +11,5 @@ struct UserProfile: Codable {
     let id: String
     var name: String
     var coins: Int
+    var coinsInCategories: [String:Int]
 }

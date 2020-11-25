@@ -7,8 +7,11 @@
 
 import SwiftUI
 
-//let serverURL = "http://192.168.88.32:5000"
+#if targetEnvironment(simulator)
 let serverURL = "http://127.0.0.1:5000"
+#else
+let serverURL = "http://192.168.88.32:5000"
+#endif
 
 struct LoginView: View {
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -236,7 +239,7 @@ struct LoginView: View {
         let name = username
         // here must be user register on server
         
-        let newUP = UserProfile(id: UUID().uuidString, name: name, coins: 0)
+        let newUP = UserProfile(id: UUID().uuidString, name: name, coins: 0, coinsInCategories: [:])
         
         if let encoded = try? JSONEncoder().encode(newUP) {
             if let succefullWrited = try? encoded.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic) {
