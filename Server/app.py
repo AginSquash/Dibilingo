@@ -2,6 +2,7 @@
 from flask import Flask, jsonify, send_file, make_response
 
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 from os import path, listdir
 import checksumdir
@@ -52,15 +53,19 @@ def get_datahash():
 
 @app.route('/dibilingo/api/v1.0/login/<name>/')
 def login(name):
-    userId = collection.find_one({ "name": name })["_id"] #debug this one
-    if userId == None:
+    user = collection.find_one({ "name": name }) #debug this one
+
+    userId = ObjectId()
+    if user == None:
         newUser = {
             "name": name,
             "coins": "0",
             "coinsInCategories": { }
             }
-        userId = collection.insert_one(newUser).inserted_id["_id"]
-    
+        userId = collection.insert_one(newUser).inserted_id
+    else:
+        userId = user["_id"]
+
     callback = { 
         "id": str(userId),
         "name": name,

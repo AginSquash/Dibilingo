@@ -256,17 +256,6 @@ struct LoginView: View {
             }
             
         }.resume()
-        
-        
-        let newUP = UserProfile(id: UUID().uuidString, name: name, coins: 0, coinsInCategories: [:])
-        
-        if let encoded = try? JSONEncoder().encode(newUP) {
-            if let succefullWrited = try? encoded.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic) {
-                self.pushToMain = true
-                return
-            }
-        }
-        fatalError("Cannot register")
     }
     
 }
