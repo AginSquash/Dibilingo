@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var userprofile: UserProfile?
+    @State private var userprofile: UserProfile? = getUserProfile()
     
     var body: some View {
         NavigationView {
