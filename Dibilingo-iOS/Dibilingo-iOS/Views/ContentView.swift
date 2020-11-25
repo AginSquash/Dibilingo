@@ -64,6 +64,10 @@ struct ContentView: View {
                             }
                         }).padding(5)
                     
+                    Text("TEST")
+                        .onTapGesture(count: 1, perform: {
+                            //URLSession.shared.
+                        })
                     
                 }
             }

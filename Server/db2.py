@@ -3,15 +3,12 @@ from pymongo import MongoClient
 # Create the client
 client = MongoClient('localhost', 27017)
 
-db = client["MyDB"]
+db = client["Dibilingo"]
 
-collection = db["MyColl"]
+collection = db["users"]
 
 import datetime
-post = {"author": "Mike",
-         "text": "My first blog post!",
-         "tags": ["mongodb", "python", "pymongo"],
-         "date": datetime.datetime.utcnow()}
+post = {"name": "Mike"}
 
 post_id = collection.insert_one(post).inserted_id
 print(post_id)

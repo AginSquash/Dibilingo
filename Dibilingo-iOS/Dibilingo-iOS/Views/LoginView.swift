@@ -117,6 +117,7 @@ struct LoginView: View {
         guard let dataVersionURL = URL(string: "\(serverURL)/dibilingo/api/v1.0/datahash") else { return }
         guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/cardlist") else { return }
         
+        
         DispatchQueue.global(qos: .userInteractive).async {
             if let upEncoded = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
                 if let up = try? JSONDecoder().decode(UserProfile.self, from: upEncoded) {
@@ -238,6 +239,24 @@ struct LoginView: View {
     func register() {
         let name = username
         // here must be user register on server
+        
+        
+        URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(name)/")! ) { data, response, error in
+            
+            if let data = data {
+                let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
+                if decoded != nil{
+                    print("DATA OK!")
+                    print(decoded)
+                    if let succefullWrited = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic) {
+                        self.pushToMain = true
+                        return
+                    }
+                }
+            }
+            
+        }.resume()
+        
         
         let newUP = UserProfile(id: UUID().uuidString, name: name, coins: 0, coinsInCategories: [:])
         
