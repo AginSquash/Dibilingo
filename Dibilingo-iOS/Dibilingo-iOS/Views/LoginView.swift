@@ -244,7 +244,8 @@ struct LoginView: View {
         URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(name)/")! ) { data, response, error in
             
             if let data = data {
-                let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
+                print("DATA NOT NIL!")
+                let decoded = try! JSONDecoder().decode(UserProfile.self, from: data)
                 if decoded != nil{
                     print("DATA OK!")
                     print(decoded)

@@ -102,7 +102,7 @@ struct LoadingView: View {
                             if let _ = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
                                 setLinkView(setContentView: true)
                                 return
-                            }
+                            } else { setLinkView(); return }
                         } else { setLinkView(); return }
                     }
                 } else {
