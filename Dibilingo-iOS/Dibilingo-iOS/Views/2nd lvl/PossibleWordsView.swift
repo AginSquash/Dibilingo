@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PossibleWordsView: View {
-    let uuid = UUID().uuidString
+    //let uuid = UUID().uuidString
     var height: CGFloat
     var onEnded: ((DragGesture.Value, Int, String) -> Bool)
     var words: [words_for_verbs]
@@ -65,6 +65,7 @@ struct PossibleWordsView: View {
                         ForEach(words, id: \.id) { word in
                             if usedWords.contains(word.text) == false {
                                 WordView(word: word, onEnded: onEnded)
+                                    .id("\(UUID())-\(word)-\(word.id)")
                             }
                         }
                     }
