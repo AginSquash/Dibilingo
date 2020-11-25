@@ -10,6 +10,8 @@ import SwiftUI
 struct IrregVerbView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    @Binding var userprofile: UserProfile
+    
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
     @State private var possible_words_id: [words_for_verbs] = []
@@ -34,7 +36,6 @@ struct IrregVerbView: View {
         GeometryReader { geo in
             
             ZStack {
-    
                 
                 VStack {
                     ZStack{
@@ -225,6 +226,13 @@ struct IrregVerbView: View {
             return
         }
         
+        let coins = userprofile.coinsInCategories["irregVerbs"]
+        if coins != nil {
+            self.coins = coins ?? 0
+        } else {
+            userprofile.coinsInCategories["irregVerbs"] = 0
+        }
+        
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("IrregVerb.json")) else {
             fatalError("Cannot load IrregVerb.json")
@@ -311,10 +319,12 @@ extension AnyTransition {
 
 struct IrregVerbView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            IrregVerbView()
+        
+        let up = UserProfile(id: "0", name: "0", coins: "0", coinsInCategories: [:])
+        return Group {
+            IrregVerbView(userprofile: .constant(up))
                 .previewDevice("iPhone 11")
-            IrregVerbView()
+            IrregVerbView(userprofile: .constant(up))
                 .previewDevice("iPhone 8")
         }
     }
