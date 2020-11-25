@@ -10,6 +10,6 @@ import Foundation
 struct UserProfile: Codable {
     let id: String
     var name: String
-    var coins: Int
+    var coins: String
     var coinsInCategories: [String:Int]
 }

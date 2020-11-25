@@ -245,7 +245,7 @@ struct LoginView: View {
             
             if let data = data {
                 print("DATA NOT NIL!")
-                let decoded = try! JSONDecoder().decode(UserProfile.self, from: data)
+                let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
                 if decoded != nil{
                     print("DATA OK!")
                     print(decoded)
