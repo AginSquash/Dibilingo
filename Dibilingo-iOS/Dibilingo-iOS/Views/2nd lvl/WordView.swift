@@ -44,17 +44,15 @@ struct WordView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            //if text != nil {
             Image( self.text != nil ? "fish_head" : "fish_head_g")
                     .resizable()
-                    //.transition(.opacity)
-                    //.transition()
+                   
                     .frame(width: 45, height: 45, alignment: .center)
                     .offset(x: 2.5)
                     .zIndex(0)
-            //}
+            
             ZStack {
-                //RoundedRectangle(cornerRadius: 20.0, style: .continuous)
+               
                 Rectangle()
                     .foregroundColor(self.text != nil ? Color(hex: "#585ea8") : Color(hex: "#909090"))
                     //.frame(height: 45, alignment: .center)
@@ -67,31 +65,18 @@ struct WordView: View {
                     .frame(height: 45, alignment: .center)
             }
             .zIndex(1)
-            //.frame(width: computedWidth, height: 45, alignment: .center)
-            //.onLongPressGesture {
-            //    (onLongTap ?? { _ in })(self.text)
-           // }
-            //if text != nil {
+            
             Image(self.text != nil ? "fish_tail" : "fish_tail_g")
                     .resizable()
-                    //.transition(.opacity)
+                    
                     .frame(width: 45, height: 45, alignment: .center)
                     .offset(x: -1.5)
                     .zIndex(0)
-            //}
+            
         }
         .onLongPressGesture {
-            //withAnimation(.easeIn(duration: 0.1), { self.opacity = 0.0 })
-            //DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                //withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
-            
-
+           
                 (onLongTap ?? { _ in })(self.text)
-                
-               // DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-               //     withAnimation(.easeIn(duration: 0.1), { self.opacity = 1.0 })
-                //}
-            //}
             
         }
         .drawingGroup()
@@ -132,14 +117,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        return WordView(word: words_for_verbs("knowed"))
-        ZStack {
-            Rectangle()
-                .foregroundColor(.blue)
-                //.frame(width: 20, height: 45, alignment: .center)
-            Text("WW")
-                .font(Font.custom("boomboom", size: 30))
-        }
-        .frame(width: 51, height: 45, alignment: .center)
+        WordView(word: words_for_verbs("knowed"))
     }
 }

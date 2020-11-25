@@ -47,33 +47,21 @@ struct PossibleWordsView: View {
     
     var body: some View {
         
-         /*ZStack {
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .foregroundColor(.yellow)
-            ZStack {
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                    .foregroundColor(Color(hex: "#3F92D2"))
-                    .padding(5)
-                */
-                GeometryReader { geo in
-                    let columns = [
-                        GridItem(.flexible()),
-                        //GridItem(.flexible()),
-                        GridItem(.flexible())
-                    ]
-                    LazyVGrid(columns: columns) {
-                        ForEach(words, id: \.id) { word in
-                            if usedWords.contains(word.text) == false {
-                                WordView(word: word, onEnded: onEnded)
-                            }
+            GeometryReader { geo in
+                let columns = [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+                LazyVGrid(columns: columns) {
+                    ForEach(words, id: \.id) { word in
+                        if usedWords.contains(word.text) == false {
+                            WordView(word: word, onEnded: onEnded)
                         }
                     }
                 }
-                .padding([.top, .bottom])
+            }
+            .padding([.top, .bottom])
                 
-            //}
-            
-        //}
         .frame(height: height, alignment: .center)
     }
     
