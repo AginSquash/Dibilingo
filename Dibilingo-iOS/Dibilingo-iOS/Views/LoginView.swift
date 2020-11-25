@@ -119,12 +119,10 @@ struct LoginView: View {
         
         
         DispatchQueue.global(qos: .userInteractive).async {
-            if let upEncoded = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
-                if let up = try? JSONDecoder().decode(UserProfile.self, from: upEncoded) {
-                    DispatchQueue.main.async {
-                        self.username = up.name
-                        self.userAlreadyExist = true
-                    }
+            if let userprofile = getUserProfile() {
+                DispatchQueue.main.async {
+                    self.username = userprofile.name
+                    self.userAlreadyExist = true
                 }
             }
         }

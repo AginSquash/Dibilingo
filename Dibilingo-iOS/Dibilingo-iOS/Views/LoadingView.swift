@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct LoadingView: View {
+    
     @State private var toLoginView = false
     @State private var toContentView = false
     @State private var continueWithOutInternet = false
     @State private var currentBackground = "loading_morning"
+    @State private var userprofile: UserProfile?
     
     var body: some View {
         NavigationView {
@@ -105,9 +107,8 @@ struct LoadingView: View {
                             
                             // if dataHash updated check userprofile for update
                             // loading from disk
-                            if let up_data = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
-                                if let up_decoded = try? JSONDecoder().decode(UserProfile.self, from: up_data) {
-                                    
+                            if let up_decoded = getUserProfile() {
+                                
                                     // loading from server
                                     URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(up_decoded.name)/")! ) { data, response, error in
                                         
@@ -125,10 +126,7 @@ struct LoadingView: View {
                                         }
                                         
                                     }.resume()
-                                    
-                                }
-                                
-                                return
+                                    // return?
                             } else { setLinkView(); return }
                         } else { setLinkView(); return }
                     }
@@ -139,10 +137,6 @@ struct LoadingView: View {
             }.resume()
             
         }
-    }
-    
-    func updateUserProfeile() {
-        
     }
 }
 

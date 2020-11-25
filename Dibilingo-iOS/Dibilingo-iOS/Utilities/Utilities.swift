@@ -41,3 +41,12 @@ extension Color {
     }
 }
 
+func getUserProfile() -> UserProfile? {
+    let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    if let up_data = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
+        if let up_decoded = try? JSONDecoder().decode(UserProfile.self, from: up_data) {
+            return up_decoded
+        }
+    }
+    return nil
+}
