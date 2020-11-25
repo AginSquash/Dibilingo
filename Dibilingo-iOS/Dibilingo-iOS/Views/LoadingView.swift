@@ -11,10 +11,15 @@ struct LoadingView: View {
     @State private var toLoginView = false
     @State private var toContentView = false
     @State private var continueWithOutInternet = false
+    @State private var currentBackground = "loading_morning"
     
     var body: some View {
         NavigationView {
             ZStack {
+                
+                Image(decorative: currentBackground)
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
                 
                 NavigationLink(
                     destination: LoginView().navigationBarHidden(true),
@@ -28,8 +33,9 @@ struct LoadingView: View {
                 
                 VStack {
                     Spacer()
-                    Text("Connecting...")
+                    Text("Connecting")
                         .font(Font.custom("boomboom", size: 26))
+                        .foregroundColor(.white)
                     
                     Spacer()
                     if continueWithOutInternet {
@@ -43,7 +49,20 @@ struct LoadingView: View {
                     }
                 }
             }.navigationBarHidden(true)
-        }.onAppear(perform: checkData)
+        }.onAppear(perform: screenLoad)
+    }
+    
+    func screenLoad() {
+        
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        
+        if (hour >= 5) && (hour <= 9) { currentBackground = "loading_morning" }
+        if (hour > 9) && (hour <= 18) { currentBackground = "loading_day" }
+        if (hour > 18) || (hour < 5) { currentBackground = "loading_evening" }
+        
+        checkData()
     }
     
     func checkData() {
