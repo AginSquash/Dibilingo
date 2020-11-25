@@ -12,7 +12,6 @@ struct IrregVerbView: View {
     
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
-    //@State private var possible_words: [String] = []
     @State private var possible_words_id: [words_for_verbs] = []
     
     @State var p_simpleView = WordView(isBased: true)
@@ -25,7 +24,7 @@ struct IrregVerbView: View {
     }
     @State private var isPointUp: Bool = false
     
-    @State private var currentVerb: IrregVerb? //= IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["example", "example"])
+    @State private var currentVerb: IrregVerb?
     @State private var needShowCorrectAnswer: String? = nil
     @State private var showFishNet: Bool = true
     
@@ -114,10 +113,6 @@ struct IrregVerbView: View {
                     
                 VStack {
                     Spacer()
-                    //if possibleWordsView != nil {
-                       // possibleWordsView
-                        //    .padding(.all, 6)
-                    //}
                     PossibleWordsView(height: 175, onEnded: onEnded, words: possible_words_id )
                         .padding(.all, 6)
                 }
@@ -181,26 +176,17 @@ struct IrregVerbView: View {
     
     func onEnded(value: DragGesture.Value, id: UUID, choosenWord: String) -> Bool {
         
-        //print("Ok")
-        //print(choosenWord)
-        
         guard let geo = self.geo else { return false }
        
-        //print(geo.frame(in: .global).midX)
-        
-        
         let midX = geo.frame(in: .global).midX
         if (value.location.x > midX - 50)&&(value.location.x < midX + 60) {
             
             let height =  geo.size.height/100
             if (value.location.y > height * 55) && (value.location.y < height * 65) {
-                //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                 let oldWord = p_simpleView.text
                 p_simpleView.word = words_for_verbs(id: id, text: choosenWord)
                 withAnimation {
                     if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!)) }
-                    //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
-                    //p_simpleView.text = choosenWord
                     self.possible_words_id.removeAll(where: { $0.id == id })
                 }
                 checkCorrect()
@@ -212,8 +198,6 @@ struct IrregVerbView: View {
                 p_participleView.word = words_for_verbs(id: id, text: choosenWord)
                 withAnimation {
                     if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!) ) }
-                    //if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
-                    //p_participleView.text = choosenWord
                     self.possible_words_id.removeAll(where: { $0.id == id })
                 }
                 checkCorrect()
@@ -287,7 +271,6 @@ struct IrregVerbView: View {
                 withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
             }
             
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 nextVerb()
                 
@@ -296,31 +279,26 @@ struct IrregVerbView: View {
                 }
             }
                
-            
-            
         } else {
             withAnimation {
                 self.needShowCorrectAnswer = "\(currentVerb!.infinitive)-\(currentVerb!.past_simple)-\(currentVerb!.past_participle)"
             }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 nextVerb()
-                
                 withAnimation(Animation.easeInOut(duration: 1)) {
                     self.showFishNet = true
                 }
             }
-            //nextVerb()
+           
         }
     }
 }
 
 extension AnyTransition {
   static var customTransition: AnyTransition {
-    //let transition = AnyTransition.move(edge: .top)
-    //    .combined(with: .scale(scale: 0.2, anchor: .top))
-        //.combined(with: .opacity)
     let transition = AnyTransition.offset(x: 0, y: -600)
-        //.combined(with: .scale()
+       
         .combined(with: .scale(scale: 0.3))
     return transition
   }
