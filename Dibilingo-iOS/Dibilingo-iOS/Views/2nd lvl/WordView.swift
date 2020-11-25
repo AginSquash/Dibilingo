@@ -11,8 +11,8 @@ struct WordView: View {
     //var text: String?
     var word: words_for_verbs?
     var isBased: Bool = false
-    var onEnded: ((DragGesture.Value, UUID, String) -> Bool)?
-    var onLongTap: ((String?) -> Void)?
+    var onEnded: ((DragGesture.Value, Int, String) -> Bool)?
+    var onLongTap: ((Int, String?) -> Void)?
     
     var computedWidth: CGFloat {
         guard let text = word?.text else { return 60 }
@@ -67,8 +67,8 @@ struct WordView: View {
             //DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 //withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
             
-
-                (onLongTap ?? { _ in })(self.text)
+            guard let id = self.word?.id else { return }
+            (onLongTap ?? { _,_ in })( id, self.text)
                 
                // DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                //     withAnimation(.easeIn(duration: 0.1), { self.opacity = 1.0 })
@@ -84,7 +84,8 @@ struct WordView: View {
                     self.offset = value.translation
                 })
                 .onEnded({ value in
-                    let isSetted = (onEnded ?? { _,_,_ in return false })(value, word?.id ?? UUID() ,text ?? "")
+                    guard let id = self.word?.id else { return }
+                    let isSetted = (onEnded ?? { _,_,_ in return false })(value, id ,text ?? "")
             
                     
                     if isSetted == false {
@@ -114,6 +115,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(word: words_for_verbs("shakeing"))
+        WordView(word: words_for_verbs(0, "shakeing"))
     }
 }

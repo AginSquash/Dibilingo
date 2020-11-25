@@ -97,7 +97,7 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 ZStack {
-                    WordView(word: words_for_verbs(currentVerb?.infinitive ?? ""), isBased: true)
+                    WordView(word: words_for_verbs(id: 10, text: currentVerb?.infinitive ?? ""), isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
                         .offset(x: -10)
                     p_simpleView
@@ -130,24 +130,26 @@ struct IrregVerbView: View {
                 
                 loadVerbs()
                 
-                p_simpleView.onLongTap = { text in
+                p_simpleView.onLongTap = { id, text in
                     feedback.prepare()
                     guard let text = text else { return }
+                    //guard let id = id else { return }
                     p_simpleView.word = nil
                     
                     withAnimation {
-                        self.possible_words_id.append( words_for_verbs(text) )
+                        self.possible_words_id.append( words_for_verbs(id, text) )
                     }
                     self.feedback.notificationOccurred(.error)
                 }
                 
-                p_participleView.onLongTap = { text in
+                p_participleView.onLongTap = { id, text in
                     feedback.prepare()
                     guard let text = text else { return }
+                    //guard let id = id else { return }
                     p_participleView.word = nil
                     
                     withAnimation {
-                        self.possible_words_id.append( words_for_verbs(text) )
+                        self.possible_words_id.append( words_for_verbs(id, text) )
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -179,7 +181,7 @@ struct IrregVerbView: View {
         return shape
     }
     
-    func onEnded(value: DragGesture.Value, id: UUID, choosenWord: String) -> Bool {
+    func onEnded(value: DragGesture.Value, id: Int, choosenWord: String) -> Bool {
         
         //print("Ok")
         //print(choosenWord)
@@ -198,7 +200,7 @@ struct IrregVerbView: View {
                 let oldWord = p_simpleView.text
                 p_simpleView.word = words_for_verbs(id: id, text: choosenWord)
                 withAnimation {
-                    if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!)) }
+                    if oldWord != nil { possible_words_id.append( words_for_verbs(id: id, text: oldWord!)) }
                     //if p_simpleView.text != nil { possible_words.append(p_simpleView.text!) }
                     //p_simpleView.text = choosenWord
                     self.possible_words_id.removeAll(where: { $0.id == id })
@@ -211,7 +213,7 @@ struct IrregVerbView: View {
                 let oldWord = p_participleView.text
                 p_participleView.word = words_for_verbs(id: id, text: choosenWord)
                 withAnimation {
-                    if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!) ) }
+                    if oldWord != nil { possible_words_id.append( words_for_verbs(id: id, text: oldWord!)) }
                     //if p_participleView.text != nil { possible_words.append(p_participleView.text!) }
                     //p_participleView.text = choosenWord
                     self.possible_words_id.removeAll(where: { $0.id == id })
@@ -266,7 +268,10 @@ struct IrregVerbView: View {
         words.append(verb.past_participle)
         
         withAnimation {
-            self.possible_words_id = words.shuffled().map({ words_for_verbs($0) })
+            for (id, word) in words.shuffled().enumerated() {
+                self.possible_words_id.append(words_for_verbs(id, word))
+            }
+            //self.possible_words_id = words.shuffled().map({ words_for_verbs($0) })
         }
     }
     
