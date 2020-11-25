@@ -40,7 +40,7 @@ struct WordView: View {
                     //.animation(.easeIn(duration: 0.1))
                 
                 Text(text?.uppercased() ?? "...")
-                    .font(Font.custom("boomboom", size: 30))
+                    .font(Font.custom("boomboom", size: 29))
                     .foregroundColor(.white)
             }
             .frame(width: computedWidth, height: 45, alignment: .center)
@@ -107,6 +107,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(text: "begeining")
+        WordView(text: "shakeing")
     }
 }

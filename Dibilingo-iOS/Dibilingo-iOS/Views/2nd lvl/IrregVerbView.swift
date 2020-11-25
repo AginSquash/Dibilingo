@@ -232,7 +232,8 @@ struct IrregVerbView: View {
         self.verbs.append(IrregVerb(infinitive: "ring", past_simple: "rang", past_participle: "rung", other_options: ["running", "run", "ranned", "ran"]))
         */
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-            self.possible_words_id = [words_for_verbs("begin")]
+            self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
+            nextVerb()
             return
         }
         
