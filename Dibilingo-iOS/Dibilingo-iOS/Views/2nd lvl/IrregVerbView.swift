@@ -41,7 +41,7 @@ struct IrregVerbView: View {
                         Color(hex: "#ddf0ff")
                             .edgesIgnoringSafeArea(.top)
                             .frame(width: geo.size.width , height: geo.size.width*0.7, alignment: .center)
-                        Image("ship_400_400_left")
+                        Image("ship_1200_1200_left")
                             .resizable()
                             .frame(width: geo.size.width*0.7, height: geo.size.width*0.7, alignment: .center)
                     }
