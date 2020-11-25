@@ -50,11 +50,14 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 if showFishNet {
-                    Image("fishing_net")
+                    Image("fishnet_v2")
                         .resizable()
                         //.aspectRatio(contentMode: .fit)
-                        .frame(width: geo.size.width*0.65, height: geo.size.height/100*40, alignment: .center)
+                        .frame(width: geo.size.width*0.64, height: geo.size.height/100*40, alignment: .center)
                         .position(x: geo.size.width/2, y: geo.size.height*0.54)
+                        
+                        //.frame(width: geo.size.width, height: geo.size.height*0.39, alignment: .center)
+                        //.position(x: geo.size.width/2, y: geo.size.height*0.55)
                         .transition(.customTransition)
                         .zIndex(1)
                 }
@@ -96,7 +99,7 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 ZStack {
-                    WordView(word: words_for_verbs(currentVerb?.infinitive ?? ""), isBased: true)
+                    WordView(word: words_for_verbs(currentVerb?.infinitive ?? "begin"), isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
                         .offset(x: -10)
                     p_simpleView
@@ -217,6 +220,7 @@ struct IrregVerbView: View {
         */
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
             self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
+            currentVerb = self.verbs.first
             nextVerb()
             return
         }
