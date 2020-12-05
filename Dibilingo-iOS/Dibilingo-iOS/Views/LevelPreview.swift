@@ -13,12 +13,12 @@ struct LevelPreview: View {
     @State private var showPopup: Bool = false
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             Image("icon_\(level_name)")
                 .resizable()
                 .shadow(radius: 5)
                 .frame(width: 200, height: 200, alignment: .center)
-                .offset(y: showPopup ? 79 : 0 ) // idk why but 150/2 = 79
+                .offset(y: showPopup ? 80 : 0 )
                 .onTapGesture(count: 1, perform: {
                     withAnimation { showPopup.toggle() }
                 })
@@ -73,7 +73,7 @@ struct LevelPreview: View {
                         
                     }
                 }
-                .offset(y: 79)
+                .offset(y: 80)
             }
         }
     }

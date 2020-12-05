@@ -115,7 +115,7 @@ struct LoadingView: View {
                                         if let data = data {
                                             print("DATA NOT NIL!")
                                             let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
-                                            if decoded != nil{
+                                            if decoded != nil {
                                                 let data_write_result = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
                                                 if data_write_result != nil {
                                                     print("UPDATED!")

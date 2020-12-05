@@ -13,12 +13,18 @@ struct MainmenuView: View {
     
     @State var geo: GeometryProxy?
     
+    @ObservedObject var userprofile = UserProfile_ViewModel()
+    
     var body: some View {
         NavigationView {
             GeometryReader { geo in
                 ZStack {
+                    
+                    Color(hex: "6495ed")
+                        .edgesIgnoringSafeArea(.all)
+                    
                     ScrollView {
-                        
+                    
                         Rectangle()
                             .frame(width: 100, height: 100, alignment: .center)
                             .opacity(0)
@@ -32,6 +38,8 @@ struct MainmenuView: View {
                 .navigationBarHidden(true)
                 .onAppear(perform: {
                     self.geo = geo
+                    print("MainmenuView appered")
+                    self.userprofile.mainmenuLoad()
                 })
             }
         }

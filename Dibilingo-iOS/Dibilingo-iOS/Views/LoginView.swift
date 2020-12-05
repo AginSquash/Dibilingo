@@ -36,10 +36,10 @@ struct LoginView: View {
                 
                 // background
                 
-                    NavigationLink(
-                        destination: MainmenuView().navigationBarHidden(true),
-                        isActive: $pushToMain,
-                        label: { })
+                NavigationLink(
+                    destination: MainmenuView().navigationBarHidden(true),
+                    isActive: $pushToMain,
+                    label: { })
                 
                 VStack {
                     Spacer()
