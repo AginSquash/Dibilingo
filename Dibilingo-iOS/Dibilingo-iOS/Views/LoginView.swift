@@ -37,7 +37,7 @@ struct LoginView: View {
                 // background
                 
                     NavigationLink(
-                        destination: ContentView().navigationBarHidden(true),
+                        destination: MainmenuView().navigationBarHidden(true),
                         isActive: $pushToMain,
                         label: { })
                 
@@ -76,7 +76,7 @@ struct LoginView: View {
                         Text("Please, wait for updating...")
                             .font(Font.custom("boomboom", size: 32))
                             NavigationLink(
-                                destination: ContentView().navigationBarHidden(true),
+                                destination: MainmenuView().navigationBarHidden(true),
                                 isActive: $isUpdated,
                                 label: { })
                     }.zIndex(2)

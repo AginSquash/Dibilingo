@@ -29,7 +29,7 @@ struct LoadingView: View {
                     label: { })
                 
                 NavigationLink(
-                    destination: ContentView().navigationBarHidden(true),
+                    destination: MainmenuView().navigationBarHidden(true),
                     isActive: $toContentView,
                     label: { })
                 
@@ -42,7 +42,7 @@ struct LoadingView: View {
                     Spacer()
                     if continueWithOutInternet {
                         NavigationLink(
-                            destination: ContentView().navigationBarHidden(true),
+                            destination: MainmenuView().navigationBarHidden(true),
                             label: {
                                 Text("Continue Without Internet")
                             })
