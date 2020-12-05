@@ -8,6 +8,7 @@ from bson.objectid import ObjectId
 from os import path, listdir
 import checksumdir
 import pprint
+import datetime
 
 imgPath = "data/img/"
 app = Flask(__name__)
@@ -58,7 +59,9 @@ def login(name):
 
     userID = ObjectId()
     if user == None:
+        lastUpdatedTime = datetime.datetime.now()
         newUser = {
+            "lastUpdated": datetime.datetime.today().strftime("%Y-%m-%d %H.%M.%S"),
             "name": name,
             "coins": 0,
             "coinsInCategories": json.dumps([[]]) 
@@ -70,11 +73,12 @@ def login(name):
 
     callback = { 
         "id": str(userID),
+        "lastUpdated": user["lastUpdated"],
         "name": name,
         "coins": int( user["coins"] ),                 
         "coinsInCategories": user["coinsInCategories"] 
         }
-
+    print(callback)
     return jsonify(callback)
 
 @app.errorhandler(404)
