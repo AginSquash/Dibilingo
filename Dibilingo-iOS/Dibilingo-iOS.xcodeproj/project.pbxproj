@@ -18,6 +18,8 @@
 		CDB1A02C251CD2AB0009F7D8 /* orig.gif in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A02B251CD2AB0009F7D8 /* orig.gif */; };
 		CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */; };
 		CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */; };
+		CDDD31E5257BA4B800EE9507 /* MainmenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDD31E4257BA4B800EE9507 /* MainmenuView.swift */; };
+		CDDD31E8257BAFC800EE9507 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDD31E7257BAFC800EE9507 /* Category.swift */; };
 		CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */; };
 		CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4972514FC57007D35AF /* ContentView.swift */; };
 		CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD4992514FC59007D35AF /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 		CDB1A02B251CD2AB0009F7D8 /* orig.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = orig.gif; sourceTree = "<group>"; };
 		CDB1A02F251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIGIFPlayerView.swift; sourceTree = "<group>"; };
 		CDB1A030251CD4B80009F7D8 /* GIFPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GIFPlayerView.swift; sourceTree = "<group>"; };
+		CDDD31E4257BA4B800EE9507 /* MainmenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainmenuView.swift; path = "Dibilingo-iOS/Views/MainmenuView.swift"; sourceTree = SOURCE_ROOT; };
+		CDDD31E7257BAFC800EE9507 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		CDDDD4922514FC57007D35AF /* Dibilingo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dibilingo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dibilingo_iOSApp.swift; sourceTree = "<group>"; };
 		CDDDD4972514FC57007D35AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 				CD94A71B25326B36009750AC /* UserProfile.swift */,
 				CD94A72325327332009750AC /* DataVersion.swift */,
 				CD03F87A254C2DE500FE627C /* IrregVerb.swift */,
+				CDDD31E4257BA4B800EE9507 /* MainmenuView.swift */,
+				CDDD31E7257BAFC800EE9507 /* Category.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -264,11 +270,13 @@
 				CDE15D2D2517860900A3C8D4 /* Card.swift in Sources */,
 				CD94A7202532722A009750AC /* LoadingView.swift in Sources */,
 				CD94A72425327332009750AC /* DataVersion.swift in Sources */,
+				CDDD31E8257BAFC800EE9507 /* Category.swift in Sources */,
 				CD94A71C25326B36009750AC /* UserProfile.swift in Sources */,
 				CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */,
 				CDB1A031251CD4B80009F7D8 /* SwiftUIGIFPlayerView.swift in Sources */,
 				CD036D922549A3F90003C1CE /* WordView.swift in Sources */,
 				CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */,
+				CDDD31E5257BA4B800EE9507 /* MainmenuView.swift in Sources */,
 				CD036D962549ABBB0003C1CE /* PossibleWordsView.swift in Sources */,
 				CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */,
 				CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */,
