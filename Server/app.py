@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, jsonify, send_file, make_response
+from flask import Flask, jsonify, send_file, make_response, request
 import json
 
 from pymongo import MongoClient
@@ -80,6 +80,34 @@ def login(name):
         }
     print(callback)
     return jsonify(callback)
+
+@app.route('/dibilingo/api/v1.0/userupdate/', methods=['GET', 'POST'])
+def userupdate():
+    up_client = request.json
+    userID = ObjectId(up_client["id"])
+    up_db = collection.find_one({ "_id": userID })
+
+    date_client = datetime.strptime(up_client["lastUpdated"], "%Y-%m-%dT%H:%M:%S%z") 
+    date_db = datetime.strptime(up_db["lastUpdated"], "%Y-%m-%dT%H:%M:%S%z") 
+
+    print(date_client)
+    print(date_db)
+
+    if date_client > date_db:
+        result = collection.update_one({
+            '_id': userID
+        }, {
+            '$set': {
+             'coins': int(up_client['coins']),
+             'coinsInCategories': up_client["coinsInCategories"]
+        }
+        }, upsert=False)
+        pprint.pprint(result.modified_count)
+        print("Updated!")
+        print(up_client)
+
+    #print(content)
+    return jsonify({"uuid":"upd"})
 
 @app.errorhandler(404)
 def not_found(error):
