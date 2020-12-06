@@ -61,7 +61,7 @@ def login(name):
     if user == None:
         lastUpdatedTime = datetime.now(timezone.utc)
         newUser = {
-            "lastUpdated": lastUpdatedTime.strftime("%Y-%m-%d %H:%M:%S %z"), 
+            "lastUpdated": lastUpdatedTime.strftime("%Y-%m-%dT%H:%M:%S%z"), 
             "name": name,
             "coins": 0,
             "coinsInCategories": {"level1":0} #json.dumps([[]])
