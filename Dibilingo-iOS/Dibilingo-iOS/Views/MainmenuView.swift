@@ -23,16 +23,32 @@ struct MainmenuView: View {
                     Color(hex: "6495ed")
                         .edgesIgnoringSafeArea(.all)
                     
-                    ScrollView {
+                    VStack {
+                        Text("Push to server now")
+                            .foregroundColor(.white)
+                            .onTapGesture(count: 1, perform: {
+                                userprofile._uploadToServer()
+                            })
+                        Spacer()
+                    }.zIndex(3)
                     
-                        Rectangle()
-                            .frame(width: 100, height: 100, alignment: .center)
-                            .opacity(0)
+                    ScrollView {
                         
-                        ForEach(categories) { category in
-                            LevelPreview(level_name: category.name)
-                                .position(x: category.id % 2 == 0 ? geo.frame(in: .global).maxX - 145 : geo.frame(in: .global).minX + 145 )
+                        VStack {
+                            
+                            Rectangle()
+                                .frame(width: 100, height: 100, alignment: .center)
+                                .opacity(0)
+                            
+                            ForEach(categories) { category in
+                                LevelPreview(level_name: category.name)
+                                    .position(x: category.id % 2 == 0 ? geo.frame(in: .global).maxX - 145 : geo.frame(in: .global).minX + 145 )
+                                    //.padding(.bottom)
+                            }
+                            
                         }
+                    
+                        
                     }
                 }
                 .navigationBarHidden(true)
