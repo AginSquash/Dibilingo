@@ -13,7 +13,6 @@ struct EmojiWordView: View {
     
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     
-    
     @ObservedObject var userprofile: UserProfile_ViewModel
     var category_name: String
     
@@ -58,6 +57,8 @@ struct EmojiWordView: View {
                         .padding(.leading)
                         .onTapGesture(count: 1, perform: {
                             saveCardList()
+                            userprofile.levelExit()
+                            
                             self.mode.wrappedValue.dismiss()
                         })
                     
@@ -153,6 +154,12 @@ struct EmojiWordView: View {
             return
         }
         
+        
+        
+        if let saved_score = userprofile.profile!.coinsInCategories[level_name] {
+            self.coins = saved_score
+        }
+        
         // check for end game!
         let data = try? Data(contentsOf: baseURL.appendingPathComponent("CardsList"))
         if let data = data {
@@ -183,6 +190,9 @@ struct EmojiWordView: View {
     func checkAnswer(rightSwipe: Bool) {
         // check for correct answer
         if ((currentCard?.object_name == currentCard?.real_name) && rightSwipe) || (currentCard?.object_name != currentCard?.real_name) && !rightSwipe {
+            
+            self.userprofile.profile!.coinsInCategories[level_name] = (coins + 1) //+1 bcz thi one wii be added on animation
+            self.userprofile.needSaving = true
             
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }

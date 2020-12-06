@@ -11,13 +11,7 @@ import SwiftUI
 
 class UserProfile_ViewModel: ObservableObject {
     @Published var profile: UserProfile? 
-    @Published var needSaving: Bool = false {
-        didSet {
-            if needSaving == false {
-                _SaveAndUpload()
-            }
-        }
-    }
+    @Published var needSaving: Bool = false
     
     init() {
         //self.profile = UserProfile_ViewModel.getUserProfile()
@@ -37,6 +31,12 @@ class UserProfile_ViewModel: ObservableObject {
         
     }
     
+    func levelExit() {
+        if needSaving {
+            _SaveAndUpload()
+        }
+    }
+    
     func _SaveAndUpload() {
         guard var up = self.profile else { fatalError("Profile is nil") }
         
@@ -51,10 +51,6 @@ class UserProfile_ViewModel: ObservableObject {
         DispatchQueue.global(qos: .userInitiated).async {
             UserProfile_ViewModel.saveUserProfile(up)
         }
-        
-        //up.coins = 5
-        //up.coinsInCategories["level2"] = 1
-        ///
         
         let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/userupdate/")!
         var request = URLRequest(url: url)
