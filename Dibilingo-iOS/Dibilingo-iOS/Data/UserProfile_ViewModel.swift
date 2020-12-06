@@ -35,6 +35,7 @@ class UserProfile_ViewModel: ObservableObject {
         if needSaving {
             _SaveAndUpload()
         }
+        needSaving = false
     }
     
     func _SaveAndUpload() {
