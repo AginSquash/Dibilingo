@@ -57,7 +57,6 @@ struct EmojiWordView: View {
                         .padding(.leading)
                         .onTapGesture(count: 1, perform: {
                             saveCardList()
-                            userprofile.levelExit()
                             
                             self.mode.wrappedValue.dismiss()
                         })
@@ -105,6 +104,10 @@ struct EmojiWordView: View {
             }
         })
         .onAppear(perform: loadCards)
+        .onDisappear(perform: {
+            userprofile.profile?.coinsInCategories[level_name] = self.coins
+            userprofile.levelExit()
+        })
     }
 
     
@@ -190,8 +193,7 @@ struct EmojiWordView: View {
     func checkAnswer(rightSwipe: Bool) {
         // check for correct answer
         if ((currentCard?.object_name == currentCard?.real_name) && rightSwipe) || (currentCard?.object_name != currentCard?.real_name) && !rightSwipe {
-            
-            self.userprofile.profile!.coinsInCategories[level_name] = (coins + 1) //+1 bcz thi one wii be added on animation
+        
             self.userprofile.needSaving = true
             
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
