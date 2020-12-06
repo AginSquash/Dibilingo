@@ -40,9 +40,32 @@ class UserProfile_ViewModel: ObservableObject {
     }
     
     func _uploadToServer() {
-        guard let up = self.profile else { fatalError("Profile is nil") }
+        guard var up = self.profile else { fatalError("Profile is nil") }
         
         
+        ///
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        let date = Date()
+        up.lastUpdated = dateFormatter.string(from: date)
+        up.coins = 3
+        up.coinsInCategories["level2"] = 1
+        ///
+        
+        let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/userupdate/")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.httpBody = try? JSONEncoder().encode(up)
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            //get responce
+        }
+        .resume()
     }
     
     static func getUserProfile() -> UserProfile? {
