@@ -47,7 +47,7 @@ struct LevelPreview: View {
                         
                         // Irreg Verbs
                         NavigationLink(
-                            destination: IrregVerbView(category_name: category_name),
+                            destination: IrregVerbView(userprofile: userprofile, category_name: category_name),
                             label: {
                                 ZStack {
                                 RoundedRectangle(cornerRadius: 25)

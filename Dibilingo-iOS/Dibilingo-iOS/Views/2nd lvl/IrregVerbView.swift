@@ -10,7 +10,8 @@ import SwiftUI
 struct IrregVerbView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    @State var userprofile: UserProfile?
+    @ObservedObject var userprofile: UserProfile_ViewModel
+    var category_name: String
     
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
@@ -32,9 +33,8 @@ struct IrregVerbView: View {
     
     @State private var verbs: [IrregVerb] = []
     
-    var category_name: String
     var level_name: String {
-        "\(category_name)_1"
+        "\(category_name)_2"
     }
     
     var body: some View {
@@ -160,10 +160,13 @@ struct IrregVerbView: View {
                 }
             })
             .onDisappear(perform: {
-                guard var up = self.userprofile else { fatalError("userprofile is nil") }
+                //guard var up = self.userprofile else { fatalError("userprofile is nil") }
                 
-                up.coinsInCategories["irregVerbs"] = self.coins
-                saveUserProfile(up)
+                userprofile.profile?.coinsInCategories[level_name] = self.coins
+                userprofile.levelExit()
+                
+                //up.coinsInCategories["irregVerbs"] = self.coins
+                //saveUserProfile(up)
                 print("Saved!")
             })
             
@@ -241,6 +244,7 @@ struct IrregVerbView: View {
             return
         }
         
+        /*
         guard var up = getUserProfile() else { fatalError("getUserProfile is nil") }
     
         let coins = up.coinsInCategories["irregVerbs"]
@@ -250,6 +254,9 @@ struct IrregVerbView: View {
             up.coinsInCategories["irregVerbs"] = 0
         }
         self.userprofile = up
+        */
+        
+        self.coins = userprofile.profile?.coinsInCategories[level_name] ?? 0
         
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("IrregVerb.json")) else {
@@ -295,6 +302,8 @@ struct IrregVerbView: View {
         
         if (p_simple == currentVerb?.past_simple)&&(p_participle == currentVerb?.past_participle) {
             
+            self.userprofile.needSaving = true
+            
             withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -338,11 +347,12 @@ extension AnyTransition {
 struct IrregVerbView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let up = UserProfile(id: "0", lastUpdated: "dd", name: "0", coins: 0, coinsInCategories: [:])
+        //let up = UserProfile(id: "0", lastUpdated: "dd", name: "0", coins: 0, coinsInCategories: [:])
+        let up = UserProfile_ViewModel()
         return Group {
-            IrregVerbView(category_name: "TEST")
+            IrregVerbView(userprofile: up, category_name: "TEST")
                 .previewDevice("iPhone 11")
-            IrregVerbView(category_name: "TEST")
+            IrregVerbView(userprofile: up, category_name: "TEST")
                 .previewDevice("iPhone 8")
         }
     }
