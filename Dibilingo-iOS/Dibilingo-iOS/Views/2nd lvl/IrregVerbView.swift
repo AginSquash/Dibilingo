@@ -334,7 +334,7 @@ extension AnyTransition {
 struct IrregVerbView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let up = UserProfile(id: "0", lastUpdated: Date(), name: "0", coins: 0, coinsInCategories: [:])
+        let up = UserProfile(id: "0", lastUpdated: "dd", name: "0", coins: 0, coinsInCategories: [:])
         return Group {
             IrregVerbView()
                 .previewDevice("iPhone 11")

@@ -9,7 +9,7 @@ import Foundation
 
 struct UserProfile: Codable {
     let id: String
-    var lastUpdated: Date
+    var lastUpdated: String
     var name: String
     var coins: Int
     var coinsInCategories: [String:Int]
