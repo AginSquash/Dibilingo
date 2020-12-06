@@ -49,7 +49,7 @@ class UserProfile_ViewModel: ObservableObject {
         
         let date = Date()
         up.lastUpdated = dateFormatter.string(from: date)
-        up.coins = 3
+        up.coins = 4
         up.coinsInCategories["level2"] = 1
         ///
         

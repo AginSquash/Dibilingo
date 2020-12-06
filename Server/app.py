@@ -93,6 +93,7 @@ def userupdate():
     print(date_client)
     print(date_db)
 
+    callback = ""
     if date_client > date_db:
         result = collection.update_one({
             '_id': userID
@@ -102,12 +103,12 @@ def userupdate():
              'coinsInCategories': up_client["coinsInCategories"]
         }
         }, upsert=False)
-        pprint.pprint(result.modified_count)
-        print("Updated!")
-        print(up_client)
+        print("Updated count: {}".format(result.modified_count))
+        callback = "updated"
+    else:
+        callback = "no_update"
 
-    #print(content)
-    return jsonify({"uuid":"upd"})
+    return jsonify({"result":callback})
 
 @app.errorhandler(404)
 def not_found(error):
