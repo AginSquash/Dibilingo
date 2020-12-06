@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LevelPreview: View {
+    
+    @ObservedObject var userprofile: UserProfile_ViewModel
     var category_name: String
     
     @State private var showPopup: Bool = false
@@ -31,7 +33,7 @@ struct LevelPreview: View {
                         
                         // Card level
                         NavigationLink(
-                            destination: EmojiWordView(category_name: category_name).navigationBarHidden(true),
+                            destination: EmojiWordView(userprofile: userprofile, category_name: category_name).navigationBarHidden(true),
                             label: {
                                 ZStack {
                                 RoundedRectangle(cornerRadius: 25)
@@ -81,6 +83,7 @@ struct LevelPreview: View {
 
 struct LevelPreview_Previews: PreviewProvider {
     static var previews: some View {
-        LevelPreview(category_name: "cat")
+        let up = UserProfile_ViewModel()
+        return LevelPreview(userprofile: up, category_name: "cat")
     }
 }

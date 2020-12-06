@@ -38,11 +38,11 @@ struct MainmenuView: View {
                         VStack {
                             
                             Rectangle()
-                                .frame(width: 100, height: 100, alignment: .center)
+                                .frame(width: 100, height: 150, alignment: .center)
                                 .opacity(0)
                             
                             ForEach(categories) { category in
-                                LevelPreview(category_name: category.name)
+                                LevelPreview(userprofile: userprofile, category_name: category.name)
                                     .position(x: category.id % 2 == 0 ? geo.frame(in: .global).maxX - 145 : geo.frame(in: .global).minX + 145 )
                                     //.padding(.bottom)
                             }

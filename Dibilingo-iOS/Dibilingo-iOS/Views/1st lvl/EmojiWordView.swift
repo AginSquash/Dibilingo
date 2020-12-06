@@ -13,6 +13,10 @@ struct EmojiWordView: View {
     
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     
+    
+    @ObservedObject var userprofile: UserProfile_ViewModel
+    var category_name: String
+    
     @State private var cards: [Card] = []
     @State private var currentCard: Card? = nil
     @State private var offset: CGFloat? = nil
@@ -24,16 +28,16 @@ struct EmojiWordView: View {
         return "\(coins)/54"
     }
     
+    var level_name: String {
+        "\(category_name)_1"
+    }
+    
+    
     @State private var isPointUp: Bool = false
     @State private var feedback = UINotificationFeedbackGenerator()
     @State private var cardList = CardList()
     
     var debugCard: Card? = nil
-    
-    var category_name: String
-    var level_name: String {
-        "\(category_name)_1"
-    }
     
     var body: some View {
         ZStack {
@@ -226,11 +230,12 @@ struct EmojiWordView_Previews: PreviewProvider {
     static var previews: some View {
         
         let card = Card(image: UIImage(named: "wolf")!, object_name: "wolf", real_name: "wolf")
+        let up = UserProfile_ViewModel()
         
         return Group  {
-                EmojiWordView(debugCard: card, category_name: "TEST")
+            EmojiWordView(userprofile: up, category_name: "TEST", debugCard: card)
                     .previewDevice("iPhone 11")
-                EmojiWordView(debugCard: card, category_name: "TEST")
+            EmojiWordView(userprofile: up, category_name: "TEST", debugCard: card)
                     .previewDevice("iPhone 8")
             }
     }
