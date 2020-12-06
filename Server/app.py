@@ -64,7 +64,7 @@ def login(name):
             "lastUpdated": lastUpdatedTime.strftime("%Y-%m-%d %H:%M:%S %z"), 
             "name": name,
             "coins": 0,
-            "coinsInCategories": json.dumps([[]]) 
+            "coinsInCategories": {"level1":0} #json.dumps([[]])
             }
         userID = collection.insert_one(newUser).inserted_id
         user = collection.find_one({ "name": name }) 
