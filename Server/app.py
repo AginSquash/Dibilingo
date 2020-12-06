@@ -96,7 +96,8 @@ def userupdate():
             '_id': userID
         }, {
             '$set': {
-             'coins': int(up_client['coins']),
+             'lastUpdated': up_client["lastUpdated"],
+             'coins': int(up_client["coins"]),
              'coinsInCategories': up_client["coinsInCategories"]
         }
         }, upsert=False)
