@@ -90,9 +90,6 @@ def userupdate():
     date_client = datetime.strptime(up_client["lastUpdated"], "%Y-%m-%dT%H:%M:%S%z") 
     date_db = datetime.strptime(up_db["lastUpdated"], "%Y-%m-%dT%H:%M:%S%z") 
 
-    print(date_client)
-    print(date_db)
-
     callback = ""
     if date_client > date_db:
         result = collection.update_one({

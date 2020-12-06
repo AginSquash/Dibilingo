@@ -49,8 +49,8 @@ class UserProfile_ViewModel: ObservableObject {
         
         let date = Date()
         up.lastUpdated = dateFormatter.string(from: date)
-        up.coins = 4
-        up.coinsInCategories["level2"] = 1
+        //up.coins = 5
+        //up.coinsInCategories["level2"] = 1
         ///
         
         let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/userupdate/")!
@@ -62,8 +62,17 @@ class UserProfile_ViewModel: ObservableObject {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        struct callback: Codable {
+            let result: String
+        }
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
-            //get responce
+            guard error == nil else { return }
+            guard let data = data else { return }
+            
+            if let decoded = try? JSONDecoder().decode(callback.self, from: data) {
+                print("upload result: \(decoded.result)")
+            }
         }
         .resume()
     }
