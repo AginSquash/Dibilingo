@@ -44,10 +44,10 @@ struct WordView: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            Image( self.text != nil ? "fish_head" : "fish_head_g")
+            Image( self.text != nil ? "fish_head2" : "fish_head_g2")
                     .resizable()
                    
-                    .frame(width: 45, height: 45, alignment: .center)
+                .frame(width: 45, height: 45, alignment: .center)
                     .offset(x: 2.5)
                     .zIndex(0)
             
