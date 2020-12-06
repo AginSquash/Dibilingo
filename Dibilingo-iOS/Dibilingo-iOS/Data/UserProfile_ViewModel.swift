@@ -10,13 +10,11 @@ import UIKit
 import SwiftUI
 
 class UserProfile_ViewModel: ObservableObject {
-    @Published var profile: UserProfile?
+    @Published var profile: UserProfile? 
     @Published var needSaving: Bool = false {
         didSet {
             if needSaving == false {
-                guard let up = self.profile else { fatalError("Profile is nil") }
-                UserProfile_ViewModel.saveUserProfile(up)
-                _uploadToServer()
+                _SaveAndUpload()
             }
         }
     }
@@ -39,9 +37,8 @@ class UserProfile_ViewModel: ObservableObject {
         
     }
     
-    func _uploadToServer() {
+    func _SaveAndUpload() {
         guard var up = self.profile else { fatalError("Profile is nil") }
-        
         
         ///
         let dateFormatter = DateFormatter()
@@ -49,6 +46,12 @@ class UserProfile_ViewModel: ObservableObject {
         
         let date = Date()
         up.lastUpdated = dateFormatter.string(from: date)
+        
+        // Saving to file
+        DispatchQueue.global(qos: .userInitiated).async {
+            UserProfile_ViewModel.saveUserProfile(up)
+        }
+        
         //up.coins = 5
         //up.coinsInCategories["level2"] = 1
         ///

@@ -27,7 +27,7 @@ struct MainmenuView: View {
                         Text("Push to server now")
                             .foregroundColor(.white)
                             .onTapGesture(count: 1, perform: {
-                                userprofile._uploadToServer()
+                                userprofile._SaveAndUpload()
                             })
                         Spacer()
                     }.zIndex(3)
