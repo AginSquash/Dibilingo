@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct LevelPreview: View {
-    var level_name: String
+    var category_name: String
     
     @State private var showPopup: Bool = false
     
     var body: some View {
         VStack(spacing: 10) {
-            Image("icon_\(level_name)")
+            Image("icon_\(category_name)")
                 .resizable()
                 .shadow(radius: 5)
                 .frame(width: 200, height: 200, alignment: .center)
@@ -31,7 +31,7 @@ struct LevelPreview: View {
                         
                         // Card level
                         NavigationLink(
-                            destination: EmojiWordView().navigationBarHidden(true),
+                            destination: EmojiWordView(category_name: category_name).navigationBarHidden(true),
                             label: {
                                 ZStack {
                                 RoundedRectangle(cornerRadius: 25)
@@ -45,7 +45,7 @@ struct LevelPreview: View {
                         
                         // Irreg Verbs
                         NavigationLink(
-                            destination: IrregVerbView(),
+                            destination: IrregVerbView(category_name: category_name),
                             label: {
                                 ZStack {
                                 RoundedRectangle(cornerRadius: 25)
@@ -81,6 +81,6 @@ struct LevelPreview: View {
 
 struct LevelPreview_Previews: PreviewProvider {
     static var previews: some View {
-        LevelPreview(level_name: "cat")
+        LevelPreview(category_name: "cat")
     }
 }

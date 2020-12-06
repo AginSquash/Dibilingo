@@ -32,6 +32,10 @@ struct IrregVerbView: View {
     
     @State private var verbs: [IrregVerb] = []
     
+    var category_name: String
+    var level_name: String {
+        "\(category_name)_1"
+    }
     
     var body: some View {
         GeometryReader { geo in
@@ -336,9 +340,9 @@ struct IrregVerbView_Previews: PreviewProvider {
         
         let up = UserProfile(id: "0", lastUpdated: "dd", name: "0", coins: 0, coinsInCategories: [:])
         return Group {
-            IrregVerbView()
+            IrregVerbView(category_name: "TEST")
                 .previewDevice("iPhone 11")
-            IrregVerbView()
+            IrregVerbView(category_name: "TEST")
                 .previewDevice("iPhone 8")
         }
     }

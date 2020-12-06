@@ -30,6 +30,11 @@ struct EmojiWordView: View {
     
     var debugCard: Card? = nil
     
+    var category_name: String
+    var level_name: String {
+        "\(category_name)_1"
+    }
+    
     var body: some View {
         ZStack {
 
@@ -223,9 +228,9 @@ struct EmojiWordView_Previews: PreviewProvider {
         let card = Card(image: UIImage(named: "wolf")!, object_name: "wolf", real_name: "wolf")
         
         return Group  {
-                EmojiWordView(debugCard: card)
+                EmojiWordView(debugCard: card, category_name: "TEST")
                     .previewDevice("iPhone 11")
-                EmojiWordView(debugCard: card)
+                EmojiWordView(debugCard: card, category_name: "TEST")
                     .previewDevice("iPhone 8")
             }
     }
