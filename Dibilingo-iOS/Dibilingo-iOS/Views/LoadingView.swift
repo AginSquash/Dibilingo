@@ -115,13 +115,21 @@ struct LoadingView: View {
                                         if let data = data {
                                             print("DATA NOT NIL!")
                                             let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
-                                            if decoded != nil {
-                                                let data_write_result = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
-                                                if data_write_result != nil {
-                                                    print("UPDATED!")
+                                            if let new_up = decoded {
+                                                
+                                                if up_decoded < new_up { // we have newer version on server
+                                                    let data_write_result = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
+                                                    if data_write_result != nil {
+                                                        print("UPDATED!")
+                                                        setLinkView(setContentView: true)
+                                                        return
+                                                    }
+                                                } else { // no need update
+                                                    print("Already updated")
                                                     setLinkView(setContentView: true)
                                                     return
                                                 }
+                                                
                                             }
                                         }
                                         
