@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WordView: View {
     //var text: String?
-    var word: words_for_verbs?
+    var word: identifiable_word?
     var isBased: Bool = false
     var onEnded: ((DragGesture.Value, UUID, String) -> Bool)?
     var onLongTap: ((String?) -> Void)?
@@ -115,6 +115,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(word: words_for_verbs("knowed"))
+        WordView(word: identifiable_word("knowed"))
     }
 }

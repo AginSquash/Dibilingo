@@ -15,7 +15,7 @@ struct IrregVerb: Codable {
     let other_options: [String]
 }
 
-struct words_for_verbs: Identifiable {
+struct identifiable_word: Identifiable {
     let id: UUID
     let text: String
     

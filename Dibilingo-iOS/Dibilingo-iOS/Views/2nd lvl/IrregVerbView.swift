@@ -15,7 +15,7 @@ struct IrregVerbView: View {
     
     @State private var geo: GeometryProxy?
     @State private var cloudSize: CGFloat = 175
-    @State private var possible_words_id: [words_for_verbs] = []
+    @State private var possible_words_id: [identifiable_word] = []
     
     @State var p_simpleView = WordView(isBased: true)
     @State var p_participleView = WordView(isBased: true)
@@ -108,7 +108,7 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 ZStack {
-                    WordView(word: words_for_verbs(currentVerb?.infinitive ?? "begin"), isBased: true)
+                    WordView(word: identifiable_word(currentVerb?.infinitive ?? "begin"), isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
                         .offset(x: -10)
                     p_simpleView
@@ -143,7 +143,7 @@ struct IrregVerbView: View {
                     p_simpleView.word = nil
                     
                     withAnimation {
-                        self.possible_words_id.append( words_for_verbs(text) )
+                        self.possible_words_id.append( identifiable_word(text) )
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -154,7 +154,7 @@ struct IrregVerbView: View {
                     p_participleView.word = nil
                     
                     withAnimation {
-                        self.possible_words_id.append( words_for_verbs(text) )
+                        self.possible_words_id.append( identifiable_word(text) )
                     }
                     self.feedback.notificationOccurred(.error)
                 }
@@ -206,9 +206,9 @@ struct IrregVerbView: View {
             let height =  geo.size.height/100
             if (value.location.y > height * 55) && (value.location.y < height * 65) {
                 let oldWord = p_simpleView.text
-                p_simpleView.word = words_for_verbs(id: id, text: choosenWord)
+                p_simpleView.word = identifiable_word(id: id, text: choosenWord)
                 withAnimation {
-                    if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!)) }
+                    if oldWord != nil { possible_words_id.append( identifiable_word(oldWord!)) }
                     self.possible_words_id.removeAll(where: { $0.id == id })
                 }
                 checkCorrect()
@@ -217,9 +217,9 @@ struct IrregVerbView: View {
             
             if (value.location.y > height * 65) && (value.location.y < height * 75) {
                 let oldWord = p_participleView.text
-                p_participleView.word = words_for_verbs(id: id, text: choosenWord)
+                p_participleView.word = identifiable_word(id: id, text: choosenWord)
                 withAnimation {
-                    if oldWord != nil { possible_words_id.append( words_for_verbs(oldWord!) ) }
+                    if oldWord != nil { possible_words_id.append( identifiable_word(oldWord!) ) }
                     self.possible_words_id.removeAll(where: { $0.id == id })
                 }
                 checkCorrect()
@@ -287,7 +287,7 @@ struct IrregVerbView: View {
         words.append(verb.past_participle)
         
         withAnimation {
-            self.possible_words_id = words.shuffled().map({ words_for_verbs($0) })
+            self.possible_words_id = words.shuffled().map({ identifiable_word($0) })
         }
     }
     
