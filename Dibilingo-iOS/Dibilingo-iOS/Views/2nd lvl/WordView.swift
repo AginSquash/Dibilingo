@@ -45,11 +45,11 @@ struct WordView: View {
     var body: some View {
         HStack(spacing: 0) {
             Image( self.text != nil ? "fish_head2" : "fish_head_g2")
-                    .resizable()
-                   
+                .resizable()
+                .interpolation(.medium)
                 .frame(width: 45, height: 45, alignment: .center)
                     //.offset(x: 2.5)
-                    .zIndex(0)
+                .zIndex(0)
             
             ZStack {
                
@@ -65,11 +65,11 @@ struct WordView: View {
             .zIndex(1)
             
             Image(self.text != nil ? "fish_tail" : "fish_tail_g")
-                    .resizable()
-                    
-                    .frame(width: 45, height: 45, alignment: .center)
-                    .offset(x: -1.5)
-                    .zIndex(0)
+                .resizable()
+                .interpolation(.high)
+                .frame(width: 45, height: 45, alignment: .center)
+                .offset(x: -1.5)
+                .zIndex(0)
             
         }
         .onLongPressGesture {
