@@ -48,16 +48,14 @@ struct WordView: View {
                     .resizable()
                    
                 .frame(width: 45, height: 45, alignment: .center)
-                    .offset(x: 2.5)
+                    //.offset(x: 2.5)
                     .zIndex(0)
             
             ZStack {
                
                 Rectangle()
                     .foregroundColor(self.text != nil ? Color(hex: "#585ea8") : Color(hex: "#909090"))
-                    //.frame(height: 45, alignment: .center)
-                    //.animation(.easeIn(duration: 0.1))
-                    .frame(width: computedWidth-2.5, height: 45, alignment: .center)
+                    .frame(width: computedWidth, height: 45, alignment: .center)
                 
                 Text(word?.text.uppercased() ?? "...")
                     .font(Font.custom("boomboom", size: computedFontSize))
