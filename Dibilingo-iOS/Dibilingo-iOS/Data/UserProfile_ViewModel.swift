@@ -41,7 +41,6 @@ class UserProfile_ViewModel: ObservableObject {
     func _SaveAndUpload() {
         guard var up = self.profile else { fatalError("Profile is nil") }
         
-        ///
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
