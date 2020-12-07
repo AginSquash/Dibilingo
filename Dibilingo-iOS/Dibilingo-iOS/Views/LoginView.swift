@@ -139,6 +139,7 @@ struct LoginView: View {
                 
             }.resume()
             
+            
             // Loading verbs json
             URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/verbs")!) { data, responce, error in
                 if let data = data {
