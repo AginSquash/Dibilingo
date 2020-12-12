@@ -2,3 +2,5 @@
 .DS_Store
 .vscode/*
 *.pem
+*.pyc
+Server/__pycache__/config.cpython-38.pyc
