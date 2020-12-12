@@ -117,6 +117,12 @@ struct LoadingView: View {
                                             let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
                                             if let new_up = decoded {
                                                 
+                                                if up_decoded == new_up {
+                                                    print("Already updated")
+                                                    setLinkView(setContentView: true)
+                                                    return
+                                                }
+                                                
                                                 if up_decoded < new_up { // we have newer version on server
                                                     let data_write_result = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
                                                     if data_write_result != nil {
@@ -124,8 +130,10 @@ struct LoadingView: View {
                                                         setLinkView(setContentView: true)
                                                         return
                                                     }
-                                                } else { // no need update
-                                                    print("Already updated")
+                                                } else {
+                                                    // upload to server if local version newer
+                                                    UserProfile_ViewModel.forceUpload(up: up_decoded)
+                                                    print("Uploaded to server!")
                                                     setLinkView(setContentView: true)
                                                     return
                                                 }
