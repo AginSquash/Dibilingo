@@ -52,6 +52,10 @@ class UserProfile_ViewModel: ObservableObject {
             UserProfile_ViewModel.saveUserProfile(up)
         }
         
+        UserProfile_ViewModel.forceUpload(up: up)
+    }
+    
+    static func forceUpload(up: UserProfile) {
         let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/userupdate/")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
