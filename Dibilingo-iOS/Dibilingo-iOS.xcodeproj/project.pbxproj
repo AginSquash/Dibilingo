@@ -24,7 +24,6 @@
 		CDDD31E8257BAFC800EE9507 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDD31E7257BAFC800EE9507 /* Category.swift */; };
 		CDDD31EC257BBA1C00EE9507 /* LevelPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDD31EB257BBA1C00EE9507 /* LevelPreview.swift */; };
 		CDDDD4962514FC57007D35AF /* Dibilingo_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */; };
-		CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDDD4972514FC57007D35AF /* ContentView.swift */; };
 		CDDDD49A2514FC59007D35AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD4992514FC59007D35AF /* Assets.xcassets */; };
 		CDDDD49D2514FC59007D35AF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */; };
 		CDE15D142517628B00A3C8D4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDE15D132517628B00A3C8D4 /* CardView.swift */; };
@@ -58,7 +57,6 @@
 		CDDD31EB257BBA1C00EE9507 /* LevelPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelPreview.swift; sourceTree = "<group>"; };
 		CDDDD4922514FC57007D35AF /* Dibilingo-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dibilingo-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDDDD4952514FC57007D35AF /* Dibilingo_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dibilingo_iOSApp.swift; sourceTree = "<group>"; };
-		CDDDD4972514FC57007D35AF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CDDDD4992514FC59007D35AF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CDDDD49C2514FC59007D35AF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CDDDD49E2514FC59007D35AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,7 +192,6 @@
 				CDDD31EB257BBA1C00EE9507 /* LevelPreview.swift */,
 				CD94A71F2532722A009750AC /* LoadingView.swift */,
 				CD3BDD10251E179100985BB1 /* LoginView.swift */,
-				CDDDD4972514FC57007D35AF /* ContentView.swift */,
 				CDE15D3125178BB200A3C8D4 /* EW_Overlay.swift */,
 				CD036D8F2549A3B00003C1CE /* 1st lvl */,
 				CD036D902549A3C70003C1CE /* 2nd lvl */,
@@ -282,7 +279,6 @@
 				CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */,
 				CD036D8C2549A3060003C1CE /* IrregVerbView.swift in Sources */,
 				CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */,
-				CDDDD4982514FC58007D35AF /* ContentView.swift in Sources */,
 				CD4F13F1257C43DC00F3B26C /* UserProfile_ViewModel.swift in Sources */,
 				CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */,
 				CD03F87B254C2DE500FE627C /* IrregVerb.swift in Sources */,
