@@ -1,9 +1,7 @@
 version: '3'
 services: 
   flask:
-    build:
-      context: app
-      dockerfile: Dockerfile
+    build: app/
     container_name: flask
     image: ubuntu:latest
     restart: unless-stopped
@@ -17,8 +15,8 @@ services:
       MONGODB_HOSTNAME: mongodb
     ports:
       - "5000:5000"
-    volumes:
-      - appdata:/var/www
+    #volumes:
+    #  - .app:/var/www
     depends_on:
       - mongodb
     networks:
@@ -53,7 +51,7 @@ networks:
 volumes:
   mongodbdata:
     driver: local
-  appdata:
-    driver: local
+  #appdata:
+  #  driver: local
   nginxdata:
     driver: local
