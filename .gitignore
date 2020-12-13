@@ -5,3 +5,4 @@
 *.pyc
 Server/__pycache__/config.cpython-38.pyc
 Server/docker-compose.yml
+Server/.env
