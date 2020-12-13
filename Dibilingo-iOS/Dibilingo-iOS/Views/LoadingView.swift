@@ -107,23 +107,25 @@ struct LoadingView: View {
                             
                             // if dataHash updated check userprofile for update
                             // loading from disk
-                            if let up_decoded = getUserProfile() {
+                            if let up_local = getUserProfile() {
                                 
                                     // loading from server
-                                    URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(up_decoded.name)/")! ) { data, response, error in
+                                    URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(up_local.name)/")! ) { data, response, error in
                                         
                                         if let data = data {
                                             print("DATA NOT NIL!")
                                             let decoded = try? JSONDecoder().decode(UserProfile.self, from: data)
                                             if let new_up = decoded {
                                                 
-                                                if up_decoded == new_up {
+                                                print("UP: \(up_local)")
+                                                
+                                                if up_local == new_up {
                                                     print("Already updated")
                                                     setLinkView(setContentView: true)
                                                     return
                                                 }
                                                 
-                                                if up_decoded < new_up { // we have newer version on server
+                                                if up_local < new_up { // we have newer version on server
                                                     let data_write_result = try? data.write(to: baseURL.appendingPathComponent("UserProfile"), options: .atomic)
                                                     if data_write_result != nil {
                                                         print("UPDATED!")
@@ -132,7 +134,7 @@ struct LoadingView: View {
                                                     }
                                                 } else {
                                                     // upload to server if local version newer
-                                                    UserProfile_ViewModel.forceUpload(up: up_decoded)
+                                                    UserProfile_ViewModel.forceUpload(up: up_local)
                                                     print("Uploaded to server!")
                                                     setLinkView(setContentView: true)
                                                     return
