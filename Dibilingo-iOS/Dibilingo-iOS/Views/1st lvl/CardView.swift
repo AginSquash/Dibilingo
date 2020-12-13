@@ -31,9 +31,7 @@ struct CardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-                //.fill(Color(hex: "93bfff"))
                 .fill(Color.yellow)
-                //.shadow(radius: -1, x: 0, y: 1)
                 .shadow(isLast: isLastCard)
             
             VStack {
@@ -52,7 +50,6 @@ struct CardView: View {
                     Text(card.object_name.uppercased()).foregroundColor(.red)
                     Text("?").foregroundColor(.white)
                 }
-                // .font(Font.custom("boomboom", size: 42))
                 .font(Font.custom("boomboom", size: computedFontSize))
                 .offset(y: computedFontSize < 42 ? 10 : 0)
                 .shadow(radius: 0 )
@@ -81,11 +78,9 @@ struct CardView: View {
                         
                         self.removal?(self.offset.width > 200 ? true : false)
                         self.offset = CGSize.zero
-                       // moveUP = true
                         
                         withAnimation(.easeIn(duration: 1.0)) {
                             opacity = 1.0
-                         //   moveUP = false
                         }
                     } else {
                         withAnimation {
@@ -108,9 +103,6 @@ extension View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        //let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        //let data = try? Data(contentsOf: baseURL.appendingPathComponent("wolf.jpg"))
-        //let image = UIImage(data: data!)!
         let image = UIImage(named: "wolf.png")!
         return CardView(card: Card(image: image, object_name: "watermelon", real_name: "wolf"), isLastCard: false)
     }
