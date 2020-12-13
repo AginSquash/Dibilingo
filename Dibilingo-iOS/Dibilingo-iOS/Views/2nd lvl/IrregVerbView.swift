@@ -58,12 +58,8 @@ struct IrregVerbView: View {
                 if showFishNet {
                     Image("fishnet_v2")
                         .resizable()
-                        //.aspectRatio(contentMode: .fit)
                         .frame(width: geo.size.width*0.64, height: geo.size.height/100*40, alignment: .center)
                         .position(x: geo.size.width/2, y: geo.size.height*0.54)
-                        
-                        //.frame(width: geo.size.width, height: geo.size.height*0.39, alignment: .center)
-                        //.position(x: geo.size.width/2, y: geo.size.height*0.55)
                         .transition(.customTransition)
                         .zIndex(1)
                 }
@@ -160,13 +156,10 @@ struct IrregVerbView: View {
                 }
             })
             .onDisappear(perform: {
-                //guard var up = self.userprofile else { fatalError("userprofile is nil") }
                 
                 userprofile.profile?.coinsInCategories[level_name] = self.coins
                 userprofile.levelExit()
                 
-                //up.coinsInCategories["irregVerbs"] = self.coins
-                //saveUserProfile(up)
                 print("Saved!")
             })
             
@@ -232,29 +225,13 @@ struct IrregVerbView: View {
     }
     
     func loadVerbs () {
-        /*
-        self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
-        self.verbs.append(IrregVerb(infinitive: "see", past_simple: "saw", past_participle: "seen", other_options: ["seenning", "sawed", "seed", "sow"]))
-        self.verbs.append(IrregVerb(infinitive: "ring", past_simple: "rang", past_participle: "rung", other_options: ["running", "run", "ranned", "ran"]))
-        */
+
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
             self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
             currentVerb = self.verbs.first
             nextVerb()
             return
         }
-        
-        /*
-        guard var up = getUserProfile() else { fatalError("getUserProfile is nil") }
-    
-        let coins = up.coinsInCategories["irregVerbs"]
-        if coins != nil {
-            self.coins = coins ?? 0
-        } else {
-            up.coinsInCategories["irregVerbs"] = 0
-        }
-        self.userprofile = up
-        */
         
         self.coins = userprofile.profile?.coinsInCategories[level_name] ?? 0
         
