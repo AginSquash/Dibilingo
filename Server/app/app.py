@@ -3,7 +3,6 @@ from flask import Flask, jsonify, send_file, make_response, request
 import json
 
 from pymongo import MongoClient
-import PyMongo
 from bson.objectid import ObjectId
 
 from os import path, listdir
@@ -13,13 +12,19 @@ import pprint
 from datetime import datetime, timezone
 
 imgPath = "data/img/"
+
 app = Flask(__name__)
-app.config["MONGO_URI"] = 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE']
 cards = []
 dataHash = ""
 
-client = PyMongo(app) #MongoClient('localhost', 27017)
+client = MongoClient(os.environ['MONGODB_HOSTNAME'], 27017,  
+                    username="mongodbuser", 
+                    password="your_mongodb_root_password",
+                    authSource="admin") #PyMongo(app) #MongoClient('localhost', 27017)
+
 db = client["Dibilingo"]
+#db.authenticate( os.environ['MONGODB_USERNAME'], os.environ['MONGODB_PASSWORD'])
+#db.authenticate("mongodbuser", "your_mongodb_root_password")
 collection = db["users"]
 
 @app.route('/')
@@ -90,6 +95,9 @@ def userupdate():
     userID = ObjectId(up_client["id"])
     up_db = collection.find_one({ "_id": userID })
 
+    if up_db == None:
+        return jsonify({"result":"no_id"})
+
     date_client = datetime.strptime(up_client["lastUpdated"], "%Y-%m-%dT%H:%M:%S%z") 
     date_db = datetime.strptime(up_db["lastUpdated"], "%Y-%m-%dT%H:%M:%S%z") 
 
@@ -122,13 +130,9 @@ def updateCardList():
     print(cards)
 
 if __name__ == '__main__':
-    print("Started! 1")
     updateCardList()
     dataHash = checksumdir.dirhash("data/")
     print("DataHash: {}".format(dataHash))
-    print("app.config[MONGO_URI] {}".format( 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE'] ))
-    print("DB: {}".format(db))
-
 
     ENVIRONMENT_DEBUG = os.environ.get("APP_DEBUG", True)
     ENVIRONMENT_PORT = os.environ.get("APP_PORT", 5000)
