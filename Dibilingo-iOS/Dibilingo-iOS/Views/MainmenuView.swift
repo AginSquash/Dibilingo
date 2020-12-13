@@ -10,8 +10,7 @@ import SwiftUI
 struct MainmenuView: View {
     
     var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train")]
-    //, Category(id: 2, name: "cat"), Category(id: 3, name: "train"), Category(id: 4, name: "cat"), Category(id: 5, name: "train"), Category(id: 6, name: "cat")
-    
+      
     @State var geo: GeometryProxy?
     
     @ObservedObject var userprofile = UserProfile_ViewModel()
@@ -44,7 +43,6 @@ struct MainmenuView: View {
                             ForEach(categories) { category in
                                 LevelPreview(userprofile: userprofile, category_name: category.name)
                                     .position(x: category.id % 2 == 0 ? geo.frame(in: .global).maxX - 145 : geo.frame(in: .global).minX + 145 )
-                                    //.padding(.bottom)
                             }
                             
                         }
