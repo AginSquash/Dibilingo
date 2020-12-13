@@ -11,7 +11,7 @@ services:
       APP_PORT: 5000
       MONGODB_DATABASE: Dibilingo
       MONGODB_USERNAME: mongodbuser
-      MONGODB_PASSWORD: your_mongodb_root_password
+      MONGODB_PASSWORD: our_really_hard_pass
       MONGODB_HOSTNAME: mongodb
     ports:
       - "5000:5000"
@@ -28,7 +28,7 @@ services:
     command: mongod --auth
     environment:
       MONGO_INITDB_ROOT_USERNAME: mongodbuser
-      MONGO_INITDB_ROOT_PASSWORD: your_mongodb_root_password
+      MONGO_INITDB_ROOT_PASSWORD: our_really_hard_pass
       MONGO_INITDB_DATABASE: Dibilingo
       MONGODB_DATA_DIR: /data/db
       MONDODB_LOG_DIR: /dev/null
