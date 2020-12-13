@@ -104,7 +104,7 @@ struct LoginView: View {
                 } catch { print(error, fileURL) }
             }
             print(files)
-        }  //Perform any operation you want by using its path
+        }
         
         let data = try? Data(contentsOf: baseURL.appendingPathComponent("CardsList"))
         if let data = data {
@@ -154,10 +154,6 @@ struct LoginView: View {
             // Load json with cards-name
             URLSession.shared.dataTask(with: url) { data_cl_s, response, error in
                 
-                if let response = response {
-                    //print(response)
-                }
-                
                 if let data_cl = data_cl_s {
                     let cardsList_server = try? JSONDecoder().decode(CardList_server.self, from: data_cl)
                 
@@ -180,10 +176,6 @@ struct LoginView: View {
                             guard let url = URL(string: "\(serverURL)/dibilingo/api/v1.0/image/\(card)/") else { return }
                             
                             URLSession.shared.dataTask(with: url) { imageData, response, error in
-                                
-                                if let response = response {
-                                    //print(response)
-                                }
                                 
                                 if let imageData = imageData {
                                     if imageData.count > 0 {
