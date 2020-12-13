@@ -18,13 +18,11 @@ cards = []
 dataHash = ""
 
 client = MongoClient(os.environ['MONGODB_HOSTNAME'], 27017,  
-                    username="mongodbuser", 
-                    password="your_mongodb_root_password",
+                    username=os.environ['MONGODB_USERNAME'], 
+                    password=os.environ['MONGODB_PASSWORD'],
                     authSource="admin") #PyMongo(app) #MongoClient('localhost', 27017)
 
-db = client["Dibilingo"]
-#db.authenticate( os.environ['MONGODB_USERNAME'], os.environ['MONGODB_PASSWORD'])
-#db.authenticate("mongodbuser", "your_mongodb_root_password")
+db = client[os.environ['MONGODB_DATABASE']]
 collection = db["users"]
 
 @app.route('/')
