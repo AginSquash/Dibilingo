@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainmenuView: View {
     
-    var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train")]
+    var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather")]
       
     @State var geo: GeometryProxy?
     
