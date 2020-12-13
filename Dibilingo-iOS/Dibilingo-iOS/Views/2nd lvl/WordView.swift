@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WordView: View {
-    //var text: String?
+    
     var word: identifiable_word?
     var isBased: Bool = false
     var onEnded: ((DragGesture.Value, UUID, String) -> Bool)?
@@ -48,7 +48,6 @@ struct WordView: View {
                 .resizable()
                 .interpolation(.medium)
                 .frame(width: 45, height: 45, alignment: .center)
-                    //.offset(x: 2.5)
                 .zIndex(0)
             
             ZStack {
