@@ -15,6 +15,8 @@ services:
       MONGODB_USERNAME: flaskuser
       MONGODB_PASSWORD: your_mongodb_password
       MONGODB_HOSTNAME: mongodb
+    ports:
+      - "5000:5000"
     volumes:
       - appdata:/var/www
     depends_on:
@@ -34,8 +36,24 @@ services:
       MONGO_INITDB_DATABASE: flaskdb
       MONGODB_DATA_DIR: /data/db
       MONDODB_LOG_DIR: /dev/null
+    ports:
+      - "27017:27017"
     volumes:
       - mongodbdata:/data/db
     networks:
       - backend
       - frontend # change before prod
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+  mongodbdata:
+    driver: local
+  appdata:
+    driver: local
+  nginxdata:
+    driver: local

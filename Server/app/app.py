@@ -3,25 +3,28 @@ from flask import Flask, jsonify, send_file, make_response, request
 import json
 
 from pymongo import MongoClient
+import PyMongo
 from bson.objectid import ObjectId
 
 from os import path, listdir
+import os
 import checksumdir
 import pprint
 from datetime import datetime, timezone
 
 imgPath = "data/img/"
 app = Flask(__name__)
+app.config["MONGO_URI"] = 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE']
 cards = []
 dataHash = ""
 
-client = MongoClient('localhost', 27017)
+client = PyMongo(app) #MongoClient('localhost', 27017)
 db = client["Dibilingo"]
 collection = db["users"]
 
 @app.route('/')
 def index():
-    return "Only API-server"
+    return "Only API-server!"
 
 @app.route('/dibilingo/api/v1.0/connectionTest', methods=['GET'])
 def connectionTest():
@@ -119,7 +122,15 @@ def updateCardList():
     print(cards)
 
 if __name__ == '__main__':
+    print("Started! 1")
     updateCardList()
     dataHash = checksumdir.dirhash("data/")
     print("DataHash: {}".format(dataHash))
-    app.run(host="0.0.0.0", port="5000", debug=True) #, ssl_context=('cert.pem', 'key.pem')
+    print("app.config[MONGO_URI] {}".format( 'mongodb://' + os.environ['MONGODB_USERNAME'] + ':' + os.environ['MONGODB_PASSWORD'] + '@' + os.environ['MONGODB_HOSTNAME'] + ':27017/' + os.environ['MONGODB_DATABASE'] ))
+    print("DB: {}".format(db))
+
+
+    ENVIRONMENT_DEBUG = os.environ.get("APP_DEBUG", True)
+    ENVIRONMENT_PORT = os.environ.get("APP_PORT", 5000)
+
+    app.run(host="0.0.0.0", port=ENVIRONMENT_PORT, debug=ENVIRONMENT_DEBUG) #, ssl_context=('cert.pem', 'key.pem')
