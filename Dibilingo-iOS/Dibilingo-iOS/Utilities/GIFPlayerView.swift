@@ -1,11 +1,3 @@
-//
-//  PlayerView.swift
-//  SwiftUI-Demo
-//
-//  Created by Testing on 12/09/19.
-//  Copyright © 2019 Testing. All rights reserved.
-//
-
 import UIKit
 
 class GIFPlayerView: UIView {
