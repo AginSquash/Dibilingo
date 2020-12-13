@@ -12,8 +12,6 @@ struct Dibilingo_iOSApp: App {
     var body: some Scene {
         WindowGroup {
             LoadingView()
-            //LoginView()
-            //ContentView()
         }
     }
 }
