@@ -15,8 +15,6 @@ services:
       MONGODB_HOSTNAME: mongodb
     ports:
       - "5000:5000"
-    #volumes:
-    #  - .app:/var/www
     depends_on:
       - mongodb
     networks:
@@ -34,7 +32,7 @@ services:
       MONGO_INITDB_DATABASE: Dibilingo
       MONGODB_DATA_DIR: /data/db
       MONDODB_LOG_DIR: /dev/null
-    ports:
+    ports:  #change before prod
       - "27017:27017"
     volumes:
       - mongodbdata:/data/db
@@ -51,7 +49,5 @@ networks:
 volumes:
   mongodbdata:
     driver: local
-  #appdata:
-  #  driver: local
   nginxdata:
     driver: local
