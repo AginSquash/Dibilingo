@@ -8,16 +8,6 @@
 import SwiftUI
 
 struct EW_Overlay: View {
-    /*
-    let card: Card
-    let swiped_right: Bool
-    
-    var isCorrect: Bool {
-        if (card.object_name == card.real_name) && swiped_right { return true }
-        if (card.object_name != card.real_name) && !swiped_right { return true }
-        return false
-    }
-    */
     
     @Binding var needCorrectAnswer: String?
     @State var answerCopy: String = ""
