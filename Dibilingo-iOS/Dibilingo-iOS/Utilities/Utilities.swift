@@ -41,6 +41,23 @@ extension Color {
     }
 }
 
+
+extension Array where Element == String {
+    func combineToString() -> String {
+        
+        if self.count == 0 { return "" }
+        
+        var combined = String()
+        for element in self {
+            combined += element
+            combined += " "
+        }
+        combined.removeLast()
+        return combined
+    }
+}
+
+
 func getUserProfile() -> UserProfile? {
     let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
     if let up_data = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
