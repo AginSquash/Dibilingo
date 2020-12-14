@@ -11,6 +11,7 @@
 		CD036D922549A3F90003C1CE /* FishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD036D912549A3F90003C1CE /* FishView.swift */; };
 		CD036D962549ABBB0003C1CE /* PossibleWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD036D952549ABBB0003C1CE /* PossibleWordsView.swift */; };
 		CD03F87B254C2DE500FE627C /* IrregVerb.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD03F87A254C2DE500FE627C /* IrregVerb.swift */; };
+		CD10B90C25878E58006F0D86 /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD10B90B25878E58006F0D86 /* WordView.swift */; };
 		CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BDD10251E179100985BB1 /* LoginView.swift */; };
 		CD433C73257E9602004E5697 /* SentenceFromWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD433C72257E9602004E5697 /* SentenceFromWords.swift */; };
 		CD4F13F1257C43DC00F3B26C /* UserProfile_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F13F0257C43DC00F3B26C /* UserProfile_ViewModel.swift */; };
@@ -43,6 +44,7 @@
 		CD036D912549A3F90003C1CE /* FishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FishView.swift; sourceTree = "<group>"; };
 		CD036D952549ABBB0003C1CE /* PossibleWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PossibleWordsView.swift; sourceTree = "<group>"; };
 		CD03F87A254C2DE500FE627C /* IrregVerb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IrregVerb.swift; sourceTree = "<group>"; };
+		CD10B90B25878E58006F0D86 /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
 		CD3BDD10251E179100985BB1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD433C72257E9602004E5697 /* SentenceFromWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceFromWords.swift; sourceTree = "<group>"; };
 		CD4F13F0257C43DC00F3B26C /* UserProfile_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile_ViewModel.swift; path = "Dibilingo-iOS/Data/UserProfile_ViewModel.swift"; sourceTree = SOURCE_ROOT; };
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				CD433C72257E9602004E5697 /* SentenceFromWords.swift */,
+				CD10B90B25878E58006F0D86 /* WordView.swift */,
 			);
 			path = "3rd lvl";
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				CDDD31E5257BA4B800EE9507 /* MainmenuView.swift in Sources */,
 				CD036D962549ABBB0003C1CE /* PossibleWordsView.swift in Sources */,
 				CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */,
+				CD10B90C25878E58006F0D86 /* WordView.swift in Sources */,
 				CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
