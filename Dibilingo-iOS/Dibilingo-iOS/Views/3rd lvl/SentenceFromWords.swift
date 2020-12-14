@@ -23,16 +23,14 @@ struct SentenceFromWords: View {
                     .multilineTextAlignment(.leading)
                     .gesture(
                         DragGesture()
-                            .onEnded( { gesture in
-                                print(gesture.translation)
-                                
+                            .onEnded({ gesture in
                                 if entered_sentence.count == 0 { return }
                                 
                                 if gesture.translation.width < 60 {
                                     let removed = entered_sentence.removeLast()
                                     words.append(removed)
                                 }
-                            } )
+                            })
                     )
                 if entered_sentence.count != 0 {
                     Button(action: {
@@ -58,6 +56,8 @@ struct SentenceFromWords: View {
             VStack {
                 Spacer()
                 WordView(words: $words) { word in
+                    if self.entered_sentence.contains(where: { $0.id == word.id }) { return }
+                    
                     withAnimation {
                         entered_sentence.append(word)
                     }
