@@ -9,10 +9,11 @@ import SwiftUI
 
 struct WordView: View {
     
-    var words: [identifiable_word]
-    var onTap: ((String) -> Void)
+    //var words: [identifiable_word]
     
-    @State private var words_local = [identifiable_word]()
+    //@State private var words_local = [identifiable_word]()
+    @Binding var words: [identifiable_word]
+    var onTap: ((String) -> Void)
     
     // sorted words little-big-little
     var words_paired: [identifiable_word] {
@@ -49,7 +50,7 @@ struct WordView: View {
         ZStack {
             
             LazyVGrid(columns: columns) {
-                ForEach(words_local) { word in
+                ForEach(words) { word in
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
                             .foregroundColor(.blue)
@@ -61,14 +62,15 @@ struct WordView: View {
                     .onTapGesture {
                         self.onTap(word.text)
                         withAnimation {
-                            words_local.removeAll(where: { $0.id == word.id })
+                            words.removeAll(where: { $0.id == word.id })
                         }
                     }
                 }
             }
-        }.onAppear(perform: {
-            self.words_local = words
-        })
+            .onAppear(perform: {
+                self.words.shuffle()
+            })
+        }
     }
 }
 
@@ -88,6 +90,6 @@ struct WordView_Previews: PreviewProvider {
             print(word)
         }
         
-        return WordView(words: words, onTap: onTap)
+        return WordView(words: .constant(words), onTap: onTap)
     }
 }
