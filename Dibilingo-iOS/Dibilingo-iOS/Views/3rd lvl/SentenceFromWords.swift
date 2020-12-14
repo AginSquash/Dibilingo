@@ -21,15 +21,25 @@ struct SentenceFromWords: View {
                 Text(entered_sentence.combineToString())
                     .font(Font.custom("boomboom", size: 20))
                     .multilineTextAlignment(.leading)
-                
+                    .gesture(
+                        DragGesture()
+                            .onEnded( { gesture in
+                                print(gesture.translation)
+                                
+                                if entered_sentence.count == 0 { return }
+                                
+                                if gesture.translation.width < 60 {
+                                    let removed = entered_sentence.removeLast()
+                                    words.append(identifiable_word(removed))
+                                }
+                            } )
+                    )
                 if entered_sentence.count != 0 {
                     Button(action: {
                         
                         withAnimation {
-                            words .append(contentsOf: entered_sentence.map( { identifiable_word($0) }) )
+                            words.append(contentsOf: entered_sentence.map({ identifiable_word($0) }))
                             entered_sentence.removeAll()
-                            
-                            print(words)
                         }
                         
                     }, label: {
