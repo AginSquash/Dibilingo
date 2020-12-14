@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WordView: View {
+struct FishView: View {
     
     var word: identifiable_word?
     var isBased: Bool = false
@@ -114,6 +114,6 @@ struct WordView: View {
 
 struct WordView_Previews: PreviewProvider {
     static var previews: some View {
-        WordView(word: identifiable_word("knowed"))
+        FishView(word: identifiable_word("knowed"))
     }
 }

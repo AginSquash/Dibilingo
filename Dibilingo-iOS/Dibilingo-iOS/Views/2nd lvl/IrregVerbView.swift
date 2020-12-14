@@ -17,8 +17,8 @@ struct IrregVerbView: View {
     @State private var cloudSize: CGFloat = 175
     @State private var possible_words_id: [identifiable_word] = []
     
-    @State var p_simpleView = WordView(isBased: true)
-    @State var p_participleView = WordView(isBased: true)
+    @State var p_simpleView = FishView(isBased: true)
+    @State var p_participleView = FishView(isBased: true)
     @State private var feedback = UINotificationFeedbackGenerator()
     
     @State private var coins: Int = 0
@@ -104,7 +104,7 @@ struct IrregVerbView: View {
                 .zIndex(3)
                 
                 ZStack {
-                    WordView(word: identifiable_word(currentVerb?.infinitive ?? "begin"), isBased: true)
+                    FishView(word: identifiable_word(currentVerb?.infinitive ?? "begin"), isBased: true)
                         .position(x: geo.frame(in: .global).midX, y: geo.size.height/100*45)
                         .offset(x: -10)
                     p_simpleView

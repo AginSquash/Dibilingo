@@ -55,7 +55,7 @@ struct PossibleWordsView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(words, id: \.id) { word in
                         if usedWords.contains(word.text) == false {
-                            WordView(word: word, onEnded: onEnded)
+                            FishView(word: word, onEnded: onEnded)
                         }
                     }
                 }
