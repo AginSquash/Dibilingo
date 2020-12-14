@@ -42,14 +42,14 @@ extension Color {
 }
 
 
-extension Array where Element == String {
+extension Array where Element == identifiable_word {
     func combineToString() -> String {
         
         if self.count == 0 { return "" }
         
         var combined = String()
         for element in self {
-            combined += element
+            combined += element.text
             combined += " "
         }
         combined.removeLast()

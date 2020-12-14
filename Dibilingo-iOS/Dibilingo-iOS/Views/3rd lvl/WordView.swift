@@ -13,7 +13,7 @@ struct WordView: View {
     
     //@State private var words_local = [identifiable_word]()
     @Binding var words: [identifiable_word]
-    var onTap: ((String) -> Void)
+    var onTap: ((identifiable_word) -> Void)
     
     // sorted words little-big-little
     var words_paired: [identifiable_word] {
@@ -60,7 +60,7 @@ struct WordView: View {
                             .padding([.top, .bottom])
                     }
                     .onTapGesture {
-                        self.onTap(word.text)
+                        self.onTap(word)
                         withAnimation {
                             words.removeAll(where: { $0.id == word.id })
                         }
@@ -86,7 +86,7 @@ struct WordView_Previews: PreviewProvider {
         
         words.shuffle()
         
-        let onTap: ((String) -> Void) = { word in
+        let onTap: ((identifiable_word) -> Void) = { word in
             print(word)
         }
         

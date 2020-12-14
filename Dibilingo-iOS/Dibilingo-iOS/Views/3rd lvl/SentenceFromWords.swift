@@ -12,7 +12,7 @@ struct SentenceFromWords: View {
     @State private var sentence: String = "AAA"
     @State private var words = [identifiable_word]()
 
-    @State private var entered_sentence = [String]()
+    @State private var entered_sentence = [identifiable_word]()
     var body: some View {
         ZStack {
             
@@ -30,7 +30,7 @@ struct SentenceFromWords: View {
                                 
                                 if gesture.translation.width < 60 {
                                     let removed = entered_sentence.removeLast()
-                                    words.append(identifiable_word(removed))
+                                    words.append(removed)
                                 }
                             } )
                     )
@@ -38,7 +38,7 @@ struct SentenceFromWords: View {
                     Button(action: {
                         
                         withAnimation {
-                            words.append(contentsOf: entered_sentence.map({ identifiable_word($0) }))
+                            words.append(contentsOf: entered_sentence)
                             entered_sentence.removeAll()
                         }
                         
