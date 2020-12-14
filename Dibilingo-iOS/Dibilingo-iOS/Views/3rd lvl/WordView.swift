@@ -60,10 +60,10 @@ struct WordView: View {
                             .padding([.top, .bottom])
                     }
                     .onTapGesture {
-                        self.onTap(word)
                         withAnimation {
                             words.removeAll(where: { $0.id == word.id })
                         }
+                        self.onTap(word)
                     }
                 }
             }
