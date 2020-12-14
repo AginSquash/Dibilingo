@@ -15,7 +15,7 @@ struct IrregVerb: Codable {
     let other_options: [String]
 }
 
-struct identifiable_word: Identifiable {
+struct identifiable_word: Identifiable, Equatable {
     let id: UUID
     let text: String
     
@@ -27,5 +27,10 @@ struct identifiable_word: Identifiable {
     init (id: UUID, text: String) {
         self.id = id
         self.text = text
+    }
+    
+    
+    static func == (lhs: identifiable_word, rhs: identifiable_word ) -> Bool {
+        return lhs.text == rhs.text
     }
 }
