@@ -84,6 +84,6 @@ struct LevelPreview: View {
 struct LevelPreview_Previews: PreviewProvider {
     static var previews: some View {
         let up = UserProfile_ViewModel()
-        return LevelPreview(userprofile: up, category_name: "cat")
+        return LevelPreview(userprofile: up, category_name: "train")
     }
 }

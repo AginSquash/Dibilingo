@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainmenuView: View {
     
-    var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather")]
+    var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
       
     @State var geo: GeometryProxy?
     
@@ -34,18 +34,26 @@ struct MainmenuView: View {
                     
                     ScrollView {
                         
-                        VStack {
+                        //VStack {
                             
                             Rectangle()
                                 .frame(width: 100, height: 150, alignment: .center)
                                 .opacity(0)
                             
                             ForEach(categories) { category in
+                                
+                                ZStack {
+                                    //Rectangle()
                                 LevelPreview(userprofile: userprofile, category_name: category.name)
-                                    .position(x: category.id % 2 == 0 ? geo.frame(in: .global).maxX - 145 : geo.frame(in: .global).minX + 145 )
+                                    //.offset(x: category.id % 2 == 0 ? geo.frame(in: .global).maxX - 145 : geo.frame(in: .global).minX + 145 )
+                                    //
+                                    .offset(x: category.id % 2 == 0 ? 100 : -100)
+                                }
+                                .frame(width: geo.frame(in: .global).width)
+                               
                             }
                             
-                        }
+                        //}
                     
                         
                     }
