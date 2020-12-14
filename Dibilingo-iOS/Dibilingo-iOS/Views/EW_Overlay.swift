@@ -12,6 +12,7 @@ struct EW_Overlay: View {
     @Binding var needCorrectAnswer: String?
     @State var answerCopy: String = ""
     var customView: Bool = false
+    var showCorrectAnswerLabel: Bool = false
     
     var body: some View {
         ZStack {
@@ -32,12 +33,21 @@ struct EW_Overlay: View {
                             
                 }.padding(.bottom, 5)
                 
+                if showCorrectAnswerLabel {
+                    Text("Correct: ").foregroundColor(.black)
+                        .padding(.leading)
+                }
+                
                     HStack {
                         if self.customView == false {
                             Text("it is a").foregroundColor(.black)
                         }
+                        
                         Text(answerCopy).foregroundColor(.red)
-                        Text("!").foregroundColor(.black)
+                            .padding(self.customView ? [.trailing] : [])
+                        if self.customView == false {
+                            Text("!").foregroundColor(.black)
+                        }
                     }
             }
         }
@@ -45,7 +55,7 @@ struct EW_Overlay: View {
             answerCopy = needCorrectAnswer ?? "ERROR"
         })
         .font(Font.custom("boomboom", size: 32))
-        .frame(width: 400, height: 150, alignment: .center)
+        .frame(width: 400, height: showCorrectAnswerLabel ? 200 : 150, alignment: .center)
         .onTapGesture(count: 1, perform: {
             withAnimation {
                 needCorrectAnswer = nil
