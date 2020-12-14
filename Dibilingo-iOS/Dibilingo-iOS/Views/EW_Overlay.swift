@@ -45,6 +45,7 @@ struct EW_Overlay: View {
                         
                         Text(answerCopy).foregroundColor(.red)
                             .padding(self.customView ? [.trailing] : [])
+                            .multilineTextAlignment(.center)
                         if self.customView == false {
                             Text("!").foregroundColor(.black)
                         }
