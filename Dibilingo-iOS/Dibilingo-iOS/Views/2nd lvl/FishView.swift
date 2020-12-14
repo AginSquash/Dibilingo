@@ -112,7 +112,7 @@ struct FishView: View {
     }
 }
 
-struct WordView_Previews: PreviewProvider {
+struct FishView_Previews: PreviewProvider {
     static var previews: some View {
         FishView(word: identifiable_word("knowed"))
     }
