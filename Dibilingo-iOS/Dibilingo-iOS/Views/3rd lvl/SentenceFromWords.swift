@@ -151,6 +151,7 @@ struct SentenceFromWords: View {
                 if isCorrect() {
                     print("Yeah!")
                     
+                    userprofile.needSaving = true
                     withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -181,6 +182,7 @@ struct SentenceFromWords: View {
         sentencesJson.append(SentenceJSON("Are these people waiting for a bus?"))
         sentencesJson.append(SentenceJSON("Am I driving too fast?"))
         
+        self.coins = userprofile.profile?.coinsInCategories[level_name] ?? 0
         sentencesJson.shuffle()
         
         nextSentence()
