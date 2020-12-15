@@ -94,16 +94,11 @@ struct SentenceFromWords: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear(perform: {
-            /*
-            words.append(identifiable_word("long_woord"))
-            words.append(identifiable_word("word"))
-            words.append(identifiable_word("wordkdkkaka"))
-            words.append(identifiable_word("words"))
-            words.append(identifiable_word("a"))
-            words.append(identifiable_word("wordaapppa")) */
-            calculateAppear()
-        })
+        .onAppear(perform: loadSentences)
+    }
+    
+    func loadSentences() {
+        calculateAppear()
     }
     
     func calculateAppear() {
