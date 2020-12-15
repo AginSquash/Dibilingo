@@ -61,7 +61,7 @@ struct LevelPreview: View {
                         
                         // Level 3
                         NavigationLink(
-                            destination: SentenceFromWords(),
+                            destination: SentenceFromWords(userprofile: userprofile, category_name: category_name),
                             label: {
                                 ZStack {
                                 RoundedRectangle(cornerRadius: 25)

@@ -9,7 +9,15 @@ import SwiftUI
 
 struct SentenceFromWords: View {
     
-    //@State private var sentence: String = "The hyperdrive would've split on impact."
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    
+    @ObservedObject var userprofile: UserProfile_ViewModel
+    var category_name: String
+    var level_name: String {
+        "\(category_name)_3"
+    }
+    
     @State private var words = [identifiable_word]()
     @State private var entered_sentence = [identifiable_word]()
     @State private var correct_array = [identifiable_word]()
@@ -17,6 +25,9 @@ struct SentenceFromWords: View {
     @State private var showCorrectAnswer: String? = nil
     
     @State private var sentencesJson = [SentenceJSON]()
+    
+    @State private var isPointUp: Bool = false
+    @State private var coins: Int = 0
     
     var body: some View {
         ZStack {
@@ -28,6 +39,32 @@ struct SentenceFromWords: View {
                 .zIndex(-1)
             
             VStack {
+                HStack {
+                    Text("Go Back")
+                        .foregroundColor(.red)
+                        .font(Font.custom("boomboom", size: 42))
+                        .padding(.leading)
+                        .onTapGesture {
+                            self.mode.wrappedValue.dismiss()
+                        }
+                    
+                    Spacer()
+                    
+                    if isPointUp {
+                        Image(systemName: "arrow.up.circle")
+                            .font(.system(size: 38, weight: .bold))
+                            .foregroundColor(.green)
+                            .transition(.opacity)
+                    }
+                    Text("\(coins)/54")
+                        .foregroundColor(.white)
+                        .font(Font.custom("Coiny", size: 38))
+                        .padding(.trailing)
+                        .onLongPressGesture {
+                            print(getUserProfile())
+                        }
+                }
+                
                 Spacer()
                 
                 if entered_sentence.count != 0 {
@@ -83,6 +120,7 @@ struct SentenceFromWords: View {
                 Spacer()
                 WordView(words: $words, onTap: wordHandler )
                     .padding()
+                    .allowsHitTesting(self.showCorrectAnswer == nil)
             }
             
             
@@ -94,6 +132,12 @@ struct SentenceFromWords: View {
         }
         .navigationBarHidden(true)
         .onAppear(perform: loadSentences)
+        .onDisappear(perform: {
+            userprofile.profile?.coinsInCategories[level_name] = self.coins
+            userprofile.levelExit()
+            
+            print("Saved!")
+        })
     }
     
     func wordHandler (_ word: identifiable_word) -> Void {
@@ -106,6 +150,13 @@ struct SentenceFromWords: View {
             if words.count == 0 {
                 if isCorrect() {
                     print("Yeah!")
+                    
+                    withAnimation(.easeIn(duration: 0.5), { isPointUp = true })
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.20) {  self.coins += 1 }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        withAnimation(.easeIn(duration: 0.5), { isPointUp = false })
+                    }
+                    
                 } else {
                     withAnimation {
                         self.showCorrectAnswer = "\"\(correct_array.combineToString())\""
@@ -158,6 +209,7 @@ struct SentenceFromWords: View {
 
 struct SentenceFromWords_Previews: PreviewProvider {
     static var previews: some View {
-        SentenceFromWords()
+        let up = UserProfile_ViewModel()
+        return SentenceFromWords(userprofile: up, category_name: "gg")
     }
 }
