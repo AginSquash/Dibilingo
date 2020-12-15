@@ -15,6 +15,8 @@
 		CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BDD10251E179100985BB1 /* LoginView.swift */; };
 		CD433C73257E9602004E5697 /* SentenceFromWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD433C72257E9602004E5697 /* SentenceFromWords.swift */; };
 		CD4F13F1257C43DC00F3B26C /* UserProfile_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F13F0257C43DC00F3B26C /* UserProfile_ViewModel.swift */; };
+		CD8BF8B72588DC8700202C90 /* SentenceJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BF8B62588DC8700202C90 /* SentenceJSON.swift */; };
+		CD8BF8BA2588DC9000202C90 /* identifiable_word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BF8B92588DC9000202C90 /* identifiable_word.swift */; };
 		CD94A71C25326B36009750AC /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A71B25326B36009750AC /* UserProfile.swift */; };
 		CD94A7202532722A009750AC /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A71F2532722A009750AC /* LoadingView.swift */; };
 		CD94A72425327332009750AC /* DataVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD94A72325327332009750AC /* DataVersion.swift */; };
@@ -48,6 +50,8 @@
 		CD3BDD10251E179100985BB1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD433C72257E9602004E5697 /* SentenceFromWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceFromWords.swift; sourceTree = "<group>"; };
 		CD4F13F0257C43DC00F3B26C /* UserProfile_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile_ViewModel.swift; path = "Dibilingo-iOS/Data/UserProfile_ViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		CD8BF8B62588DC8700202C90 /* SentenceJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceJSON.swift; sourceTree = "<group>"; };
+		CD8BF8B92588DC9000202C90 /* identifiable_word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = identifiable_word.swift; sourceTree = "<group>"; };
 		CD94A71B25326B36009750AC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile.swift; path = "Dibilingo-iOS/Data/UserProfile.swift"; sourceTree = SOURCE_ROOT; };
 		CD94A71F2532722A009750AC /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CD94A72325327332009750AC /* DataVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataVersion.swift; sourceTree = "<group>"; };
@@ -131,7 +135,9 @@
 				CD94A71B25326B36009750AC /* UserProfile.swift */,
 				CD94A72325327332009750AC /* DataVersion.swift */,
 				CD03F87A254C2DE500FE627C /* IrregVerb.swift */,
+				CD8BF8B92588DC9000202C90 /* identifiable_word.swift */,
 				CDDD31E7257BAFC800EE9507 /* Category.swift */,
+				CD8BF8B62588DC8700202C90 /* SentenceJSON.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -282,6 +288,8 @@
 				CDE15D3225178BB200A3C8D4 /* EW_Overlay.swift in Sources */,
 				CD036D8C2549A3060003C1CE /* IrregVerbView.swift in Sources */,
 				CDE15D35251794B900A3C8D4 /* Utilities.swift in Sources */,
+				CD8BF8B72588DC8700202C90 /* SentenceJSON.swift in Sources */,
+				CD8BF8BA2588DC9000202C90 /* identifiable_word.swift in Sources */,
 				CD4F13F1257C43DC00F3B26C /* UserProfile_ViewModel.swift in Sources */,
 				CDE15D292517841600A3C8D4 /* EmojiWordView.swift in Sources */,
 				CD03F87B254C2DE500FE627C /* IrregVerb.swift in Sources */,
