@@ -9,12 +9,14 @@ import SwiftUI
 
 struct SentenceFromWords: View {
     
-    @State private var sentence: String = "The hyperdrive would've split on impact."
+    //@State private var sentence: String = "The hyperdrive would've split on impact."
     @State private var words = [identifiable_word]()
     @State private var entered_sentence = [identifiable_word]()
     @State private var correct_array = [identifiable_word]()
     
     @State private var showCorrectAnswer: String? = nil
+    
+    @State private var sentencesJson = [SentenceJSON]()
     
     var body: some View {
         ZStack {
@@ -66,24 +68,8 @@ struct SentenceFromWords: View {
             
             VStack {
                 Spacer()
-                WordView(words: $words) { word in
-                    if self.entered_sentence.contains(where: { $0.id == word.id }) { return }
-                    
-                    withAnimation {
-                        entered_sentence.append(word)
-                    }
-                    
-                    if words.count == 0 {
-                        if isCorrect() {
-                            print("Yeah!")
-                        } else {
-                            withAnimation {
-                                self.showCorrectAnswer = "\"\(correct_array.combineToString())\""
-                            }
-                        }
-                    }
-                }
-                .padding()
+                WordView(words: $words, onTap: wordHandler )
+                    .padding()
             }
             
             
@@ -97,12 +83,55 @@ struct SentenceFromWords: View {
         .onAppear(perform: loadSentences)
     }
     
-    func loadSentences() {
-        calculateAppear()
+    func wordHandler (_ word: identifiable_word) -> Void {
+            if self.entered_sentence.contains(where: { $0.id == word.id }) { return }
+            
+            withAnimation {
+                entered_sentence.append(word)
+            }
+            
+            if words.count == 0 {
+                if isCorrect() {
+                    print("Yeah!")
+                } else {
+                    withAnimation {
+                        self.showCorrectAnswer = "\"\(correct_array.combineToString())\""
+                    }
+                }
+                
+                /// load next sentence
+                withAnimation {
+                    self.entered_sentence.removeAll()
+                    self.nextSentence()
+                }
+            }
+        
     }
     
-    func calculateAppear() {
-        var newSentence = self.sentence.lowercased()
+    func loadSentences() {
+        
+        sentencesJson.append(SentenceJSON("I'm watching a movie at the moment"))
+        sentencesJson.append(SentenceJSON("Emily is teaching me how to make bread"))
+        sentencesJson.append(SentenceJSON("He isn’t listening to the radio now"))
+        sentencesJson.append(SentenceJSON("The boats are not moving"))
+        sentencesJson.append(SentenceJSON("Are these people waiting for a bus?"))
+        sentencesJson.append(SentenceJSON("Am I driving too fast?"))
+        
+        sentencesJson.shuffle()
+        
+        nextSentence()
+    }
+    
+    func nextSentence() {
+        
+        if sentencesJson.count == 0
+        {
+            print("End")
+            return
+        }
+        
+        var newSentence = self.sentencesJson.removeFirst().sentence.lowercased()
+        //var newSentence = self.sentence.lowercased()
         newSentence = newSentence.replacingOccurrences(of: ".", with: "")
         let splited = newSentence.split(separator: " ")
         self.correct_array = splited.map({ identifiable_word(String($0)) })

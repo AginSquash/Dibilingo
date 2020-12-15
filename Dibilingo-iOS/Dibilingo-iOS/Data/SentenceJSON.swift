@@ -9,4 +9,8 @@ import Foundation
 
 struct SentenceJSON: Codable {
     let sentence: String
+    
+    init (_ sentence: String) {
+        self.sentence = sentence
+    }
 }
