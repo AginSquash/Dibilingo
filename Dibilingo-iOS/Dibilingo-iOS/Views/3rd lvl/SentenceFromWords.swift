@@ -21,16 +21,38 @@ struct SentenceFromWords: View {
     var body: some View {
         ZStack {
             
-            Color.white
+            Image(decorative: "back_1st")
+                .frame(width: 100, height: 100, alignment: .center)
+                .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
+                .zIndex(-1)
             
             VStack {
                 Spacer()
+                ZStack { /*
+                    //if entered_sentence.count != 0 {
+                    RoundedRectangle(cornerRadius: 25)
+                        .frame(width: 400, height: 100, alignment: .center)
+                        .foregroundColor(.white)
+                        //.shadow(radius: 10)
+                        .padding(10)
+                        .background(Color.white)
+                        .foregroundColor(.gray)
+                    //} */
                 Text(entered_sentence.combineToString())
                     .foregroundColor(.black)
                     .font(Font.custom("boomboom", size: 30))
                     .multilineTextAlignment(.leading)
                     .padding([.leading, .trailing])
+                    .background(
+                        
+                        RoundedRectangle(cornerRadius: 25)
+                            .foregroundColor(.white)
+                            .frame(minWidth: 75, minHeight: 75)
+                            .padding(5)
+                            .background(Color.gray)
+                            .cornerRadius(25)
+                    )
                     .gesture(
                         DragGesture()
                             .onEnded({ gesture in
@@ -44,7 +66,8 @@ struct SentenceFromWords: View {
                                 }
                             })
                     )
-                
+                }
+                .padding(.bottom, 40)
                 if entered_sentence.count != 0 {
                     Button(action: {
                         
@@ -58,7 +81,7 @@ struct SentenceFromWords: View {
                             .resizable()
                             .foregroundColor(.red)
                             .scaledToFit()
-                            .frame(width: 30, height: 30, alignment: .center)
+                            .frame(width: 45, height: 45, alignment: .center)
                     })
                     .transition(.scale)
                 }

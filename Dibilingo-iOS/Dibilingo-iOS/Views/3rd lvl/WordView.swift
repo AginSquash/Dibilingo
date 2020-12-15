@@ -53,7 +53,7 @@ struct WordView: View {
                 ForEach(words) { word in
                     ZStack {
                         RoundedRectangle(cornerRadius: 15)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.yellow)
                         Text(word.text)
                             .foregroundColor(.white)
                             .font(Font.custom("boomboom", size: 20))
