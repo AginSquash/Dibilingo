@@ -53,7 +53,7 @@ struct MainmenuView: View {
                 .navigationBarHidden(true)
                 .onAppear(perform: {
                     self.geo = geo
-                    print("MainmenuView appered")
+                    //print("MainmenuView appered")
                     self.userprofile.mainmenuLoad()
                 })
             }
