@@ -130,8 +130,8 @@ struct SentenceFromWords: View {
             return
         }
         
-        var newSentence = self.sentencesJson.removeFirst().sentence.lowercased()
-        //var newSentence = self.sentence.lowercased()
+        let id_word = self.sentencesJson.removeFirst()
+        var newSentence = id_word.sentence.lowercased()
         newSentence = newSentence.replacingOccurrences(of: ".", with: "")
         let splited = newSentence.split(separator: " ")
         self.correct_array = splited.map({ identifiable_word(String($0)) })
