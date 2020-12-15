@@ -29,46 +29,36 @@ struct SentenceFromWords: View {
             
             VStack {
                 Spacer()
-                ZStack { /*
-                    //if entered_sentence.count != 0 {
-                    RoundedRectangle(cornerRadius: 25)
-                        .frame(width: 400, height: 100, alignment: .center)
-                        .foregroundColor(.white)
-                        //.shadow(radius: 10)
-                        .padding(10)
-                        .background(Color.white)
-                        .foregroundColor(.gray)
-                    //} */
-                Text(entered_sentence.combineToString())
-                    .foregroundColor(.black)
-                    .font(Font.custom("boomboom", size: 30))
-                    .multilineTextAlignment(.leading)
-                    .padding([.leading, .trailing])
-                    .background(
-                        
-                        RoundedRectangle(cornerRadius: 25)
-                            .foregroundColor(.white)
-                            .frame(minWidth: 75, minHeight: 75)
-                            .padding(5)
-                            .background(Color.gray)
-                            .cornerRadius(25)
-                    )
-                    .gesture(
-                        DragGesture()
-                            .onEnded({ gesture in
-                                if entered_sentence.count == 0 { return }
-                                
-                                if gesture.translation.width < 60 {
-                                    withAnimation {
-                                        let removed = entered_sentence.removeLast()
-                                        words.append(removed)
-                                    }
-                                }
-                            })
-                    )
-                }
-                .padding(.bottom, 40)
+                
                 if entered_sentence.count != 0 {
+                    Text(entered_sentence.combineToString())
+                        .foregroundColor(.black)
+                        .font(Font.custom("boomboom", size: 30))
+                        .multilineTextAlignment(.leading)
+                        .padding([.leading, .trailing])
+                        .background(
+                            RoundedRectangle(cornerRadius: 25)
+                                .foregroundColor(.white)
+                                .frame(minWidth: 75, minHeight: 75)
+                                .padding(5)
+                                .background(Color.yellow)
+                                .cornerRadius(25)
+                        )
+                        .gesture(
+                            DragGesture()
+                                .onEnded({ gesture in
+                                    if entered_sentence.count == 0 { return }
+                                    
+                                    if gesture.translation.width < 60 {
+                                        withAnimation {
+                                            let removed = entered_sentence.removeLast()
+                                            words.append(removed)
+                                        }
+                                    }
+                                })
+                        )
+                        .padding(.bottom, 40)
+                
                     Button(action: {
                         
                         withAnimation {
