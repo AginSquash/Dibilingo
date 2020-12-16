@@ -44,6 +44,9 @@ struct MainmenuView: View {
                                     .font(Font.custom("Coiny", size: 38))
                                     .foregroundColor(.white)
                                     .offset(y: 12)
+                                    .onTapGesture {
+                                        self.totalCoins = userprofile.getTotalCoins()
+                                    }
                             }
                             .padding(.horizontal)
                         }
@@ -76,9 +79,15 @@ struct MainmenuView: View {
                     self.userprofile.mainmenuLoad()
                     self.totalCoins = userprofile.getTotalCoins()
                     
+                    #if targetEnvironment(simulator)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.totalCoins = userprofile.getTotalCoins()
+                    }
+                    #else
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
                         self.totalCoins = userprofile.getTotalCoins()
                     }
+                    #endif
                     
                 })
             }
