@@ -78,7 +78,15 @@ struct MainmenuView: View {
                     self.geo = geo
                     //print("MainmenuView appered")
                     self.userprofile.mainmenuLoad()
+                    if userprofile.onUpdateFinish == nil {
+                        userprofile.onUpdateFinish = { newCoins in
+                            self.totalCoins = newCoins
+                            print("Updated!")
+                        }
+                    }
                     self.totalCoins = userprofile.getTotalCoins()
+                    
+                    /*
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
                         self.totalCoins = userprofile.getTotalCoins()
@@ -90,7 +98,7 @@ struct MainmenuView: View {
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         self.totalCoins = userprofile.getTotalCoins()
-                    }
+                    } */
                     
                 })
             }
