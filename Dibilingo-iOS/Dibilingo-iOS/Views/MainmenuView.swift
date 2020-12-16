@@ -65,6 +65,11 @@ struct MainmenuView: View {
                     //print("MainmenuView appered")
                     self.userprofile.mainmenuLoad()
                     self.totalCoins = userprofile.getTotalCoins()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
+                        self.totalCoins = userprofile.getTotalCoins()
+                    }
+                    
                 })
             }
         }
