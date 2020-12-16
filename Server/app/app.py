@@ -20,7 +20,7 @@ dataHash = ""
 client = MongoClient(os.environ['MONGODB_HOSTNAME'], 27017,  
                     username=os.environ['MONGODB_USERNAME'], 
                     password=os.environ['MONGODB_PASSWORD'],
-                    authSource="admin") #PyMongo(app) #MongoClient('localhost', 27017)
+                    authSource="admin") 
 
 db = client[os.environ['MONGODB_DATABASE']]
 collection = db["users"]
@@ -41,7 +41,6 @@ def get_image(image):
         if path.exists(imgPath + filename):
             return send_file(imgPath + filename, mimetype='image/png', attachment_filename=filename)
         else:
-            # must send default img
             return ""
     else:
         print("No {} in config.cards".format(image))
@@ -70,7 +69,7 @@ def login(name):
             "lastUpdated": lastUpdatedTime.strftime("%Y-%m-%dT%H:%M:%S%z"), 
             "name": name,
             "coins": 0,
-            "coinsInCategories": {"level1":0} #json.dumps([[]])
+            "coinsInCategories": {"level1":0} 
             }
         userID = collection.insert_one(newUser).inserted_id
         user = collection.find_one({ "name": name }) 
@@ -135,4 +134,4 @@ if __name__ == '__main__':
     ENVIRONMENT_DEBUG = os.environ.get("APP_DEBUG", True)
     ENVIRONMENT_PORT = os.environ.get("APP_PORT", 5000)
 
-    app.run(host="0.0.0.0", port=ENVIRONMENT_PORT, debug=ENVIRONMENT_DEBUG) #, ssl_context=('cert.pem', 'key.pem')
+    app.run(host="0.0.0.0", port=ENVIRONMENT_PORT, debug=ENVIRONMENT_DEBUG) #, ssl_context=('cert.pem', 'key.pem') only for not seld signed SSL
