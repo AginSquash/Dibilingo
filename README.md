@@ -6,7 +6,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/AginSquash/Dibilingo)](https://github.com/AginSquash/Dibilingo/releases)
 ![Platform](https://img.shields.io/badge/iOS-14.0%2B-orange)
 
-An application that helps to train and improve your English language skills
+Application that helps to train and improve your English language skills
  - All progress is saved on the server
  - App will fix your mistakes and show correct answer
  - Access to your account from different devices
