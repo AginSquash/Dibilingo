@@ -75,8 +75,10 @@ struct LoginView: View {
                             .padding([.bottom, .top])
                             
                         Button(action: register, label: {
-                            Text("Sign up")
-                                .font(Font.custom("boomboom", size: 32))
+                            Image("arrow_next")
+                                .resizable()
+                                .frame(width: 70, height: 50, alignment: .center)
+                                //.font(Font.custom("boomboom", size: 32))
                                 .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
                         })
                         .disabled(!isEnableRegister)
