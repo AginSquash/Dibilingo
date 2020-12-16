@@ -32,13 +32,17 @@ struct SentenceFromWords: View {
     var body: some View {
         ZStack {
             
-            Image(decorative: "back_1st")
-                .frame(width: 100, height: 100, alignment: .center)
+            Image(decorative: "back_3lvl")
+                .resizable()
                 .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
+               // .edgesIgnoringSafeArea(.all)
+                .edgesIgnoringSafeArea(.top)
                 .zIndex(-1)
             
             VStack {
+                Spacer()
+                    .frame(width: 10, height: 20, alignment: .center)
+                
                 HStack {
                     Text("Go Back")
                         .foregroundColor(.red)
