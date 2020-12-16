@@ -41,7 +41,7 @@ struct SentenceFromWords: View {
             
             VStack {
                 Spacer()
-                    .frame(width: 10, height: 20, alignment: .center)
+                    .frame(width: 10, height: 30, alignment: .center)
                 
                 HStack {
                     Text("Go Back")
@@ -124,6 +124,7 @@ struct SentenceFromWords: View {
                 Spacer()
                 WordView(words: $words, onTap: wordHandler )
                     .padding()
+                    .padding(.bottom)
                     .allowsHitTesting(self.showCorrectAnswer == nil)
             }
             
