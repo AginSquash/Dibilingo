@@ -28,6 +28,7 @@ struct MainmenuView: View {
                     VStack {
                         ZStack {
                             Rectangle()
+                                .foregroundColor(.black)
                                 .frame(width: geo.frame(in: .global).width, height: 80, alignment: .center)
                                 .opacity(0.5)
                             HStack {
