@@ -1,4 +1,4 @@
-# <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/logo.png?raw=true" alt="Logo" width="40" height="40">  Dibilingo
+# <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/logo_cut.png?raw=true" alt="Logo" width="30,96" height="40">  Dibilingo
 
 ### An application that helps to train and improve your English language skills
 
