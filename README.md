@@ -13,6 +13,7 @@ An application that helps to train and improve your English language skills
  - Interesting and accessible interface for children
 
 ### Screenshots
+<img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/loading_screen.png?raw=true" width="250" alt="Screenshot of the Login screen" /> &nbsp;
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/login_screen.png?raw=true" width="250" alt="Screenshot of the Login screen" /> &nbsp;
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/menu_screen.png?raw=true" width="250" alt="Screenshot of the Mainmenu screen" /> &nbsp;
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/1lvl_screen.png?raw=true" width="250" alt="Screenshot of the first level screen" />  &nbsp;
@@ -34,6 +35,7 @@ An application that helps to train and improve your English language skills
 ## License
 
 Copyright (C) 2020 Vladislav Vrublevsky <agins.main@gmail.com>, Karina Romanova
+
 This software is provided 'as-is', without any express or implied warranty.
 
 In no event will the authors be held liable for any damages arising from the use of this software.
