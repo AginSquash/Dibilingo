@@ -89,7 +89,7 @@ class UserProfile_ViewModel: ObservableObject {
                 total_coins += profile?.coinsInCategories["\(category.name)_\(i)"] ?? 0
             }
         }
-        
+        print("reloaded: \(total_coins)")
         return total_coins
     }
     

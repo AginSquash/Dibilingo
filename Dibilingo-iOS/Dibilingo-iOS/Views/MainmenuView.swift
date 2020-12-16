@@ -16,6 +16,7 @@ struct MainmenuView: View {
     @ObservedObject var userprofile = UserProfile_ViewModel()
     @State private var totalCoins: Int = 0
     
+    
     var body: some View {
         NavigationView {
             GeometryReader { geo in
@@ -79,15 +80,17 @@ struct MainmenuView: View {
                     self.userprofile.mainmenuLoad()
                     self.totalCoins = userprofile.getTotalCoins()
                     
-                    #if targetEnvironment(simulator)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                        self.totalCoins = userprofile.getTotalCoins()
-                    }
-                    #else
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.50) {
                         self.totalCoins = userprofile.getTotalCoins()
                     }
-                    #endif
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        self.totalCoins = userprofile.getTotalCoins()
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        self.totalCoins = userprofile.getTotalCoins()
+                    }
                     
                 })
             }
