@@ -14,6 +14,7 @@ struct MainmenuView: View {
     @State var geo: GeometryProxy?
     
     @ObservedObject var userprofile = UserProfile_ViewModel()
+    @State private var totalCoins: Int = 0
     
     var body: some View {
         NavigationView {
@@ -28,7 +29,7 @@ struct MainmenuView: View {
                             Rectangle()
                                 .frame(width: geo.frame(in: .global).width, height: 75, alignment: .center)
                                 .opacity(0.5)
-                            Text("Dibilingo")
+                            Text("Dibilingo \(totalCoins)")
                                 .font(Font.custom("boomboom", size: 32))
                                 .foregroundColor(.white)
                                 .offset(y: 14)
@@ -63,6 +64,7 @@ struct MainmenuView: View {
                     self.geo = geo
                     //print("MainmenuView appered")
                     self.userprofile.mainmenuLoad()
+                    self.totalCoins = userprofile.getTotalCoins()
                 })
             }
         }

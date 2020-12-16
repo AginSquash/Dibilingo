@@ -80,6 +80,19 @@ class UserProfile_ViewModel: ObservableObject {
         .resume()
     }
     
+    func getTotalCoins() -> Int {
+        let categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
+        
+        var total_coins: Int = 0
+        for category in categories {
+            for i in 1...3 {
+                total_coins += profile?.coinsInCategories["\(category.name)_\(i)"] ?? 0
+            }
+        }
+        
+        return total_coins
+    }
+    
     static func getUserProfile() -> UserProfile? {
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if let up_data = try? Data(contentsOf: baseURL.appendingPathComponent("UserProfile")) {
