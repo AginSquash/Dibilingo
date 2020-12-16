@@ -35,7 +35,6 @@ struct SentenceFromWords: View {
             Image(decorative: "back_3lvl")
                 .resizable()
                 .scaledToFill()
-               // .edgesIgnoringSafeArea(.all)
                 .edgesIgnoringSafeArea(.top)
                 .zIndex(-1)
             
