@@ -24,11 +24,19 @@ struct MainmenuView: View {
                         .edgesIgnoringSafeArea(.all)
                     
                     VStack {
-                        Text("Push to server now")
-                            .foregroundColor(.white)
-                            .onTapGesture(count: 1, perform: {
-                                userprofile._SaveAndUpload()
-                            })
+                        ZStack {
+                            Rectangle()
+                                .frame(width: geo.frame(in: .global).width, height: 75, alignment: .center)
+                                .opacity(0.5)
+                            Text("Dibilingo")
+                                .font(Font.custom("boomboom", size: 32))
+                                .foregroundColor(.white)
+                                .offset(y: 14)
+                                .onTapGesture(count: 1, perform: {
+                                    userprofile._SaveAndUpload()
+                                })
+                        }
+                        .edgesIgnoringSafeArea(.top)
                         Spacer()
                     }.zIndex(3)
                     
