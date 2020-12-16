@@ -7,26 +7,29 @@
 ![Platform](https://img.shields.io/badge/iOS-14.0%2B-orange)
 
 An application that helps to train and improve your English language skills
+ - All progress is saved on the server
+ - App will fix your mistakes and show correct answer
+ - Access to your account from different devices
+ - Interesting and accessible interface for children
 
 ### Screenshots
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/login_screen.png?raw=true" width="250" alt="Screenshot of the Login screen" /> &nbsp;
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/menu_screen.png?raw=true" width="250" alt="Screenshot of the Mainmenu screen" /> &nbsp;
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/1lvl_screen.png?raw=true" width="250" alt="Screenshot of the first level screen" />  &nbsp;
-
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/2lvl_screen.png?raw=true" width="250" alt="Screenshot of the second level screen" /> &nbsp;
 <img src="https://github.com/AginSquash/Dibilingo/blob/master/Images/3lvl_screen.png?raw=true" width="250" alt="Screenshot of the third level screen" /> &nbsp;
 
 
 ## Getting Started
  1. Download the latest version of the source code
- > git clone https://github.com/AginSquash/Dibilingo.git
+  > git clone https://github.com/AginSquash/Dibilingo.git
  2. Go to **Dibilingo-iOS** folder and open the **Dibilingo-iOS.xcodeproj** file.
  3. Wait until xcode downloads all dependencies and then run project.
  4. To build a Docker containers, open folder **Server**
  5. Build containers with the command
- > docker-compose build  
+  > docker-compose build  
  6. Run docker containers 
- > docker-compose up -d         
+  > docker-compose up -d         
 
 ## License
 
