@@ -68,16 +68,19 @@ struct LoginView: View {
                         Text("Your name:")
                             .foregroundColor(Color(hex: "#004157"))
                             .font(Font.custom("boomboom", size: 32))
+                            .offset(y: 5)
                         
                         TextField("name", text: $username)
                             .font(Font.custom("boomboom", size: 38))
+                            .foregroundColor(Color(hex: "#42748c"))
                             .multilineTextAlignment(.center)
+                            .offset(y: 5)
                             .padding([.bottom, .top])
                             
                         Button(action: register, label: {
-                            Image("arrow_next")
+                            Image( !isEnableRegister ? "arrow_next_g" : "arrow_next")
                                 .resizable()
-                                .frame(width: 70, height: 50, alignment: .center)
+                                .frame(width: 65, height: 40, alignment: .center)
                                 //.font(Font.custom("boomboom", size: 32))
                                 .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
                         })
