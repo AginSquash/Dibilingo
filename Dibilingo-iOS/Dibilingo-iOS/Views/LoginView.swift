@@ -34,7 +34,12 @@ struct LoginView: View {
         NavigationView {
             ZStack {
                 
-                // background
+                Image(decorative: "login")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                   // .edgesIgnoringSafeArea(.top)
+                    .zIndex(-1)
                 
                 NavigationLink(
                     destination: MainmenuView().navigationBarHidden(true),
@@ -49,11 +54,18 @@ struct LoginView: View {
                         Text("\(downloadedImages)/\(totalImages)")
                             .font(Font.custom("Coiny", size: 26))
                     }
+                    .background(
+                        RoundedRectangle(cornerRadius: 25)
+                            .foregroundColor(.white)
+                            .frame(width: 225, height: 50, alignment: .center)
+                            .shadow(radius: 5)
+                    )
                 }.zIndex(1)
                 
                 if !userAlreadyExist {
                     VStack {
                         Text("Your name:")
+                            .foregroundColor(.black)
                             .font(Font.custom("boomboom", size: 32))
                         
                         TextField("name", text: $username)
@@ -67,7 +79,14 @@ struct LoginView: View {
                                 .foregroundColor( !isEnableRegister ? Color.gray : Color.init(hex: "#87ff6d") )
                         })
                         .disabled(!isEnableRegister)
-                    }.zIndex(2)
+                    }
+                    .zIndex(2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 25)
+                            .foregroundColor(.white)
+                            .frame(width: 300, height: 200, alignment: .center)
+                            .shadow(radius: 5)
+                    )
                 } else {
                     VStack {
                         Text("Dear, \(username)")
@@ -80,6 +99,12 @@ struct LoginView: View {
                                 isActive: $isUpdated,
                                 label: { })
                     }.zIndex(2)
+                    .background(
+                        RoundedRectangle(cornerRadius: 25)
+                            .foregroundColor(.white)
+                            .frame(width: 390, height: 150, alignment: .center)
+                            .shadow(radius: 5)
+                    )
                 }
             }
             .navigationBarHidden(true)
