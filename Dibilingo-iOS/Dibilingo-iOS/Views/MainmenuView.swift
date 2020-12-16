@@ -27,15 +27,25 @@ struct MainmenuView: View {
                     VStack {
                         ZStack {
                             Rectangle()
-                                .frame(width: geo.frame(in: .global).width, height: 75, alignment: .center)
+                                .frame(width: geo.frame(in: .global).width, height: 80, alignment: .center)
                                 .opacity(0.5)
-                            Text("Dibilingo \(totalCoins)")
-                                .font(Font.custom("boomboom", size: 32))
-                                .foregroundColor(.white)
-                                .offset(y: 14)
-                                .onTapGesture(count: 1, perform: {
-                                    userprofile._SaveAndUpload()
-                                })
+                            HStack {
+                                Text("\(userprofile.profile?.name ??  "Unknown")")
+                                    .font(Font.custom("boomboom", size: 32))
+                                    .foregroundColor(.white)
+                                    .offset(y: 14)
+                                    .onTapGesture(count: 1, perform: {
+                                        userprofile._SaveAndUpload()
+                                    })
+                                
+                                Spacer()
+                                
+                                Text("\(totalCoins)")
+                                    .font(Font.custom("Coiny", size: 38))
+                                    .foregroundColor(.white)
+                                    .offset(y: 12)
+                            }
+                            .padding(.horizontal)
                         }
                         .edgesIgnoringSafeArea(.top)
                         Spacer()
