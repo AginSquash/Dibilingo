@@ -61,7 +61,7 @@ struct SentenceFromWords: View {
                             .transition(.opacity)
                     }
                     Text("\(coins)/54")
-                        .foregroundColor(.white)
+                        .foregroundColor(.blue)
                         .font(Font.custom("Coiny", size: 38))
                         .padding(.trailing)
                         .onLongPressGesture {
