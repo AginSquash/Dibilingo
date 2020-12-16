@@ -54,6 +54,7 @@ struct LoginView: View {
                         Text("\(downloadedImages)/\(totalImages)")
                             .font(Font.custom("Coiny", size: 26))
                     }
+                    .foregroundColor(Color(hex: "#004157"))
                     .background(
                         RoundedRectangle(cornerRadius: 25)
                             .foregroundColor(.white)
@@ -65,7 +66,7 @@ struct LoginView: View {
                 if !userAlreadyExist {
                     VStack {
                         Text("Your name:")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(hex: "#004157"))
                             .font(Font.custom("boomboom", size: 32))
                         
                         TextField("name", text: $username)
@@ -253,9 +254,10 @@ struct LoginView: View {
     }
     
     func register() {
-        let name = username
+        var name = username
         // here must be user register on server
-        
+        name = name.replacingOccurrences(of: " ", with: "_")
+        name = name.replacingOccurrences(of: "/", with: "")
         
         URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(name)/")! ) { data, response, error in
             
