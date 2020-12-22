@@ -32,7 +32,7 @@ struct MainmenuView_ver2: View {
             
             Circle()
                 .fill(LinearGradient(
-                      gradient: .init(colors: [Self.gradientStart, Self.gradientEnd]),
+                    gradient: .init(colors: [Color.red, Color.purple]), //.init(colors: [Self.gradientStart, Self.gradientEnd])
                       startPoint: .init(x: 0.5, y: 0),
                       endPoint: .init(x: 0.5, y: 0.6)
                     ))
