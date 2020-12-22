@@ -7,14 +7,47 @@
 
 import SwiftUI
 
-struct LevelPreview: View {
+struct LevelCardView: View {
+    var text: String
+    var color: Color
     
     let uiscreen = UIScreen.main.bounds
     
+    var body: some View {
+        ZStack {
+        RoundedRectangle(cornerRadius: 15)
+            .shadow(radius: 10)
+            .frame(width: uiscreen.width - 50, height: 75, alignment: .center)
+            .padding()
+            .foregroundColor(.white)
+        
+            HStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .frame(width: 75, height: 75, alignment: .center)
+                    .foregroundColor(self.color)
+                    .padding(.leading, 25)
+                Spacer()
+            }
+            
+            HStack {
+                Spacer()
+                    .frame(width: 25)
+                Text(self.text)
+                    .multilineTextAlignment(.center)
+                    .font(Font.custom("boomboom", size: 32))
+                    .foregroundColor(.black)
+            }
+        }
+    }
+}
+
+
+struct LevelPreview: View {
+    
+    //let uiscreen = UIScreen.main.bounds
+    
     @ObservedObject var userprofile: UserProfile_ViewModel
     var category_name: String
-    
-    //@State private var showPopup: Bool = true
     
     var body: some View {
         VStack(spacing: 15) {
@@ -24,127 +57,14 @@ struct LevelPreview: View {
                 .frame(width: 250, height: 250, alignment: .center)
             
             VStack(spacing: -10) {
-                ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .shadow(radius: 10)
-                    .frame(width: uiscreen.width - 50, height: 75, alignment: .center)
-                    .padding()
-                    .foregroundColor(.white)
+                LevelCardView(text: "Слова", color: Color(.sRGB, red: 255/255, green: 203/255, blue: 204/255, opacity: 1.0))
                 
-                    HStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 75, height: 75, alignment: .center)
-                            .foregroundColor(Color(.sRGB, red: 255/255, green: 203/255, blue: 204/255, opacity: 1.0))
-                            .padding(.leading, 25)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Spacer()
-                            .frame(width: 25)
-                        Text("Слова")
-                            .font(Font.custom("boomboom", size: 32))
-                    }
-                }
+                LevelCardView(text: "Неправильные\nглаголы", color: Color(.sRGB, red: 211/255, green: 233/255, blue: 255/255, opacity: 1.0))
                 
-                ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .shadow(radius: 10)
-                    .frame(width: uiscreen.width - 50, height: 75, alignment: .center)
-                    .padding()
-                    .foregroundColor(.white)
+                LevelCardView(text: "Предложения", color: Color(.sRGB, red: 255/255, green: 229/255, blue: 157/255, opacity: 1.0))
                 
-                    HStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 75, height: 75, alignment: .center)
-                            .foregroundColor(Color(.sRGB, red: 211/255, green: 233/255, blue: 255/255, opacity: 1.0))
-                            .padding(.leading, 25)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Spacer()
-                            .frame(width: 25)
-                        Text("Неправильные\nглаголы")
-                            .multilineTextAlignment(.center)
-                            .font(Font.custom("boomboom", size: 32))
-                    }
-                }
                 
-                ZStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .shadow(radius: 10)
-                    .frame(width: uiscreen.width - 50, height: 75, alignment: .center)
-                    .padding()
-                    .foregroundColor(.white)
-                
-                    HStack {
-                        RoundedRectangle(cornerRadius: 15)
-                            .frame(width: 75, height: 75, alignment: .center)
-                            .foregroundColor(Color(.sRGB, red: 255/255, green: 229/255, blue: 157/255, opacity: 1.0))
-                            .padding(.leading, 25)
-                        Spacer()
-                    }
-                    
-                    HStack {
-                        Spacer()
-                            .frame(width: 25)
-                        Text("Предложения")
-                            .font(Font.custom("boomboom", size: 32))
-                    }
-                }
             }
-            /*
-                ZStack {
-                    RoundedRectangle(cornerRadius: 50)
-                        .frame(width: 275, height: 150, alignment: .center)
-                        .foregroundColor(.yellow)
-                    HStack {
-                        
-                        // Card level
-                        NavigationLink(
-                            destination: EmojiWordView(userprofile: userprofile, category_name: category_name).navigationBarHidden(true),
-                            label: {
-                                ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 75, height: 100, alignment: .center)
-                                Text("1")
-                                    .font(Font.custom("Coiny", size: 42))
-                                    .foregroundColor(.white)
-                                }
-                            })
-                        //
-                        
-                        // Irreg Verbs
-                        NavigationLink(
-                            destination: IrregVerbView(userprofile: userprofile, category_name: category_name),
-                            label: {
-                                ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 75, height: 100, alignment: .center)
-                                Text("2")
-                                    .font(Font.custom("Coiny", size: 42))
-                                    .foregroundColor(.white)
-                                }
-                            })
-                        //
-                        
-                        // Level 3
-                        NavigationLink(
-                            destination: SentenceFromWords(userprofile: userprofile, category_name: category_name),
-                            label: {
-                                ZStack {
-                                RoundedRectangle(cornerRadius: 25)
-                                    .frame(width: 75, height: 100, alignment: .center)
-                                Text("3")
-                                    .font(Font.custom("Coiny", size: 42))
-                                    .foregroundColor(.white)
-                                }
-                            })
-                        //
-                        
-                    } */
-                //}
         }
     }
 }
