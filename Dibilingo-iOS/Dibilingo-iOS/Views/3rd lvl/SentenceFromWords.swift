@@ -186,6 +186,8 @@ struct SentenceFromWords: View {
         sentencesJson.append(SentenceJSON("Are these people waiting for a bus?"))
         sentencesJson.append(SentenceJSON("Am I driving too fast?"))
         
+        if self.userprofile.profile == nil { self.userprofile.mainmenuLoad() }
+        
         self.coins = userprofile.profile?.coinsInCategories[level_name] ?? 0
         sentencesJson.shuffle()
         
