@@ -107,6 +107,7 @@ struct MainmenuView_ver2: View {
                     })
                     .disabled(currentCategory == categories.count-1)
                 }
+                .offset(y: -65)
                 .zIndex(2)
                 .allowsHitTesting(true)
                 .padding()
@@ -128,7 +129,9 @@ struct MainmenuView_ver2: View {
                                 self.reader = reader
                             })
                         }
-                    }.disabled(true)
+                    }
+                    .disabled(true)
+                    .padding(.bottom, 20)
                 }
                 .zIndex(0)
             }
@@ -140,6 +143,10 @@ struct MainmenuView_ver2: View {
 
 struct MainmenuView_ver2_Previews: PreviewProvider {
     static var previews: some View {
-        MainmenuView_ver2()
+        Group {
+            MainmenuView_ver2()
+            MainmenuView_ver2()
+                .previewDevice("iPhone 8")
+        }
     }
 }
