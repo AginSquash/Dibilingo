@@ -31,7 +31,7 @@ struct LevelCardView: View {
             
             HStack {
                 Spacer()
-                    .frame(width: 25)
+                    .frame(width: 40)
                 Text(self.text)
                     .multilineTextAlignment(.center)
                     .font(Font.custom("boomboom", size: 32))
@@ -44,8 +44,6 @@ struct LevelCardView: View {
 
 struct LevelPreview: View {
     
-    //let uiscreen = UIScreen.main.bounds
-    
     @ObservedObject var userprofile: UserProfile_ViewModel
     var category_name: String
     
@@ -56,15 +54,28 @@ struct LevelPreview: View {
                 .shadow(radius: 5)
                 .frame(width: 250, height: 250, alignment: .center)
             
-            VStack(spacing: -10) {
-                LevelCardView(text: "Слова", color: Color(.sRGB, red: 255/255, green: 203/255, blue: 204/255, opacity: 1.0))
+            VStack(spacing: -15) {
+                NavigationLink(
+                    destination: EmojiWordView(userprofile: userprofile, category_name: category_name).navigationBarHidden(true),
+                    label: {
+                        LevelCardView(text: "Слова", color: Color(.sRGB, red: 255/255, green: 203/255, blue: 204/255, opacity: 1.0))
+                    })
                 
-                LevelCardView(text: "Неправильные\nглаголы", color: Color(.sRGB, red: 211/255, green: 233/255, blue: 255/255, opacity: 1.0))
+                NavigationLink(
+                    destination: IrregVerbView(userprofile: userprofile, category_name: category_name).navigationBarHidden(true),
+                    label: {
+                        LevelCardView(text: "Неправильные\nглаголы", color: Color(.sRGB, red: 211/255, green: 233/255, blue: 255/255, opacity: 1.0))
+                    })
                 
-                LevelCardView(text: "Предложения", color: Color(.sRGB, red: 255/255, green: 229/255, blue: 157/255, opacity: 1.0))
-                
+                NavigationLink(
+                    destination: SentenceFromWords(userprofile: userprofile, category_name: category_name).navigationBarHidden(true),
+                    label: {
+                        LevelCardView(text: "Предложения", color: Color(.sRGB, red: 255/255, green: 229/255, blue: 157/255, opacity: 1.0))
+                    })
                 
             }
+            .allowsHitTesting(true)
+            .disabled(false)
         }
     }
 }
