@@ -113,16 +113,12 @@ struct MainmenuView_ver2: View {
                 .padding()
                 
                 ZStack {
-                    //Rectangle()
-                    //    .opacity(0.5)
-                    //    .zIndex(1)
                     ScrollView(.horizontal, showsIndicators: false) {
                         ScrollViewReader { reader in
                             HStack {
                                 ForEach(categories, id: \.self) { element in
                                         LevelPreview(userprofile: userprofile, category_name: element.name)
                                             .frame(width: uiscreen.width, alignment: .center)
-                                            .zIndex(2)
                                 }
                             }
                             .onAppear(perform: {
@@ -131,6 +127,8 @@ struct MainmenuView_ver2: View {
                         }
                     }
                     //.disabled(true)
+                    
+                    //.allowsHitTesting(false)
                     .padding(.bottom, 20)
                 }
                 .zIndex(0)
