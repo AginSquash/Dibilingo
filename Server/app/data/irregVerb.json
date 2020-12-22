@@ -1,601 +1,627 @@
 [{
-"infinitive": "be",
-"past_simple": "was",
-"past_participle": "been",
-"other_options": ["being", "beed", "bet", "been"]
-},
-{
-"infinitive": "beat",
-"past_simple": "beat",
-"past_participle": "beaten",
-"other_options": ["beating", "beated", "beatt", "beaten"]
-},
-{
-"infinitive": "become",
-"past_simple": "became",
-"past_participle": "become",
-"other_options": ["becomeing", "becomeed", "becomet", "becomeen"]
-},
-{
-"infinitive": "begin",
-"past_simple": "began",
-"past_participle": "begun",
-"other_options": ["begining", "begined", "begint", "beginen"]
-},
-{
-"infinitive": "bend",
-"past_simple": "bent",
-"past_participle": "bent",
-"other_options": ["bending", "bended", "bendt", "benden"]
-},
-{
-"infinitive": "bet",
-"past_simple": "bet",
-"past_participle": "bet",
-"other_options": ["beting", "beted", "bett", "beten"]
-},
-{
-"infinitive": "bite",
-"past_simple": "bit",
-"past_participle": "bitten",
-"other_options": ["biteing", "biteed", "bitet", "biteen"]
-},
-{
-"infinitive": "blow",
-"past_simple": "blew",
-"past_participle": "blown",
-"other_options": ["blowing", "blowed", "blowt", "blowen"]
-},
-{
-"infinitive": "break",
-"past_simple": "broke",
-"past_participle": "broken",
-"other_options": ["breaking", "breaked", "breakt", "breaken"]
-},
-{
-"infinitive": "bring",
-"past_simple": "brought",
-"past_participle": "brought",
-"other_options": ["bringing", "bringed", "bringt", "bringen"]
-},
-{
-"infinitive": "build",
-"past_simple": "built",
-"past_participle": "built",
-"other_options": ["building", "builded", "buildt", "builden"]
-},
-{
-"infinitive": "buy",
-"past_simple": "bought",
-"past_participle": "bought",
-"other_options": ["buying", "buyed", "buyt", "buyen"]
-},
-{
-"infinitive": "catch",
-"past_simple": "caught",
-"past_participle": "caught",
-"other_options": ["catching", "catched", "catcht", "catchen"]
-},
-{
-"infinitive": "choose",
-"past_simple": "chose",
-"past_participle": "chosen",
-"other_options": ["chooseing", "chooseed", "chooset", "chooseen"]
-},
-{
-"infinitive": "come",
-"past_simple": "came",
-"past_participle": "come",
-"other_options": ["comeing", "comeed", "comet", "comeen"]
-},
-{
-"infinitive": "cost",
-"past_simple": "cost",
-"past_participle": "cost",
-"other_options": ["costing", "costed", "costt", "costen"]
-},
-{
-"infinitive": "cut",
-"past_simple": "cut",
-"past_participle": "cut",
-"other_options": ["cuting", "cuted", "cutt", "cuten"]
-},
-{
-"infinitive": "deal",
-"past_simple": "dealt",
-"past_participle": "dealt",
-"other_options": ["dealing", "dealed", "dealt", "dealen"]
-},
-{
-"infinitive": "dig",
-"past_simple": "dug",
-"past_participle": "dug",
-"other_options": ["diging", "diged", "digt", "digen"]
-},
-{
-"infinitive": "do",
-"past_simple": "did",
-"past_participle": "done",
-"other_options": ["doing", "doed", "dot", "doen"]
-},
-{
-"infinitive": "draw",
-"past_simple": "drew",
-"past_participle": "drawn",
-"other_options": ["drawing", "drawed", "drawt", "drawen"]
-},
-{
-"infinitive": "drink",
-"past_simple": "drank",
-"past_participle": "drunk",
-"other_options": ["drinking", "drinked", "drinkt", "drinken"]
-},
-{
-"infinitive": "drive",
-"past_simple": "drove",
-"past_participle": "driven",
-"other_options": ["driveing", "driveed", "drivet", "driveen"]
-},
-{
-"infinitive": "eat",
-"past_simple": "ate",
-"past_participle": "eaten",
-"other_options": ["eating", "eated", "eatt", "eaten"]
-},
-{
-"infinitive": "fall",
-"past_simple": "fell",
-"past_participle": "fallen",
-"other_options": ["falling", "falled", "fallt", "fallen"]
-},
-{
-"infinitive": "feed",
-"past_simple": "fed",
-"past_participle": "fed",
-"other_options": ["feeding", "feeded", "feedt", "feeden"]
-},
-{
-"infinitive": "feel",
-"past_simple": "felt",
-"past_participle": "felt",
-"other_options": ["feeling", "feeled", "feelt", "feelen"]
-},
-{
-"infinitive": "fight",
-"past_simple": "fought",
-"past_participle": "fought",
-"other_options": ["fighting", "fighted", "fightt", "fighten"]
-},
-{
-"infinitive": "find",
-"past_simple": "found",
-"past_participle": "found",
-"other_options": ["finding", "finded", "findt", "finden"]
-},
-{
-"infinitive": "fly",
-"past_simple": "flew",
-"past_participle": "flown",
-"other_options": ["flying", "flyed", "flyt", "flyen"]
-},
-{
-"infinitive": "forget",
-"past_simple": "forgot",
-"past_participle": "forgotten",
-"other_options": ["forgeting", "forgeted", "forgett", "forgeten"]
-},
-{
-"infinitive": "forgive",
-"past_simple": "forgave",
-"past_participle": "forgiven",
-"other_options": ["forgiveing", "forgiveed", "forgivet", "forgiveen"]
-},
-{
-"infinitive": "freeze",
-"past_simple": "froze",
-"past_participle": "frozen",
-"other_options": ["freezeing", "freezeed", "freezet", "freezeen"]
-},
-{
-"infinitive": "get",
-"past_simple": "got",
-"past_participle": "got",
-"other_options": ["geting", "geted", "gett", "geten"]
-},
-{
-"infinitive": "give",
-"past_simple": "gave",
-"past_participle": "given",
-"other_options": ["giveing", "giveed", "givet", "giveen"]
-},
-{
-"infinitive": "go",
-"past_simple": "went",
-"past_participle": "gone",
-"other_options": ["going", "goed", "got", "goen"]
-},
-{
-"infinitive": "grow",
-"past_simple": "grew",
-"past_participle": "grown",
-"other_options": ["growing", "growed", "growt", "growen"]
-},
-{
-"infinitive": "hang",
-"past_simple": "hung",
-"past_participle": "hung",
-"other_options": ["hanging", "hanged", "hangt", "hangen"]
-},
-{
-"infinitive": "have",
-"past_simple": "had",
-"past_participle": "had",
-"other_options": ["haveing", "haveed", "havet", "haveen"]
-},
-{
-"infinitive": "hear",
-"past_simple": "heard",
-"past_participle": "heard",
-"other_options": ["hearing", "heared", "heart", "hearen"]
-},
-{
-"infinitive": "hide",
-"past_simple": "hid",
-"past_participle": "hidden",
-"other_options": ["hideing", "hideed", "hidet", "hideen"]
-},
-{
-"infinitive": "hit",
-"past_simple": "hit",
-"past_participle": "hit",
-"other_options": ["hiting", "hited", "hitt", "hiten"]
-},
-{
-"infinitive": "hold",
-"past_simple": "held",
-"past_participle": "held",
-"other_options": ["holding", "holded", "holdt", "holden"]
-},
-{
-"infinitive": "hurt",
-"past_simple": "hurt",
-"past_participle": "hurt",
-"other_options": ["hurting", "hurted", "hurtt", "hurten"]
-},
-{
-"infinitive": "keep",
-"past_simple": "kept",
-"past_participle": "kept",
-"other_options": ["keeping", "keeped", "keept", "keepen"]
-},
-{
-"infinitive": "know",
-"past_simple": "knew",
-"past_participle": "known",
-"other_options": ["knowing", "knowed", "knowt", "knowen"]
-},
-{
-"infinitive": "lay",
-"past_simple": "laid",
-"past_participle": "laid",
-"other_options": ["laying", "layed", "layt", "layen"]
-},
-{
-"infinitive": "lead",
-"past_simple": "led",
-"past_participle": "led",
-"other_options": ["leading", "leaded", "leadt", "leaden"]
-},
-{
-"infinitive": "leave",
-"past_simple": "left",
-"past_participle": "left",
-"other_options": ["leaveing", "leaveed", "leavet", "leaveen"]
-},
-{
-"infinitive": "lend",
-"past_simple": "lent",
-"past_participle": "lent",
-"other_options": ["lending", "lended", "lendt", "lenden"]
-},
-{
-"infinitive": "let",
-"past_simple": "let",
-"past_participle": "let",
-"other_options": ["leting", "leted", "lett", "leten"]
-},
-{
-"infinitive": "lie",
-"past_simple": "lay",
-"past_participle": "lain",
-"other_options": ["lieing", "lieed", "liet", "lieen"]
-},
-{
-"infinitive": "light",
-"past_simple": "lit",
-"past_participle": "lit",
-"other_options": ["lighting", "lighted", "lightt", "lighten"]
-},
-{
-"infinitive": "lose",
-"past_simple": "lost",
-"past_participle": "lost",
-"other_options": ["loseing", "loseed", "loset", "loseen"]
-},
-{
-"infinitive": "make",
-"past_simple": "made",
-"past_participle": "made",
-"other_options": ["makeing", "makeed", "maket", "makeen"]
-},
-{
-"infinitive": "mean",
-"past_simple": "meant",
-"past_participle": "meant",
-"other_options": ["meaning", "meaned", "meant", "meanen"]
-},
-{
-"infinitive": "meet",
-"past_simple": "met",
-"past_participle": "met",
-"other_options": ["meeting", "meeted", "meett", "meeten"]
-},
-{
-"infinitive": "pay",
-"past_simple": "paid",
-"past_participle": "paid",
-"other_options": ["paying", "payed", "payt", "payen"]
-},
-{
-"infinitive": "put",
-"past_simple": "put",
-"past_participle": "put",
-"other_options": ["puting", "puted", "putt", "puten"]
-},
-{
-"infinitive": "read",
-"past_simple": "read",
-"past_participle": "read",
-"other_options": ["reading", "readed", "readt", "readen"]
-},
-{
-"infinitive": "ride",
-"past_simple": "rode",
-"past_participle": "ridden",
-"other_options": ["rideing", "rideed", "ridet", "rideen"]
-},
-{
-"infinitive": "ring",
-"past_simple": "rang",
-"past_participle": "rung",
-"other_options": ["ringing", "ringed", "ringt", "ringen"]
-},
-{
-"infinitive": "rise",
-"past_simple": "rose",
-"past_participle": "risen",
-"other_options": ["riseing", "riseed", "riset", "riseen"]
-},
-{
-"infinitive": "run",
-"past_simple": "ran",
-"past_participle": "run",
-"other_options": ["runing", "runed", "runt", "runen"]
-},
-{
-"infinitive": "say",
-"past_simple": "said",
-"past_participle": "said",
-"other_options": ["saying", "sayed", "sayt", "sayen"]
-},
-{
-"infinitive": "see",
-"past_simple": "saw",
-"past_participle": "seen",
-"other_options": ["seeing", "seeed", "seet", "seeen"]
-},
-{
-"infinitive": "seek",
-"past_simple": "sought",
-"past_participle": "sought",
-"other_options": ["seeking", "seeked", "seekt", "seeken"]
-},
-{
-"infinitive": "sell",
-"past_simple": "sold",
-"past_participle": "sold",
-"other_options": ["selling", "selled", "sellt", "sellen"]
-},
-{
-"infinitive": "send",
-"past_simple": "sent",
-"past_participle": "sent",
-"other_options": ["sending", "sended", "sendt", "senden"]
-},
-{
-"infinitive": "set",
-"past_simple": "set",
-"past_participle": "set",
-"other_options": ["seting", "seted", "sett", "seten"]
-},
-{
-"infinitive": "shake",
-"past_simple": "shook",
-"past_participle": "shaken",
-"other_options": ["shakeing", "shakeed", "shaket", "shakeen"]
-},
-{
-"infinitive": "shine",
-"past_simple": "shone",
-"past_participle": "shone",
-"other_options": ["shineing", "shineed", "shinet", "shineen"]
-},
-{
-"infinitive": "shoot",
-"past_simple": "shot",
-"past_participle": "shot",
-"other_options": ["shooting", "shooted", "shoott", "shooten"]
-},
-{
-"infinitive": "show",
-"past_simple": "showed",
-"past_participle": "shown,",
-"other_options": ["showing", "showed", "showt", "showen"]
-},
-{
-"infinitive": "shut",
-"past_simple": "shut",
-"past_participle": "shut",
-"other_options": ["shuting", "shuted", "shutt", "shuten"]
-},
-{
-"infinitive": "sing",
-"past_simple": "sang",
-"past_participle": "sung",
-"other_options": ["singing", "singed", "singt", "singen"]
-},
-{
-"infinitive": "sink",
-"past_simple": "sank",
-"past_participle": "sunk",
-"other_options": ["sinking", "sinked", "sinkt", "sinken"]
-},
-{
-"infinitive": "sit",
-"past_simple": "sat",
-"past_participle": "sat",
-"other_options": ["siting", "sited", "sitt", "siten"]
-},
-{
-"infinitive": "sleep",
-"past_simple": "slept",
-"past_participle": "slept",
-"other_options": ["sleeping", "sleeped", "sleept", "sleepen"]
-},
-{
-"infinitive": "speak",
-"past_simple": "spoke",
-"past_participle": "spoken",
-"other_options": ["speaking", "speaked", "speakt", "speaken"]
-},
-{
-"infinitive": "spend",
-"past_simple": "spent",
-"past_participle": "spent",
-"other_options": ["spending", "spended", "spendt", "spenden"]
-},
-{
-"infinitive": "stand",
-"past_simple": "stood",
-"past_participle": "stood",
-"other_options": ["standing", "standed", "standt", "standen"]
-},
-{
-"infinitive": "steal",
-"past_simple": "stole",
-"past_participle": "stolen",
-"other_options": ["stealing", "stealed", "stealt", "stealen"]
-},
-{
-"infinitive": "stick",
-"past_simple": "stuck",
-"past_participle": "stuck",
-"other_options": ["sticking", "sticked", "stickt", "sticken"]
-},
-{
-"infinitive": "strike",
-"past_simple": "struck",
-"past_participle": "struck",
-"other_options": ["strikeing", "strikeed", "striket", "strikeen"]
-},
-{
-"infinitive": "swear",
-"past_simple": "swore",
-"past_participle": "sworn",
-"other_options": ["swearing", "sweared", "sweart", "swearen"]
-},
-{
-"infinitive": "sweep",
-"past_simple": "swept",
-"past_participle": "swept",
-"other_options": ["sweeping", "sweeped", "sweept", "sweepen"]
-},
-{
-"infinitive": "swim",
-"past_simple": "swam",
-"past_participle": "swum",
-"other_options": ["swiming", "swimed", "swimt", "swimen"]
-},
-{
-"infinitive": "swing",
-"past_simple": "swung",
-"past_participle": "swung",
-"other_options": ["swinging", "swinged", "swingt", "swingen"]
-},
-{
-"infinitive": "take",
-"past_simple": "took",
-"past_participle": "taken",
-"other_options": ["takeing", "takeed", "taket", "takeen"]
-},
-{
-"infinitive": "teach",
-"past_simple": "taught",
-"past_participle": "taught",
-"other_options": ["teaching", "teached", "teacht", "teachen"]
-},
-{
-"infinitive": "tear",
-"past_simple": "tore",
-"past_participle": "torn",
-"other_options": ["tearing", "teared", "teart", "tearen"]
-},
-{
-"infinitive": "tell",
-"past_simple": "told",
-"past_participle": "told",
-"other_options": ["telling", "telled", "tellt", "tellen"]
-},
-{
-"infinitive": "think",
-"past_simple": "thought",
-"past_participle": "thought",
-"other_options": ["thinking", "thinked", "thinkt", "thinken"]
-},
-{
-"infinitive": "throw",
-"past_simple": "threw",
-"past_participle": "thrown",
-"other_options": ["throwing", "throwed", "throwt", "throwen"]
-},
-{
-"infinitive": "understand",
-"past_simple": "understood",
-"past_participle": "understood",
-"other_options": ["understanding", "understanded", "understandt", "understanden"]
-},
-{
-"infinitive": "wake",
-"past_simple": "woke",
-"past_participle": "woken",
-"other_options": ["wakeing", "wakeed", "waket", "wakeen"]
-},
-{
-"infinitive": "wear",
-"past_simple": "wore",
-"past_participle": "worn",
-"other_options": ["wearing", "weared", "weart", "wearen"]
-},
-{
-"infinitive": "win",
-"past_simple": "won",
-"past_participle": "won",
-"other_options": ["wining", "wined", "wint", "winen"]
-},
-{
-"infinitive": "write",
-"past_simple": "wrote",
-"past_participle": "written",
-"other_options": ["writeing", "writeed", "writet", "writeen"]
-}
-]
+  "infinitive": "be",
+  "past_simple": "was",
+  "past_participle": "been",
+  "other_options": ["being", "beed", "bet", "been"]
+  },
+  {
+  "infinitive": "beat",
+  "past_simple": "beat",
+  "past_participle": "beaten",
+  "other_options": ["beating", "beated", "beatt", "beaten"]
+  },
+  {
+  "infinitive": "become",
+  "past_simple": "became",
+  "past_participle": "become",
+  "other_options": ["becomeing", "becomeed", "becomet", "becomeen"]
+  },
+  {
+  "infinitive": "begin",
+  "past_simple": "began",
+  "past_participle": "begun",
+  "other_options": ["begining", "begined", "begint", "beginen"]
+  },
+  {
+  "infinitive": "bend",
+  "past_simple": "bent",
+  "past_participle": "bent",
+  "other_options": ["bending", "bended", "bendt", "benden"]
+  },
+  {
+  "infinitive": "bet",
+  "past_simple": "bet",
+  "past_participle": "bet",
+  "other_options": ["beting", "beted", "bett", "beten"]
+  },
+  {
+  "infinitive": "bite",
+  "past_simple": "bit",
+  "past_participle": "bitten",
+  "other_options": ["biteing", "biteed", "bitet", "biteen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "blow",
+  "past_simple": "blew",
+  "past_participle": "blown",
+  "other_options": ["blowing", "blowed", "blowt", "blowen"],
+  "category": "weather"
+  },
+  {
+  "infinitive": "break",
+  "past_simple": "broke",
+  "past_participle": "broken",
+  "other_options": ["breaking", "breaked", "breakt", "breaken"]
+  },
+  {
+  "infinitive": "bring",
+  "past_simple": "brought",
+  "past_participle": "brought",
+  "other_options": ["bringing", "bringed", "bringt", "bringen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "build",
+  "past_simple": "built",
+  "past_participle": "built",
+  "other_options": ["building", "builded", "buildt", "builden"]
+  },
+  {
+  "infinitive": "buy",
+  "past_simple": "bought",
+  "past_participle": "bought",
+  "other_options": ["buying", "buyed", "buyt", "buyen"]
+  },
+  {
+  "infinitive": "catch",
+  "past_simple": "caught",
+  "past_participle": "caught",
+  "other_options": ["catching", "catched", "catcht", "catchen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "choose",
+  "past_simple": "chose",
+  "past_participle": "chosen",
+  "other_options": ["chooseing", "chooseed", "chooset", "chooseen"]
+  },
+  {
+  "infinitive": "come",
+  "past_simple": "came",
+  "past_participle": "come",
+  "other_options": ["comeing", "comeed", "comet", "comeen"],
+  "category": "transport"
+  },
+  {
+  "infinitive": "cost",
+  "past_simple": "cost",
+  "past_participle": "cost",
+  "other_options": ["costing", "costed", "costt", "costen"]
+  },
+  {
+  "infinitive": "cut",
+  "past_simple": "cut",
+  "past_participle": "cut",
+  "other_options": ["cuting", "cuted", "cutt", "cuten"]
+  },
+  {
+  "infinitive": "deal",
+  "past_simple": "dealt",
+  "past_participle": "dealt",
+  "other_options": ["dealing", "dealed", "dealt", "dealen"]
+  },
+  {
+  "infinitive": "dig",
+  "past_simple": "dug",
+  "past_participle": "dug",
+  "other_options": ["diging", "diged", "digt", "digen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "do",
+  "past_simple": "did",
+  "past_participle": "done",
+  "other_options": ["doing", "doed", "dot", "doen"]
+  },
+  {
+  "infinitive": "draw",
+  "past_simple": "drew",
+  "past_participle": "drawn",
+  "other_options": ["drawing", "drawed", "drawt", "drawen"]
+  },
+  {
+  "infinitive": "drink",
+  "past_simple": "drank",
+  "past_participle": "drunk",
+  "other_options": ["drinking", "drinked", "drinkt", "drinken"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "drive",
+  "past_simple": "drove",
+  "past_participle": "driven",
+  "other_options": ["driveing", "driveed", "drivet", "driveen"],
+  "category": "transport"
+  },
+  {
+  "infinitive": "eat",
+  "past_simple": "ate",
+  "past_participle": "eaten",
+  "other_options": ["eating", "eated", "eatt", "eaten"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "fall",
+  "past_simple": "fell",
+  "past_participle": "fallen",
+  "other_options": ["falling", "falled", "fallt", "fallen"]
+  },
+  {
+  "infinitive": "feed",
+  "past_simple": "fed",
+  "past_participle": "fed",
+  "other_options": ["feeding", "feeded", "feedt", "feeden"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "feel",
+  "past_simple": "felt",
+  "past_participle": "felt",
+  "other_options": ["feeling", "feeled", "feelt", "feelen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "fight",
+  "past_simple": "fought",
+  "past_participle": "fought",
+  "other_options": ["fighting", "fighted", "fightt", "fighten"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "find",
+  "past_simple": "found",
+  "past_participle": "found",
+  "other_options": ["finding", "finded", "findt", "finden"]
+  },
+  {
+  "infinitive": "fly",
+  "past_simple": "flew",
+  "past_participle": "flown",
+  "other_options": ["flying", "flyed", "flyt", "flyen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "forget",
+  "past_simple": "forgot",
+  "past_participle": "forgotten",
+  "other_options": ["forgeting", "forgeted", "forgett", "forgeten"]
+  },
+  {
+  "infinitive": "forgive",
+  "past_simple": "forgave",
+  "past_participle": "forgiven",
+  "other_options": ["forgiveing", "forgiveed", "forgivet", "forgiveen"]
+  },
+  {
+  "infinitive": "freeze",
+  "past_simple": "froze",
+  "past_participle": "frozen",
+  "other_options": ["freezeing", "freezeed", "freezet", "freezeen"],
+  "category": "weather"
+  },
+  {
+  "infinitive": "get",
+  "past_simple": "got",
+  "past_participle": "got",
+  "other_options": ["geting", "geted", "gett", "geten"],
+  "category": "transport"
+  },
+  {
+  "infinitive": "give",
+  "past_simple": "gave",
+  "past_participle": "given",
+  "other_options": ["giveing", "giveed", "givet", "giveen"]
+  },
+  {
+  "infinitive": "go",
+  "past_simple": "went",
+  "past_participle": "gone",
+  "other_options": ["going", "goed", "got", "goen"],
+  "category": "transport"
+  },
+  {
+  "infinitive": "grow",
+  "past_simple": "grew",
+  "past_participle": "grown",
+  "other_options": ["growing", "growed", "growt", "growen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "hang",
+  "past_simple": "hung",
+  "past_participle": "hung",
+  "other_options": ["hanging", "hanged", "hangt", "hangen"]
+  },
+  {
+  "infinitive": "have",
+  "past_simple": "had",
+  "past_participle": "had",
+  "other_options": ["haveing", "haveed", "havet", "haveen"]
+  },
+  {
+  "infinitive": "hear",
+  "past_simple": "heard",
+  "past_participle": "heard",
+  "other_options": ["hearing", "heared", "heart", "hearen"]
+  },
+  {
+  "infinitive": "hide",
+  "past_simple": "hid",
+  "past_participle": "hidden",
+  "other_options": ["hideing", "hideed", "hidet", "hideen"]
+  },
+  {
+  "infinitive": "hit",
+  "past_simple": "hit",
+  "past_participle": "hit",
+  "other_options": ["hiting", "hited", "hitt", "hiten"]
+  },
+  {
+  "infinitive": "hold",
+  "past_simple": "held",
+  "past_participle": "held",
+  "other_options": ["holding", "holded", "holdt", "holden"]
+  },
+  {
+  "infinitive": "hurt",
+  "past_simple": "hurt",
+  "past_participle": "hurt",
+  "other_options": ["hurting", "hurted", "hurtt", "hurten"]
+  },
+  {
+  "infinitive": "keep",
+  "past_simple": "kept",
+  "past_participle": "kept",
+  "other_options": ["keeping", "keeped", "keept", "keepen"]
+  },
+  {
+  "infinitive": "know",
+  "past_simple": "knew",
+  "past_participle": "known",
+  "other_options": ["knowing", "knowed", "knowt", "knowen"]
+  },
+  {
+  "infinitive": "lay",
+  "past_simple": "laid",
+  "past_participle": "laid",
+  "other_options": ["laying", "layed", "layt", "layen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "lead",
+  "past_simple": "led",
+  "past_participle": "led",
+  "other_options": ["leading", "leaded", "leadt", "leaden"]
+  },
+  {
+  "infinitive": "leave",
+  "past_simple": "left",
+  "past_participle": "left",
+  "other_options": ["leaveing", "leaveed", "leavet", "leaveen"]
+  },
+  {
+  "infinitive": "lend",
+  "past_simple": "lent",
+  "past_participle": "lent",
+  "other_options": ["lending", "lended", "lendt", "lenden"]
+  },
+  {
+  "infinitive": "let",
+  "past_simple": "let",
+  "past_participle": "let",
+  "other_options": ["leting", "leted", "lett", "leten"]
+  },
+  {
+  "infinitive": "lie",
+  "past_simple": "lay",
+  "past_participle": "lain",
+  "other_options": ["lieing", "lieed", "liet", "lieen"]
+  },
+  {
+  "infinitive": "light",
+  "past_simple": "lit",
+  "past_participle": "lit",
+  "other_options": ["lighting", "lighted", "lightt", "lighten"],
+  "category": "weather"
+  },
+  {
+  "infinitive": "lose",
+  "past_simple": "lost",
+  "past_participle": "lost",
+  "other_options": ["loseing", "loseed", "loset", "loseen"]
+  },
+  {
+  "infinitive": "make",
+  "past_simple": "made",
+  "past_participle": "made",
+  "other_options": ["makeing", "makeed", "maket", "makeen"]
+  },
+  {
+  "infinitive": "mean",
+  "past_simple": "meant",
+  "past_participle": "meant",
+  "other_options": ["meaning", "meaned", "meant", "meanen"]
+  },
+  {
+  "infinitive": "meet",
+  "past_simple": "met",
+  "past_participle": "met",
+  "other_options": ["meeting", "meeted", "meett", "meeten"]
+  },
+  {
+  "infinitive": "pay",
+  "past_simple": "paid",
+  "past_participle": "paid",
+  "other_options": ["paying", "payed", "payt", "payen"]
+  },
+  {
+  "infinitive": "put",
+  "past_simple": "put",
+  "past_participle": "put",
+  "other_options": ["puting", "puted", "putt", "puten"]
+  },
+  {
+  "infinitive": "read",
+  "past_simple": "read",
+  "past_participle": "read",
+  "other_options": ["reading", "readed", "readt", "readen"]
+  },
+  {
+  "infinitive": "ride",
+  "past_simple": "rode",
+  "past_participle": "ridden",
+  "other_options": ["rideing", "rideed", "ridet", "rideen"],
+  "category": "transport"
+  },
+  {
+  "infinitive": "ring",
+  "past_simple": "rang",
+  "past_participle": "rung",
+  "other_options": ["ringing", "ringed", "ringt", "ringen"]
+  },
+  {
+  "infinitive": "rise",
+  "past_simple": "rose",
+  "past_participle": "risen",
+  "other_options": ["riseing", "riseed", "riset", "riseen"],
+  "category": "weather"
+  },
+  {
+  "infinitive": "run",
+  "past_simple": "ran",
+  "past_participle": "run",
+  "other_options": ["runing", "runed", "runt", "runen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "say",
+  "past_simple": "said",
+  "past_participle": "said",
+  "other_options": ["saying", "sayed", "sayt", "sayen"]
+  },
+  {
+  "infinitive": "see",
+  "past_simple": "saw",
+  "past_participle": "seen",
+  "other_options": ["seeing", "seeed", "seet", "seeen"]
+  },
+  {
+  "infinitive": "seek",
+  "past_simple": "sought",
+  "past_participle": "sought",
+  "other_options": ["seeking", "seeked", "seekt", "seeken"]
+  },
+  {
+  "infinitive": "sell",
+  "past_simple": "sold",
+  "past_participle": "sold",
+  "other_options": ["selling", "selled", "sellt", "sellen"]
+  },
+  {
+  "infinitive": "send",
+  "past_simple": "sent",
+  "past_participle": "sent",
+  "other_options": ["sending", "sended", "sendt", "senden"]
+  },
+  {
+  "infinitive": "set",
+  "past_simple": "set",
+  "past_participle": "set",
+  "other_options": ["seting", "seted", "sett", "seten"]
+  },
+  {
+  "infinitive": "shake",
+  "past_simple": "shook",
+  "past_participle": "shaken",
+  "other_options": ["shakeing", "shakeed", "shaket", "shakeen"]
+  },
+  {
+  "infinitive": "shine",
+  "past_simple": "shone",
+  "past_participle": "shone",
+  "other_options": ["shineing", "shineed", "shinet", "shineen"],
+  "category": "weather"
+  },
+  {
+  "infinitive": "shoot",
+  "past_simple": "shot",
+  "past_participle": "shot",
+  "other_options": ["shooting", "shooted", "shoott", "shooten"]
+  },
+  {
+  "infinitive": "show",
+  "past_simple": "showed",
+  "past_participle": "shown,",
+  "other_options": ["showing", "showed", "showt", "showen"]
+  },
+  {
+  "infinitive": "shut",
+  "past_simple": "shut",
+  "past_participle": "shut",
+  "other_options": ["shuting", "shuted", "shutt", "shuten"]
+  },
+  {
+  "infinitive": "sing",
+  "past_simple": "sang",
+  "past_participle": "sung",
+  "other_options": ["singing", "singed", "singt", "singen"]
+  },
+  {
+  "infinitive": "sink",
+  "past_simple": "sank",
+  "past_participle": "sunk",
+  "other_options": ["sinking", "sinked", "sinkt", "sinken"]
+  },
+  {
+  "infinitive": "sit",
+  "past_simple": "sat",
+  "past_participle": "sat",
+  "other_options": ["siting", "sited", "sitt", "siten"]
+  },
+  {
+  "infinitive": "sleep",
+  "past_simple": "slept",
+  "past_participle": "slept",
+  "other_options": ["sleeping", "sleeped", "sleept", "sleepen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "speak",
+  "past_simple": "spoke",
+  "past_participle": "spoken",
+  "other_options": ["speaking", "speaked", "speakt", "speaken"]
+  },
+  {
+  "infinitive": "spend",
+  "past_simple": "spent",
+  "past_participle": "spent",
+  "other_options": ["spending", "spended", "spendt", "spenden"]
+  },
+  {
+  "infinitive": "stand",
+  "past_simple": "stood",
+  "past_participle": "stood",
+  "other_options": ["standing", "standed", "standt", "standen"]
+  },
+  {
+  "infinitive": "steal",
+  "past_simple": "stole",
+  "past_participle": "stolen",
+  "other_options": ["stealing", "stealed", "stealt", "stealen"]
+  },
+  {
+  "infinitive": "stick",
+  "past_simple": "stuck",
+  "past_participle": "stuck",
+  "other_options": ["sticking", "sticked", "stickt", "sticken"]
+  },
+  {
+  "infinitive": "strike",
+  "past_simple": "struck",
+  "past_participle": "struck",
+  "other_options": ["strikeing", "strikeed", "striket", "strikeen"]
+  },
+  {
+  "infinitive": "swear",
+  "past_simple": "swore",
+  "past_participle": "sworn",
+  "other_options": ["swearing", "sweared", "sweart", "swearen"]
+  },
+  {
+  "infinitive": "sweep",
+  "past_simple": "swept",
+  "past_participle": "swept",
+  "other_options": ["sweeping", "sweeped", "sweept", "sweepen"]
+  },
+  {
+  "infinitive": "swim",
+  "past_simple": "swam",
+  "past_participle": "swum",
+  "other_options": ["swiming", "swimed", "swimt", "swimen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "swing",
+  "past_simple": "swung",
+  "past_participle": "swung",
+  "other_options": ["swinging", "swinged", "swingt", "swingen"]
+  },
+  {
+  "infinitive": "take",
+  "past_simple": "took",
+  "past_participle": "taken",
+  "other_options": ["takeing", "takeed", "taket", "takeen"]
+  },
+  {
+  "infinitive": "teach",
+  "past_simple": "taught",
+  "past_participle": "taught",
+  "other_options": ["teaching", "teached", "teacht", "teachen"]
+  },
+  {
+  "infinitive": "tear",
+  "past_simple": "tore",
+  "past_participle": "torn",
+  "other_options": ["tearing", "teared", "teart", "tearen"],
+  "category": "animals"
+  },
+  {
+  "infinitive": "tell",
+  "past_simple": "told",
+  "past_participle": "told",
+  "other_options": ["telling", "telled", "tellt", "tellen"]
+  },
+  {
+  "infinitive": "think",
+  "past_simple": "thought",
+  "past_participle": "thought",
+  "other_options": ["thinking", "thinked", "thinkt", "thinken"]
+  },
+  {
+  "infinitive": "throw",
+  "past_simple": "threw",
+  "past_participle": "thrown",
+  "other_options": ["throwing", "throwed", "throwt", "throwen"]
+  },
+  {
+  "infinitive": "understand",
+  "past_simple": "understood",
+  "past_participle": "understood",
+  "other_options": ["understanding", "understanded", "understandt", "understanden"]
+  },
+  {
+  "infinitive": "wake",
+  "past_simple": "woke",
+  "past_participle": "woken",
+  "other_options": ["wakeing", "wakeed", "waket", "wakeen"]
+  },
+  {
+  "infinitive": "wear",
+  "past_simple": "wore",
+  "past_participle": "worn",
+  "other_options": ["wearing", "weared", "weart", "wearen"]
+  },
+  {
+  "infinitive": "win",
+  "past_simple": "won",
+  "past_participle": "won",
+  "other_options": ["wining", "wined", "wint", "winen"]
+  },
+  {
+  "infinitive": "write",
+  "past_simple": "wrote",
+  "past_participle": "written",
+  "other_options": ["writeing", "writeed", "writet", "writeen"]
+  }
+  ]
