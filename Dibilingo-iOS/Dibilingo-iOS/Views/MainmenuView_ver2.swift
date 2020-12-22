@@ -130,7 +130,7 @@ struct MainmenuView_ver2: View {
                             })
                         }
                     }
-                    .disabled(true)
+                    //.disabled(true)
                     .padding(.bottom, 20)
                 }
                 .zIndex(0)
@@ -138,6 +138,9 @@ struct MainmenuView_ver2: View {
         }
         }
         .navigationBarHidden(true)
+        .onAppear(perform: {
+            self.userprofile.mainmenuLoad()
+        })
     }
 }
 
