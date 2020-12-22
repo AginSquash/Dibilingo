@@ -15,6 +15,8 @@ struct MainmenuView_ver2: View {
     
     var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
     
+    @State private var offset: CGFloat = 0
+    
     var body: some View {
         ZStack {
             Circle()
@@ -35,17 +37,47 @@ struct MainmenuView_ver2: View {
                             .frame(width: 50, height: 150, alignment: .center)
                             .onTapGesture {
                                 withAnimation {
-                                value.scrollTo(2, anchor: .center)
+                                value.scrollTo(categories[2], anchor: .center)
                                 }
                             }
                         
-                        ForEach(categories) { element in
+                        ForEach(categories, id: \.self) { element in
                             Image("icon_\(element.name)")
                                 .resizable()
                                 .frame(width: 275, height: 275, alignment: .center)
                                 .shadow(radius: 10)
-                                .id(element.id)
+                                .highPriorityGesture(
+                                    DragGesture()
+                                        .onChanged({ gesture in
+                                            self.offset = gesture.translation.width
+                                            
+                                            /*
+                                            print(offset)
+                                            
+                                            if offset < -15 {
+                                                withAnimation {
+                                                    value.scrollTo(categories[1], anchor: .center)
+                                                    print("Scrolled!")
+                                                }
+                                            } */
+                                        })
+                                        .onEnded({ _ in
+                                            print("OK")
+                                            
+                                            print(offset)
+                                            
+                                            if offset < -15 {
+                                                withAnimation {
+                                                    value.scrollTo(categories[1], anchor: .center)
+                                                }
+                                            }
+                                            
+                                        })
+                                )
                         }
+                        
+                        Rectangle()
+                            .frame(width: 50, height: 150, alignment: .center)
                     }
                 }
             }
