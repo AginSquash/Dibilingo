@@ -23,6 +23,7 @@ struct MainmenuView_ver2: View {
     
     var body: some View {
         //GeometryReader { fullView in
+        NavigationView {
         ZStack {
             Circle()
                 .fill(LinearGradient(
@@ -61,55 +62,72 @@ struct MainmenuView_ver2: View {
             
             //Text("Ok")
 
-            
-                ScrollView(.horizontal, showsIndicators: false) {
-                    ScrollViewReader { reader in
-                        HStack {
-                            ForEach(categories, id: \.self) { element in
-                                GeometryReader { geo in
-                                    LevelPreview(userprofile: userprofile, category_name: element.name)
-                                        //.shadow(radius: 10)
-                                        .highPriorityGesture(TapGesture().onEnded({
-                                            print("reader: \(reader)")
-                                        }))
-                                        .frame(width: 250, height: uiscreen.width, alignment: .center)
-                                        .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - uiscreen.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
-                                }
-                                .frame(width: 250)
-                            }
-                        }
-                        .padding(.horizontal, (uiscreen.width - 250) / 2)
-                        .onAppear(perform: {
-                            self.reader = reader
-                        })
-                    }
-                }
-                .offset(y: uiscreen.midY/3)
-            
-            VStack {
-                Spacer()
+            ZStack {
                 HStack {
-                    Button("Go back", action: {
+                    Button(action: {
                         guard currentCategory != 0 else { return }
                         currentCategory -= 1
                         withAnimation {
                             reader?.scrollTo(categories[currentCategory], anchor: .center)
                         }
+                    }, label: {
+                        Image(systemName: "arrow.left")
+                            .resizable()
+                            .frame(width: 50, height: 50, alignment: .center)
                     })
                     Spacer()
-                    Button("Go next", action: {
+                    Button(action: {
                         guard currentCategory != categories.count - 1 else { return }
                         currentCategory += 1
                         withAnimation {
                             reader?.scrollTo(categories[currentCategory], anchor: .center)
                         }
+                    }, label: {
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .frame(width: 50, height: 50, alignment: .center)
+                            
                     })
-                }.padding()
+                }
+                .zIndex(2)
+                .allowsHitTesting(true)
+                .padding()
+                
+                ZStack {
+                    //Rectangle()
+                    //    .opacity(0.5)
+                    //    .zIndex(1)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        ScrollViewReader { reader in
+                            HStack {
+                                ForEach(categories, id: \.self) { element in
+                                        LevelPreview(userprofile: userprofile, category_name: element.name)
+                                            //.allowsHitTesting(false)
+                                           /* .gesture( DragGesture()
+                                                        .onChanged( { gesture in
+                                                            print(gesture)
+                                                            self.offset == gesture.translation.width
+                                                        } )
+                                            )
+                                            .offset(x: offset)
+                                            .highPriorityGesture(TapGesture().onEnded({
+                                                print("reader: \(reader)")
+                                            })) */
+                                            .frame(width: uiscreen.width, alignment: .center)
+                                            .zIndex(2)
+                                }
+                            }
+                            .onAppear(perform: {
+                                self.reader = reader
+                            })
+                        }
+                    }
+                }
+                .zIndex(0)
             }
-                //.position(x: uiscreen.midX, y: uiscreen.midY)
-           // }
-           // .position(x: uiscreen.midX, y: uiscreen.midY)
         }
+        }
+        .navigationBarHidden(true)
     }
 }
 

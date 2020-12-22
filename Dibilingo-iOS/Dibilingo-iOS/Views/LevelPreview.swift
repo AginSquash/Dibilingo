@@ -12,7 +12,7 @@ struct LevelPreview: View {
     @ObservedObject var userprofile: UserProfile_ViewModel
     var category_name: String
     
-    @State private var showPopup: Bool = true
+    //@State private var showPopup: Bool = true
     
     var body: some View {
         VStack(spacing: -5) {
@@ -20,11 +20,6 @@ struct LevelPreview: View {
                 .resizable()
                 .shadow(radius: 5)
                 .frame(width: 200, height: 200, alignment: .center)
-                .offset(y: showPopup ? 72.5 : 0 )
-                .onTapGesture(count: 1, perform: {
-                    withAnimation { showPopup.toggle() }
-                })
-            if showPopup {
                 ZStack {
                     RoundedRectangle(cornerRadius: 50)
                         .frame(width: 275, height: 150, alignment: .center)
@@ -75,8 +70,6 @@ struct LevelPreview: View {
                         
                     }
                 }
-                .offset(y: 72.5)
-            }
         }
     }
 }
