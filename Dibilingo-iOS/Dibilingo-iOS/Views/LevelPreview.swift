@@ -12,7 +12,7 @@ struct LevelPreview: View {
     @ObservedObject var userprofile: UserProfile_ViewModel
     var category_name: String
     
-    @State private var showPopup: Bool = false
+    @State private var showPopup: Bool = true
     
     var body: some View {
         VStack(spacing: -5) {

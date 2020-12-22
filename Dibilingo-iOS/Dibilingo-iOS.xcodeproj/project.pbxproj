@@ -15,7 +15,6 @@
 		CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3BDD10251E179100985BB1 /* LoginView.swift */; };
 		CD433C73257E9602004E5697 /* SentenceFromWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD433C72257E9602004E5697 /* SentenceFromWords.swift */; };
 		CD46735E25920A5600D7E482 /* MainmenuView_ver2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46735D25920A5600D7E482 /* MainmenuView_ver2.swift */; };
-		CD46736125921D7F00D7E482 /* UIScrollViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD46736025921D7F00D7E482 /* UIScrollViewWrapper.swift */; };
 		CD4F13F1257C43DC00F3B26C /* UserProfile_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4F13F0257C43DC00F3B26C /* UserProfile_ViewModel.swift */; };
 		CD8BF8B72588DC8700202C90 /* SentenceJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BF8B62588DC8700202C90 /* SentenceJSON.swift */; };
 		CD8BF8BA2588DC9000202C90 /* identifiable_word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD8BF8B92588DC9000202C90 /* identifiable_word.swift */; };
@@ -52,7 +51,6 @@
 		CD3BDD10251E179100985BB1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CD433C72257E9602004E5697 /* SentenceFromWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceFromWords.swift; sourceTree = "<group>"; };
 		CD46735D25920A5600D7E482 /* MainmenuView_ver2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainmenuView_ver2.swift; sourceTree = "<group>"; };
-		CD46736025921D7F00D7E482 /* UIScrollViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIScrollViewWrapper.swift; path = "Dibilingo-iOS/Utilities/UIScrollViewWrapper.swift"; sourceTree = SOURCE_ROOT; };
 		CD4F13F0257C43DC00F3B26C /* UserProfile_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfile_ViewModel.swift; path = "Dibilingo-iOS/Data/UserProfile_ViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		CD8BF8B62588DC8700202C90 /* SentenceJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceJSON.swift; sourceTree = "<group>"; };
 		CD8BF8B92588DC9000202C90 /* identifiable_word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = identifiable_word.swift; sourceTree = "<group>"; };
@@ -203,7 +201,6 @@
 			children = (
 				CDDD31E4257BA4B800EE9507 /* MainmenuView.swift */,
 				CD46735D25920A5600D7E482 /* MainmenuView_ver2.swift */,
-				CD46736025921D7F00D7E482 /* UIScrollViewWrapper.swift */,
 				CDDD31EB257BBA1C00EE9507 /* LevelPreview.swift */,
 				CD94A71F2532722A009750AC /* LoadingView.swift */,
 				CD3BDD10251E179100985BB1 /* LoginView.swift */,
@@ -315,7 +312,6 @@
 				CD3BDD11251E179100985BB1 /* LoginView.swift in Sources */,
 				CD10B90C25878E58006F0D86 /* WordView.swift in Sources */,
 				CDB1A032251CD4B80009F7D8 /* GIFPlayerView.swift in Sources */,
-				CD46736125921D7F00D7E482 /* UIScrollViewWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
