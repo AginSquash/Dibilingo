@@ -17,6 +17,8 @@ struct MainmenuView_ver2: View {
     var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
     
     @State private var offset: CGFloat = 0
+    @State private var reader: ScrollViewProxy?
+    @State private var currentCategory: Int = 0
     @ObservedObject var userprofile = UserProfile_ViewModel()
     
     var body: some View {
@@ -61,23 +63,49 @@ struct MainmenuView_ver2: View {
 
             
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(categories, id: \.self) { element in
-                            GeometryReader { geo in
-                                //Image("icon_\(element.name)")
-                                    //.resizable()
-                                    //.frame(width: 250, height: 250, alignment: .center)
-                                LevelPreview(userprofile: userprofile, category_name: element.name)
-                                    .frame(width: 250, height: uiscreen.width, alignment: .center)
-                                    //.shadow(radius: 10)
-                                    .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - uiscreen.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+                    ScrollViewReader { reader in
+                        HStack {
+                            ForEach(categories, id: \.self) { element in
+                                GeometryReader { geo in
+                                    LevelPreview(userprofile: userprofile, category_name: element.name)
+                                        //.shadow(radius: 10)
+                                        .highPriorityGesture(TapGesture().onEnded({
+                                            print("reader: \(reader)")
+                                        }))
+                                        .frame(width: 250, height: uiscreen.width, alignment: .center)
+                                        .rotation3DEffect(.degrees(-Double(geo.frame(in: .global).midX - uiscreen.width / 2) / 10), axis: (x: 0, y: 1, z: 0))
+                                }
+                                .frame(width: 250)
                             }
-                            .frame(width: 250)
                         }
+                        .padding(.horizontal, (uiscreen.width - 250) / 2)
+                        .onAppear(perform: {
+                            self.reader = reader
+                        })
                     }
-                    .padding(.horizontal, (uiscreen.width - 250) / 2)
                 }
                 .offset(y: uiscreen.midY/3)
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Button("Go back", action: {
+                        guard currentCategory != 0 else { return }
+                        currentCategory -= 1
+                        withAnimation {
+                            reader?.scrollTo(categories[currentCategory], anchor: .center)
+                        }
+                    })
+                    Spacer()
+                    Button("Go next", action: {
+                        guard currentCategory != categories.count - 1 else { return }
+                        currentCategory += 1
+                        withAnimation {
+                            reader?.scrollTo(categories[currentCategory], anchor: .center)
+                        }
+                    })
+                }.padding()
+            }
                 //.position(x: uiscreen.midX, y: uiscreen.midY)
            // }
            // .position(x: uiscreen.midX, y: uiscreen.midY)
