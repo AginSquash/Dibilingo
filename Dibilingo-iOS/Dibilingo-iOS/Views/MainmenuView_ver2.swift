@@ -19,12 +19,17 @@ struct MainmenuView_ver2: View {
     @State private var offset: CGFloat = 0
     @State private var reader: ScrollViewProxy?
     @State private var currentCategory: Int = 0
+    @State private var isAnimation = false
     @ObservedObject var userprofile = UserProfile_ViewModel()
     
     var body: some View {
         //GeometryReader { fullView in
         NavigationView {
         ZStack {
+            
+            Color(.white)
+                .edgesIgnoringSafeArea(.all)
+            
             Circle()
                 .fill(LinearGradient(
                       gradient: .init(colors: [Self.gradientStart, Self.gradientEnd]),
@@ -65,22 +70,34 @@ struct MainmenuView_ver2: View {
             ZStack {
                 HStack {
                     Button(action: {
+                        guard isAnimation == false else { return }
                         guard currentCategory != 0 else { return }
+                        isAnimation = true
                         currentCategory -= 1
                         withAnimation {
                             reader?.scrollTo(categories[currentCategory], anchor: .center)
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            isAnimation = false
                         }
                     }, label: {
                         Image(systemName: "arrow.left")
                             .resizable()
                             .frame(width: 50, height: 50, alignment: .center)
                     })
+                    .disabled(currentCategory == 0)
+                    
                     Spacer()
                     Button(action: {
+                        guard isAnimation == false else { return }
                         guard currentCategory != categories.count - 1 else { return }
+                        isAnimation = true
                         currentCategory += 1
                         withAnimation {
                             reader?.scrollTo(categories[currentCategory], anchor: .center)
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            isAnimation = false
                         }
                     }, label: {
                         Image(systemName: "arrow.right")
@@ -88,6 +105,7 @@ struct MainmenuView_ver2: View {
                             .frame(width: 50, height: 50, alignment: .center)
                             
                     })
+                    .disabled(currentCategory == categories.count-1)
                 }
                 .zIndex(2)
                 .allowsHitTesting(true)
@@ -102,17 +120,6 @@ struct MainmenuView_ver2: View {
                             HStack {
                                 ForEach(categories, id: \.self) { element in
                                         LevelPreview(userprofile: userprofile, category_name: element.name)
-                                            //.allowsHitTesting(false)
-                                           /* .gesture( DragGesture()
-                                                        .onChanged( { gesture in
-                                                            print(gesture)
-                                                            self.offset == gesture.translation.width
-                                                        } )
-                                            )
-                                            .offset(x: offset)
-                                            .highPriorityGesture(TapGesture().onEnded({
-                                                print("reader: \(reader)")
-                                            })) */
                                             .frame(width: uiscreen.width, alignment: .center)
                                             .zIndex(2)
                                 }
@@ -121,7 +128,7 @@ struct MainmenuView_ver2: View {
                                 self.reader = reader
                             })
                         }
-                    }
+                    }.disabled(true)
                 }
                 .zIndex(0)
             }
