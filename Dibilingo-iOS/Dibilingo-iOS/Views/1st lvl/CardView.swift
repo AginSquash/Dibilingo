@@ -14,11 +14,19 @@ struct CardView: View {
     var removal: ((Bool)->Void)? = nil
     var feedback: UINotificationFeedbackGenerator?
     
+    var text: String {
+        let newText = card.object_name.split(separator: "_")
+        if newText.count > 1 {
+            return newText[1].uppercased()
+        }
+        return card.object_name.uppercased()
+    }
+    
     var computedFontSize: CGFloat {
-        if card.object_name.count < 7 {
+        if text.count < 7 {
             return 42
         } else {
-            let fontSize = 42 - (card.object_name.count - 7) * 3
+            let fontSize = 42 - (text.count - 7) * 3
             return CGFloat(fontSize)
         }
     }
@@ -47,7 +55,7 @@ struct CardView: View {
                
                 HStack {
                     Text("Это").foregroundColor(.white)
-                    Text(card.object_name.uppercased()).foregroundColor(.red)
+                    Text(text).foregroundColor(.red)
                     Text("?").foregroundColor(.white)
                 }
                 .font(Font.custom("boomboom", size: computedFontSize))
