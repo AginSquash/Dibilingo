@@ -9,20 +9,22 @@ import SwiftUI
 import UIKit
 import Introspect
 
-struct MainmenuView_ver2: View {
+struct MainmenuView: View {
     static let gradientStart = Color(red: 239.0 / 255, green: 120.0 / 255, blue: 221.0 / 255)
     static let gradientEnd = Color(red: 239.0 / 255, green: 172.0 / 255, blue: 120.0 / 255)
 
     let uiscreen = UIScreen.main.bounds
     let colors: [Color] = [.red, .green, .blue, .orange, .pink, .purple, .yellow]
     
-    var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
+    var categories = [Category(id: 0, name: "animals", locale_name: "Животные", gradient: ["#facfb6", "#ffcbee"]),
+                      Category(id: 1, name: "transport", locale_name: "Транспорт", gradient: ["#baefd6", "#508add"]),
+                      Category(id: 2, name: "weather", locale_name: "Погода", gradient: ["#fff5a7", "#fdb5a3"]),
+                      Category(id: 3, name: "random", locale_name: "Рандом", gradient: ["#baefd6", "#508add"] )]
     
     @State private var offset: CGFloat = 0
     @State private var reader: ScrollViewProxy?
     @State private var currentCategory: Int = 0
     @State private var isAnimation = false
-    //@State private var
     @ObservedObject var userprofile = UserProfile_ViewModel()
     
     var body: some View {
@@ -35,8 +37,8 @@ struct MainmenuView_ver2: View {
             
             Circle()
                 .fill(LinearGradient(
-                    gradient: .init(colors: [Color.red, Color.purple]), //.init(colors: [Self.gradientStart, Self.gradientEnd])
-                      startPoint: .init(x: 0.5, y: 0),
+                    gradient: .init(colors: self.categories[currentCategory].gradient.map({ Color(hex: $0) })),
+                    startPoint: .init(x: 0.5, y: 0.3),
                       endPoint: .init(x: 0.5, y: 0.6)
                     ))
                 .frame(width: self.uiscreen.width+100,
@@ -122,8 +124,8 @@ struct MainmenuView_ver2: View {
 struct MainmenuView_ver2_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MainmenuView_ver2()
-            MainmenuView_ver2()
+            MainmenuView()
+            MainmenuView()
                 .previewDevice("iPhone 8")
         }
     }
