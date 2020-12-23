@@ -35,6 +35,7 @@ struct MainmenuView: View {
             Color(.white)
                 .edgesIgnoringSafeArea(.all)
             
+            
             Circle()
                 .fill(LinearGradient(
                     gradient: .init(colors: self.categories[currentCategory].gradient.map({ Color(hex: $0) })),
@@ -46,6 +47,16 @@ struct MainmenuView: View {
                         alignment: .center)
                 .position(x: self.uiscreen.midX)
 
+     
+            Text(self.categories[currentCategory].locale_name)
+                .foregroundColor(.white)
+                .font(Font.custom("boomboom", size: 40))
+                .shadow(radius: 5 )
+                .edgesIgnoringSafeArea(.all)
+                .position(x: self.uiscreen.midX, y: self.uiscreen.minY + 25)
+                    
+             
+            
             ZStack {
                 HStack {
                     Button(action: {

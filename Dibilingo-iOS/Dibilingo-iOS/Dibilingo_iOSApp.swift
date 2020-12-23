@@ -11,8 +11,7 @@ import SwiftUI
 struct Dibilingo_iOSApp: App {
     var body: some Scene {
         WindowGroup {
-            //LoadingView()
-            MainmenuView()
+            LoadingView()
         }
     }
 }
