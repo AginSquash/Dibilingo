@@ -43,7 +43,7 @@ struct SentenceFromWords: View {
                     .frame(width: 10, height: 30, alignment: .center)
                 
                 HStack {
-                    Text("Go Back")
+                    Text("Назад")
                         .foregroundColor(.red)
                         .font(Font.custom("boomboom", size: 42))
                         .padding(.leading)

@@ -51,7 +51,7 @@ struct EmojiWordView: View {
             VStack {
                 HStack {
                     
-                    Text("Go Back")
+                    Text("Назад")
                         .foregroundColor(.red)
                         .font(Font.custom("boomboom", size: 42))
                         .padding(.leading)
