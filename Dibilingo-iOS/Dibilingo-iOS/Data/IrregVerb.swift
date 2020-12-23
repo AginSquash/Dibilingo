@@ -13,4 +13,6 @@ struct IrregVerb: Codable {
     let past_participle: String
     
     let other_options: [String]
+    
+    let category: String?
 }

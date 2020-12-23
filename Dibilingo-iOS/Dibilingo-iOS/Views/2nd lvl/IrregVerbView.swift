@@ -227,7 +227,7 @@ struct IrregVerbView: View {
     func loadVerbs () {
 
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
-            self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"]))
+            self.verbs.append(IrregVerb(infinitive: "begin", past_simple: "began", past_participle: "begun", other_options: ["begeining", "begot", "begyn", "begon"], category: nil))
             currentVerb = self.verbs.first
             nextVerb()
             return
@@ -241,8 +241,12 @@ struct IrregVerbView: View {
         guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("IrregVerb.json")) else {
             fatalError("Cannot load IrregVerb.json")
         }
-        guard let decoded = try? JSONDecoder().decode([IrregVerb].self, from: data) else {
+        guard var decoded = try? JSONDecoder().decode([IrregVerb].self, from: data) else {
             fatalError("Cannot decode IrregVerb.json")
+        }
+        
+        if category_name != "random" {
+            decoded.removeAll(where: { $0.category != self.category_name })
         }
         
         self.verbs = decoded.shuffled()
