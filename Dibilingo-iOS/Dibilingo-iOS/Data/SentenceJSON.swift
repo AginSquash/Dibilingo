@@ -14,3 +14,9 @@ struct SentenceJSON: Codable {
         self.sentence = sentence
     }
 }
+
+struct sentencesAll: Codable {
+    let animals: [String]
+    let weather: [String]
+    let transport: [String]
+}

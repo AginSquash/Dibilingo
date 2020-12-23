@@ -54,6 +54,10 @@ def get_cardlist():
 def get_verbs():
     return send_file("data/irregVerb.json", mimetype="application/json", attachment_filename="rregVerb.json")
 
+@app.route('/dibilingo/api/v1.0/sentences', methods=['GET'])
+def get_sentencess():
+    return send_file("data/sentences.json", mimetype="application/json", attachment_filename="sentences.json")
+
 @app.route('/dibilingo/api/v1.0/datahash', methods=['GET'])
 def get_datahash():
     return jsonify({'dataHash': dataHash }) 
