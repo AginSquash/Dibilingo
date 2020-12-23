@@ -35,7 +35,7 @@ struct LoadingView: View {
                 
                 VStack {
                     Spacer()
-                    Text("Connecting")
+                    Text("Соединение")
                         .font(Font.custom("boomboom", size: 26))
                         .foregroundColor(.white)
                     
@@ -44,7 +44,7 @@ struct LoadingView: View {
                         NavigationLink(
                             destination: MainmenuView().navigationBarHidden(true),
                             label: {
-                                Text("Continue Without Internet")
+                                Text("Продолжить без интернета")
                             })
                             .transition(.opacity)
                             .padding(.bottom)

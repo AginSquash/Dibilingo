@@ -24,6 +24,8 @@ struct LoginView: View {
     @State private var userAlreadyExist = false
     @State private var isUpdated = false
     
+    @State private var showError: Bool = false
+    
     var isEnableRegister: Bool {
        return (totalImages == downloadedImages) && (username.count > 3)
     }
@@ -49,7 +51,7 @@ struct LoginView: View {
                 VStack {
                     Spacer()
                     HStack {
-                        Text("Loading:")
+                        Text("Загрузка:")
                             .font(Font.custom("boomboom", size: 26))
                         Text("\(downloadedImages)/\(totalImages)")
                             .font(Font.custom("Coiny", size: 26))
@@ -65,12 +67,12 @@ struct LoginView: View {
                 
                 if !userAlreadyExist {
                     VStack {
-                        Text("Your name:")
+                        Text("Ваше имя:")
                             .foregroundColor(Color(hex: "#004157"))
                             .font(Font.custom("boomboom", size: 32))
                             .offset(y: 5)
                         
-                        TextField("name", text: $username)
+                        TextField("Имя", text: $username)
                             .font(Font.custom("boomboom", size: 38))
                             .foregroundColor(Color(hex: "#42748c"))
                             .multilineTextAlignment(.center)
@@ -98,7 +100,7 @@ struct LoginView: View {
                         Text("Dear, \(username)")
                             .font(Font.custom("boomboom", size: 32))
                             .padding(.bottom)
-                        Text("Please, wait for updating...")
+                        Text("Пожалуйста, дождитесь обновления...")
                             .font(Font.custom("boomboom", size: 32))
                             NavigationLink(
                                 destination: MainmenuView().navigationBarHidden(true),
@@ -114,6 +116,9 @@ struct LoginView: View {
                 }
             }
             .navigationBarHidden(true)
+            .alert(isPresented: $showError) {
+                Alert(title: Text("Ошибка"), message: Text("Введите имя на англиском"), dismissButton: .default(Text("Ok"), action: { self.username = "" }))
+            }
         }
         .onAppear(perform: loadData)
         .navigationViewStyle(StackNavigationViewStyle())
@@ -261,8 +266,14 @@ struct LoginView: View {
     func register() {
         var name = username
         // here must be user register on server
-        name = name.replacingOccurrences(of: " ", with: "_")
-        name = name.replacingOccurrences(of: "/", with: "")
+        //name = name.replacingOccurrences(of: " ", with: "_")
+        //name = name.replacingOccurrences(of: "/", with: "")
+        
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+        if name.rangeOfCharacter(from: characterset.inverted) != nil {
+            self.showError = true
+            return
+        }
         
         URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/login/\(name)/")! ) { data, response, error in
             
