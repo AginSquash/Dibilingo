@@ -46,7 +46,7 @@ struct CardView: View {
                 }
                
                 HStack {
-                    Text("is it a").foregroundColor(.white)
+                    Text("Это").foregroundColor(.white)
                     Text(card.object_name.uppercased()).foregroundColor(.red)
                     Text("?").foregroundColor(.white)
                 }
