@@ -56,7 +56,6 @@ struct EmojiWordView: View {
                         .font(Font.custom("boomboom", size: 42))
                         .padding(.leading)
                         .onTapGesture(count: 1, perform: {
-                            saveCardList()
                             
                             self.mode.wrappedValue.dismiss()
                         })
@@ -184,17 +183,6 @@ struct EmojiWordView: View {
         }
         
         nextCard()
-    }
-    
-    func saveCardList() {
-        /*
-        if let encoded = try? JSONEncoder().encode(cardList) {
-            do {
-                try encoded.write(to: baseURL.appendingPathComponent("CardsList"))
-            } catch {
-                print(error.localizedDescription)
-            }
-        } */
     }
     
     func checkAnswer(rightSwipe: Bool) {
