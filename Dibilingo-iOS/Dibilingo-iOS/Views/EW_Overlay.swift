@@ -26,7 +26,7 @@ struct EW_Overlay: View {
                         .foregroundColor(.red)
                         .font(.system(size: 40, weight: .heavy))
                                 
-                    Text("Wrong!")
+                    Text("Неправильно!")
                         .offset(x: 0, y: 3)
                         .font(Font.custom("boomboom", size: 38))
                         .foregroundColor(.black)
@@ -40,7 +40,7 @@ struct EW_Overlay: View {
                 
                     HStack {
                         if self.customView == false {
-                            Text("it is a").foregroundColor(.black)
+                            Text("Это").foregroundColor(.black)
                         }
                         
                         Text(answerCopy).foregroundColor(.red)
