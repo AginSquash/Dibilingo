@@ -16,14 +16,12 @@ struct MainmenuView_ver2: View {
     
     var categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
     
-    @State private var offset: CGFloat = 0
     @State private var reader: ScrollViewProxy?
     @State private var currentCategory: Int = 0
     @State private var isAnimation = false
     @ObservedObject var userprofile = UserProfile_ViewModel()
     
     var body: some View {
-        //GeometryReader { fullView in
         NavigationView {
         ZStack {
             
@@ -41,40 +39,16 @@ struct MainmenuView_ver2: View {
                         alignment: .center)
                 .position(x: self.uiscreen.midX)
             
-            /*ScrollView(.horizontal, showsIndicators: false ) {
-                ScrollViewReader { value in
-                    HStack {
-                        Rectangle()
-                            .frame(width: 50, height: 150, alignment: .center)
-                            .onTapGesture {
-                                withAnimation {
-                                value.scrollTo(categories[2], anchor: .center)
-                                }
-                            }
-                        
-                        ForEach(categories, id: \.self) { element in
-                            Image("icon_\(element.name)")
-                                .resizable()
-                                .frame(width: 275, height: 275, alignment: .center)
-                                .shadow(radius: 10)
-                        }
-                        
-                        Rectangle()
-                            .frame(width: 50, height: 150, alignment: .center)
-                    }
-                }
-            } */
-            
-            //Text("Ok")
-
             ZStack {
                 HStack {
                     Button(action: {
                         guard isAnimation == false else { return }
                         guard currentCategory != 0 else { return }
                         isAnimation = true
-                        currentCategory -= 1
+                        
+                        
                         withAnimation {
+                            currentCategory -= 1
                             reader?.scrollTo(categories[currentCategory], anchor: .center)
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -92,8 +66,9 @@ struct MainmenuView_ver2: View {
                         guard isAnimation == false else { return }
                         guard currentCategory != categories.count - 1 else { return }
                         isAnimation = true
-                        currentCategory += 1
+                        
                         withAnimation {
+                            currentCategory += 1
                             reader?.scrollTo(categories[currentCategory], anchor: .center)
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -108,32 +83,51 @@ struct MainmenuView_ver2: View {
                     .disabled(currentCategory == categories.count-1)
                 }
                 .offset(y: -65)
-                .zIndex(2)
                 .allowsHitTesting(true)
                 .padding()
                 
-                ZStack {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        ScrollViewReader { reader in
-                            HStack {
-                                ForEach(categories, id: \.self) { element in
-                                        LevelPreview(userprofile: userprofile, category_name: element.name)
-                                            .frame(width: uiscreen.width, alignment: .center)
+                
+                /*
+                 
+                 PageView(index: $currentCategory, pages: self.previews.map({ base in
+                     PageView.Page {
+                         base
+                     }
+                 }) )
+                 
+                 PageView(index: $currentCategory) {
+                     
+                         PageView.Page {
+                             ForEach(categories, id: \.self) { element in
+                             AnyView( ZStack {
+                             LevelPreview(userprofile: userprofile, category_name: element.name)
+                                 .frame(width: uiscreen.width, alignment: .center)
+                             }
+                             )
+                         }
+                     }
+                 }
+                 
+                 */
+                 
+                    ZStack {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            ScrollViewReader { reader in
+                                HStack {
+                                    ForEach(categories, id: \.self) { element in
+                                            LevelPreview(userprofile: userprofile, category_name: element.name)
+                                                .frame(width: uiscreen.width, alignment: .center)
+                                    }
                                 }
+                                .onAppear(perform: {
+                                    self.reader = reader
+                                })
                             }
-                            .onAppear(perform: {
-                                self.reader = reader
-                            })
                         }
+                        .padding(.bottom, 20)
                     }
-                    //.disabled(true)
-                    
-                    //.allowsHitTesting(false)
-                    .padding(.bottom, 20)
                 }
-                .zIndex(0)
             }
-        }
         }
         .navigationBarHidden(true)
         .onAppear(perform: {

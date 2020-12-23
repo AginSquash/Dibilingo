@@ -228,6 +228,8 @@
 			dependencies = (
 			);
 			name = "Dibilingo-iOS";
+			packageProductDependencies = (
+			);
 			productName = "Dibilingo-iOS";
 			productReference = CDDDD4922514FC57007D35AF /* Dibilingo-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -255,6 +257,8 @@
 				Base,
 			);
 			mainGroup = CDDDD4892514FC57007D35AF;
+			packageReferences = (
+			);
 			productRefGroup = CDDDD4932514FC57007D35AF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
