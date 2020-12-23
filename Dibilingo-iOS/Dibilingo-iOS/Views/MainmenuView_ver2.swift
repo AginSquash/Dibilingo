@@ -44,17 +44,16 @@ struct MainmenuView: View {
                     ))
                 .frame(width: self.uiscreen.width+100,
                         height: self.uiscreen.width+100,
-                        alignment: .center)
+                        alignment: .bottom)
                 .position(x: self.uiscreen.midX)
 
      
             Text(self.categories[currentCategory].locale_name)
                 .foregroundColor(.white)
-                .font(Font.custom("boomboom", size: 40))
+                .font(Font.custom("boomboom", size: 42))
                 .shadow(radius: 5 )
-                .edgesIgnoringSafeArea(.all)
-                .position(x: self.uiscreen.midX, y: self.uiscreen.minY + 25)
-                    
+                //.edgesIgnoringSafeArea(.all)
+                .position(x: self.uiscreen.midX, y: self.uiscreen.minY-20)
              
             
             ZStack {
