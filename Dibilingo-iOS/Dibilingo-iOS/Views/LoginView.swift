@@ -188,6 +188,17 @@ struct LoginView: View {
                 
             }.resume()
             
+            // Loading verbs json
+            URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/sentences")!) { data, responce, error in
+                if let data = data {
+                    if let _ = try? JSONDecoder().decode(sentencesAll.self, from: data) {
+                        try? data.write(to: baseURL.appendingPathComponent("sentences.json"))
+                        print("SAVED: sentences.json")
+                    }
+                }
+                
+            }.resume()
+            
             // Load json with cards-name
             URLSession.shared.dataTask(with: url) { data_cl_s, response, error in
                 
