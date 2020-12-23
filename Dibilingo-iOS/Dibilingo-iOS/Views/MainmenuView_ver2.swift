@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import UIKit
+import Introspect
 
 struct MainmenuView_ver2: View {
     static let gradientStart = Color(red: 239.0 / 255, green: 120.0 / 255, blue: 221.0 / 255)
@@ -20,6 +22,7 @@ struct MainmenuView_ver2: View {
     @State private var reader: ScrollViewProxy?
     @State private var currentCategory: Int = 0
     @State private var isAnimation = false
+    //@State private var
     @ObservedObject var userprofile = UserProfile_ViewModel()
     
     var body: some View {
@@ -98,6 +101,9 @@ struct MainmenuView_ver2: View {
                             .onAppear(perform: {
                                 self.reader = reader
                             })
+                        }
+                        .introspectScrollView() { scrollView in
+                            scrollView.isPagingEnabled = true
                         }
                     }
                     .padding(.bottom, 20)
