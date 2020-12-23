@@ -23,7 +23,7 @@ struct MainmenuView_ver2: View {
     @ObservedObject var userprofile = UserProfile_ViewModel()
     
     var body: some View {
-        //GeometryReader { fullView in
+        
         NavigationView {
         ZStack {
             
@@ -40,32 +40,6 @@ struct MainmenuView_ver2: View {
                         height: self.uiscreen.width+100,
                         alignment: .center)
                 .position(x: self.uiscreen.midX)
-            
-            /*ScrollView(.horizontal, showsIndicators: false ) {
-                ScrollViewReader { value in
-                    HStack {
-                        Rectangle()
-                            .frame(width: 50, height: 150, alignment: .center)
-                            .onTapGesture {
-                                withAnimation {
-                                value.scrollTo(categories[2], anchor: .center)
-                                }
-                            }
-                        
-                        ForEach(categories, id: \.self) { element in
-                            Image("icon_\(element.name)")
-                                .resizable()
-                                .frame(width: 275, height: 275, alignment: .center)
-                                .shadow(radius: 10)
-                        }
-                        
-                        Rectangle()
-                            .frame(width: 50, height: 150, alignment: .center)
-                    }
-                }
-            } */
-            
-            //Text("Ok")
 
             ZStack {
                 HStack {
@@ -126,9 +100,6 @@ struct MainmenuView_ver2: View {
                             })
                         }
                     }
-                    //.disabled(true)
-                    
-                    //.allowsHitTesting(false)
                     .padding(.bottom, 20)
                 }
                 .zIndex(0)
