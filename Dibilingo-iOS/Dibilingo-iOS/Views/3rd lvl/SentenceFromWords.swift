@@ -178,13 +178,34 @@ struct SentenceFromWords: View {
     }
     
     func loadSentences() {
-        
+        /*
         sentencesJson.append(SentenceJSON("I'm watching a movie at the moment"))
         sentencesJson.append(SentenceJSON("Emily is teaching me how to make bread"))
         sentencesJson.append(SentenceJSON("He isn’t listening to the radio now"))
         sentencesJson.append(SentenceJSON("The boats are not moving"))
         sentencesJson.append(SentenceJSON("Are these people waiting for a bus?"))
         sentencesJson.append(SentenceJSON("Am I driving too fast?"))
+        */
+        let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        guard let data = try? Data(contentsOf: baseURL.appendingPathComponent("sentences.json")) else {
+            fatalError("Cannot load sentences.json")
+        }
+        guard let decoded = try? JSONDecoder().decode(sentencesAll.self, from: data) else {
+            fatalError("Cannot decode sentences.json")
+        }
+        
+        switch self.category_name {
+        case "animals":
+            sentencesJson.append(contentsOf: decoded.animals.map({ SentenceJSON($0) }))
+        case "weather":
+            sentencesJson.append(contentsOf: decoded.weather.map({ SentenceJSON($0) }))
+        case "transport":
+            sentencesJson.append(contentsOf: decoded.transport.map({ SentenceJSON($0) }))
+        default:
+            sentencesJson.append(contentsOf: decoded.animals.map({ SentenceJSON($0) }))
+            sentencesJson.append(contentsOf: decoded.weather.map({ SentenceJSON($0) }))
+            sentencesJson.append(contentsOf: decoded.transport.map({ SentenceJSON($0) }))
+        }
         
         if self.userprofile.profile == nil { self.userprofile.mainmenuLoad() }
         

@@ -56,7 +56,6 @@ struct EmojiWordView: View {
                         .font(Font.custom("boomboom", size: 42))
                         .padding(.leading)
                         .onTapGesture(count: 1, perform: {
-                            saveCardList()
                             
                             self.mode.wrappedValue.dismiss()
                         })
@@ -170,24 +169,20 @@ struct EmojiWordView: View {
             let cardsList = try? JSONDecoder().decode(CardList.self, from: data)
             print(cardsList)
             
-            guard let cl = cardsList else { return }
-            
+            guard var cl = cardsList else { return }
+            if category_name == "random" {
+                cl.answered_cards.removeAll(where: { $0.contains("_") == false })
+                cl.new_cards.removeAll(where: { $0.contains("_") == false })
+            } else {
+                cl.answered_cards.removeAll(where: { $0.contains(self.category_name) == false })
+                cl.new_cards.removeAll(where: { $0.contains(self.category_name) == false })
+            }
             self.cardList = cl
             
             refreshCards()
         }
         
         nextCard()
-    }
-    
-    func saveCardList() {
-        if let encoded = try? JSONEncoder().encode(cardList) {
-            do {
-                try encoded.write(to: baseURL.appendingPathComponent("CardsList"))
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
     }
     
     func checkAnswer(rightSwipe: Bool) {
@@ -213,7 +208,12 @@ struct EmojiWordView: View {
             
         } else {
             withAnimation {
-                needShowCorrectAnswer = currentCard?.real_name
+                guard let parsed = currentCard?.real_name.split(separator: "_") else { return }
+                if parsed.count > 1 {
+                    needShowCorrectAnswer = String(parsed[1])
+                } else {
+                    needShowCorrectAnswer = currentCard?.real_name
+                }
                 feedback.notificationOccurred(.error)
             }
         }

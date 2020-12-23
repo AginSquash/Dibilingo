@@ -10,7 +10,8 @@ import SwiftUI
 #if targetEnvironment(simulator)
 let serverURL = "http://127.0.0.1:5000"
 #else
-let serverURL = "http://192.168.88.32:5000"
+//let serverURL = "http://192.168.88.32:5000"
+let serverURL = "http://192.168.43.82:5000"
 #endif
 
 struct LoginView: View {
@@ -182,6 +183,17 @@ struct LoginView: View {
                     if let _ = try? JSONDecoder().decode([IrregVerb].self, from: data) {
                         try? data.write(to: baseURL.appendingPathComponent("IrregVerb.json"))
                         print("SAVED: IrregVerb.json")
+                    }
+                }
+                
+            }.resume()
+            
+            // Loading verbs json
+            URLSession.shared.dataTask(with: URL(string: "\(serverURL)/dibilingo/api/v1.0/sentences")!) { data, responce, error in
+                if let data = data {
+                    if let _ = try? JSONDecoder().decode(sentencesAll.self, from: data) {
+                        try? data.write(to: baseURL.appendingPathComponent("sentences.json"))
+                        print("SAVED: sentences.json")
                     }
                 }
                 

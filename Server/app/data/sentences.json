@@ -1,0 +1,6 @@
+{
+  "animals": ["Cats are cute but dogs are loyal", "I wanted to buy a baby Chihuahua", "Hens lay eggs", "My red cat is lying on the windowsill"],
+  "weather": ["The sky is clear today","A cold wind was blowing and a snowstorm began"," It might get colder tomorrow"," If the weather's not too good, we can stay there all summer","Nice day for a walk"," Take a rain check"],
+  "transport": ["My car isn’t being repaired at the moment","The boats are not moving","Am I driving too fast?","The flight has been cancelled","The truck has stuck"], 
+}
+
