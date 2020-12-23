@@ -157,7 +157,7 @@ struct EmojiWordView: View {
             return
         }
         
-        
+        if self.userprofile.profile == nil { self.userprofile.mainmenuLoad() }
         
         if let saved_score = userprofile.profile!.coinsInCategories[level_name] {
             self.coins = saved_score

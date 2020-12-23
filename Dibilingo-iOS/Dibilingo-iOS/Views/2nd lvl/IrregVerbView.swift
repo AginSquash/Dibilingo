@@ -233,6 +233,8 @@ struct IrregVerbView: View {
             return
         }
         
+        if self.userprofile.profile == nil { self.userprofile.mainmenuLoad() }
+        
         self.coins = userprofile.profile?.coinsInCategories[level_name] ?? 0
         
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!

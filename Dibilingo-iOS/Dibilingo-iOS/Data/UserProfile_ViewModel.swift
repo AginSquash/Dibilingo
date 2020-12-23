@@ -90,7 +90,10 @@ class UserProfile_ViewModel: ObservableObject {
     }
     
     static func getTotalCoinsSTATIC(up: UserProfile) -> Int {
-        let categories = [Category(id: 0, name: "cat"), Category(id: 1, name: "train"), Category(id: 2, name: "weather"), Category(id: 3, name: "random")]
+        let categories = [Category(id: 0, name: "animals", locale_name: "Животные", gradient: [""]),
+                          Category(id: 1, name: "transport", locale_name: "Транспорт", gradient: ["#f0da4b", "#0d4ea9", "#a4dde0"]),
+                          Category(id: 2, name: "weather", locale_name: "Погода", gradient: []),
+                          Category(id: 3, name: "random", locale_name: "Рандом", gradient: [] )]
         
         var total_coins: Int = 0
         for category in categories {
